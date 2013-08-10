@@ -1,3 +1,7 @@
+!!!! Run 'xrdb .Xresources' to update these.
+
+!!!! urxvt
+
 Rxvt*background: #252626
 Rxvt*foreground: lightgrey
 !Rxvt*title:      terminal
@@ -14,14 +18,14 @@ Rxvt*scrollBar: false
 
 ! Enable extensions... see /usr/lib/urxvt/perl
 ! Enable Ctrl+Alt+c/v... see /usr/lib/uxvt/perl/clipboard
-Rxvt.perl-ext-common: clipboard,matcher
+Rxvt.perl-ext-common:  clipboard,matcher
 ! URLs as links (from matcher)
-Rxvt.urlLauncher: /usr/bin/luakit
-Rxvt.matcher.button: 1
-Rxvt.colorUL: #4682B4
+Rxvt.urlLauncher:      /usr/bin/luakit
+Rxvt.matcher.button:   1
+Rxvt.colorUL:          #4682B4
 ! Ctrl+Alt+c/v (from clipboard)
-Rxvt.keysym.M-C-c:   perl:clipboard:copy
-Rxvt.keysym.M-C-v:   perl:clipboard:paste
+Rxvt.keysym.M-C-c:     perl:clipboard:copy
+Rxvt.keysym.M-C-v:     perl:clipboard:paste
 !Rxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 ! Disables keymap mode
@@ -71,3 +75,60 @@ Rxvt*color13:    Purple
 Rxvt*color14:    Cyan
 Rxvt*color15:    #e2e2e2
 !Rxvt*cursorColor: ForestGreen
+
+
+!!!! xterm
+
+xterm*faceName:           DejaVu Sans Mono:pixelsize=14:antialias=true:hinting=true
+xterm*background:         #252626
+xterm*foreground:         lightgrey
+xterm*dynamicColors:      true
+xterm*utf8:               2
+xterm*eightBitInput:      false
+xterm*saveLines:          1024
+xterm*boldMode:           false
+!xterm*scrollKey:          true
+!xterm*scrollTtyOutput:    false
+!xterm*scrollBar:          true
+!xterm*rightScrollBar:     true
+!xterm*jumpScroll:         true
+!xterm*multiScroll:        true
+!xterm*toolBar:            false
+
+! Normal
+! color0    black
+! color1    red
+! color2    green
+! color3    yellow
+! color4    blue
+! color5    purple
+! color6    cyan
+! color7    white
+
+xterm*color0:    #6c6c6c
+xterm*color1:    Red
+xterm*color2:    ForestGreen
+xterm*color3:    Yellow
+xterm*color4:    RoyalBlue
+xterm*color5:    #ea96eb
+xterm*color6:    #c9caec
+xterm*color7:    #f2f2f2
+
+! Light
+! color8     black
+! color9     red
+! color10    green
+! color11    yellow
+! color12    blue
+! color13    purple
+! color14    cyan
+! color15    white
+
+xterm*color8:     #747474
+xterm*color9:     #f99286
+xterm*color10:    Green
+xterm*color11:    #fcfbcc
+xterm*color12:    RoyalBlue
+xterm*color13:    Purple
+xterm*color14:    Cyan
+xterm*color15:    #e2e2e2

@@ -4,7 +4,8 @@
 ln -s ~/dotfiles/.aliases ~/.
 ln -s ~/dotfiles/.Rprofile ~/.
 ln -s ~/dotfiles/.zshrc ~/.
-ln -s ~/dotfiles/.Xdefaults ~/.
+ln -s ~/dotfiles/.Xresources ~/.
+xrdb ~/.Xresources
 
 ln -s ~/dotfiles/init.el ~/.emacs.d/
 
