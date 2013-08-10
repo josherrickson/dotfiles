@@ -2,7 +2,7 @@
 # This file must be in the exec= line of /usr/share/xsessions/xmonad.desktop
 
 # Launch trayer - system tray app
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent false --height 18 &
+trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent false --height 18 &
 
 # Launch sound controls
 gnome-sound-applet &
