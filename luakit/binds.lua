@@ -324,7 +324,13 @@ add_binds("normal", {
     key({}, "H", "Go back in the browser history `[count=1]` items.",
         function (w, m) w:back(m.count) end),
 
+    key({}, "b", "Go back in the browser history `[count=1]` items.",
+        function (w, m) w:back(m.count) end),
+
     key({}, "L", "Go forward in the browser history `[count=1]` times.",
+        function (w, m) w:forward(m.count) end),
+
+    key({}, "B", "Go forward in the browser history `[count=1]` times.",
         function (w, m) w:forward(m.count) end),
 
     key({}, "XF86Back", "Go back in the browser history.",

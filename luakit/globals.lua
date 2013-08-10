@@ -1,6 +1,7 @@
 -- Global variables for luakit
 globals = {
-    homepage            = "http://luakit.org/",
+    homepage            = "about:blank",
+ -- homepage            = "http://luakit.org/",
  -- homepage            = "http://github.com/mason-larobina/luakit",
     scroll_step         = 40,
     zoom_step           = 0.1,
@@ -51,7 +52,7 @@ soup.accept_policy = cookie_policy.always
 -- it to avoid collisions with lua's string.format characters.
 -- See: http://www.lua.org/manual/5.1/manual.html#pdf-string.format
 search_engines = {
-    duckduckgo  = "https://duckduckgo.com/?q=%s",
+    duckduckgo  = "https://duckduckgo.com/?kp=-1&q=%s",
     github      = "https://github.com/search?q=%s",
     google      = "https://google.com/search?q=%s",
     imdb        = "http://www.imdb.com/find?s=all&q=%s",
@@ -59,7 +60,7 @@ search_engines = {
 }
 
 -- Set google as fallback search engine
-search_engines.default = search_engines.google
+search_engines.default = search_engines.duckduckgo
 -- Use this instead to disable auto-searching
 --search_engines.default = "%s"
 
@@ -67,14 +68,10 @@ search_engines.default = search_engines.google
 -- See http://webkitgtk.org/reference/webkitgtk/stable/WebKitWebSettings.html
 domain_props = { --[[
     ["all"] = {
-        enable_scripts          = false,
-        enable_plugins          = false,
+        --enable_scripts          = false,
+        --enable_plugins          = false,
         enable_private_browsing = false,
         user_stylesheet_uri     = "",
-    },
-    ["youtube.com"] = {
-        enable_scripts = true,
-        enable_plugins = true,
     },
     ["bbs.archlinux.org"] = {
         user_stylesheet_uri     = "file://" .. luakit.data_dir .. "/styles/dark.css",
