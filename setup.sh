@@ -13,3 +13,6 @@ ln -s ~/dotfiles/init.el ~/.emacs.d/
 ln -s ~/dotfiles/xmobar.rc ~/.xmonad/
 ln -s ~/dotfiles/xmonad.hs ~/.xmonad/
 ln -s ~/dotfiles/xmonad-init ~/.xmonad/
+
+ln -s ~/dotfiles/luakit/*.lua ~/.config/luakit/
+ln -s ~/dotfiles/luakit/adblock ~/.local/share/luakit/
