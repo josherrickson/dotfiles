@@ -1,4 +1,5 @@
 #!/bin/bash
+# This file must be in the exec= line of /usr/share/xsessions/xmonad.desktop
 
 # Launch trayer - system tray app
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent false --height 18 &
