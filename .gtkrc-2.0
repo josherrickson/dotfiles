@@ -1,0 +1,2 @@
+# This allows Firefox to use Emacs-style key bindings (Ctrl-A, Ctrl-K, etc)!
+gtk-key-theme-name = "Emacs"
