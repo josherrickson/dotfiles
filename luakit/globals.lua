@@ -53,10 +53,6 @@ soup.accept_policy = cookie_policy.always
 -- See: http://www.lua.org/manual/5.1/manual.html#pdf-string.format
 search_engines = {
     duckduckgo  = "https://duckduckgo.com/?kp=-1&q=%s",
-    github      = "https://github.com/search?q=%s",
-    google      = "https://google.com/search?q=%s",
-    imdb        = "http://www.imdb.com/find?s=all&q=%s",
-    wikipedia   = "https://en.wikipedia.org/wiki/Special:Search?search=%s",
 }
 
 -- Set google as fallback search engine
