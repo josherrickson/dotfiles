@@ -5,6 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ln -s "$DIR"/.aliases ~/.
 ln -s "$DIR"/.Rprofile ~/.
 ln -s "$DIR"/.zshrc ~/.
+ln -s "$DIR"/.zshfunctions ~/.
 ln -s "$DIR"/.vimrc ~/.
 ln -s "$DIR"/.gtkrc-2.0 ~/.
 ln -s "$DIR"/init.el ~/.emacs.d/.

@@ -131,6 +131,13 @@ select-word-style bash         # For ctrl-w to NOT annihilate an entire path
 
 autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W *.txt.old org/*.txt'
 
+#####################
+##### Functions #####
+#####################
+
+source ~/.zshfunctions
+
+
 ###################
 ##### Aliases #####
 ###################

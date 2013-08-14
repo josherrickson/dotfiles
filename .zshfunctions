@@ -1,0 +1,4 @@
+# call 'red Some error message' in scripts
+function red() { echo -e "$fg_bold[red]$*$reset_color" }
+function green() { echo -e "$fg[green]$*$reset_color" }
+function yellow() { echo -e "$fg[yellow]$*$reset_color" }
