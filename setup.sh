@@ -42,16 +42,20 @@ lns "$DIR"/.Rprofile ~/.Rprofile
 lns "$DIR"/.zshrc ~/.zshrc
 lns "$DIR"/.vimrc ~/.vimrc
 lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
+[[ ! (-d ~/.emacs.d) ]] && mkdir ~/.emacs.d
 lns "$DIR"/init.el ~/.emacs.d/init.el
 
 if [[ $ostype == 'Linux' ]]; then
     lns "$DIR"/.Xresources ~/.Xresources
     xrdb ~/.Xresources
 
+    [[ ! (-d ~/.xmonad) ]] && mkdir ~/.xmonad
     lns "$DIR"/xmobar.rc ~/.xmonad/xmobar.rc
     lns "$DIR"/xmonad.hs ~/.xmonad/xmonad.hs
     lns "$DIR"/xmonad-init ~/.xmonad/xmonad-init
 
+    [[ ! (-d ~/.config) ]] && mkdir ~/.config
     lns "$DIR"/luakit/luakit ~/.config/luakit
+    [[ ! (-d ~/.local/share/luakit) ]] && mkdir -p ~/.local/share/luakit
     lns "$DIR"/luakit/adblock ~/.local/share/luakit/adblock
 fi
