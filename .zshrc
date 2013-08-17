@@ -119,6 +119,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 export EDITOR="emacs -nw"      # for short edits, the terminal is faster
 setopt EXTENDED_GLOB           # more options for matching
 setopt nobeep                  # no beeping!
+setopt longlistjobs            # gives more information when suspending a job
 setopt AUTO_RESUME             # Commands without arguments will first try to resume
                                # suspended programs of the same name.
 bindkey -e                     # Emacs controls
