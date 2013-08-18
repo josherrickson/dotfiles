@@ -22,7 +22,6 @@ alias spacerm="find -name '* *' -type f | rename 's/ /_/g'"
 
 if [[ $(uname) == 'Darwin' ]]; then
     alias ls='ls -AhFG'
-    alias gdfetch='find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} fetch -v \;' # run git fetch in all subdirectories
 elif [[ $(uname) == 'Linux' ]]; then
     alias ls='ls -AFh --color'
     alias nautilus='nautilus --no-desktop' # to avoid nautilus killing feh wallpaper
@@ -30,5 +29,4 @@ elif [[ $(uname) == 'Linux' ]]; then
     alias sudo='sudo '                     # the space tells it respect aliases from this file
     alias lp2='lp -o sides=two-sided-long-edge'
     alias bc='bc -l'
-    alias gdfetch='find . -maxdepth 1 -type d -exec git --git-dir={}/.git --work-tree=$PWD/{} fetch -v \;' # run git fetch in all subdirectories
 fi
