@@ -132,9 +132,10 @@ select-word-style bash         # For ctrl-w to NOT annihilate an entire path
 
 autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W *.txt.old org/*.txt'
 
-###################
-##### Aliases #####
-###################
+#######################
+##### Other Files #####
+#######################
 
 source ~/.aliases
 source ~/.aliases-private
+source ~/repositories/bashmarks/bashmarks.sh # clone from git@github.com:josherrickson/bashmarks.git
