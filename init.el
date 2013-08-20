@@ -63,7 +63,7 @@
 (setq-default tab-width 2             ;; default tab width is 2 spaces
               indent-tabs-mode nil    ;; don't allow tabs (spaces instead)
               indicate-empty-lines t  ;; show end of file
-              fill-column 140)         ;; column width to 140 by default
+              fill-column 115)         ;; column width to 115 by default
 (setq
  tab-always-indent 'complete          ;; some sort of smart-tabbing thing
  inhibit-startup-message t            ;; Don't show start-up message...
