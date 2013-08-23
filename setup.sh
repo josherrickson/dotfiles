@@ -45,6 +45,7 @@ lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
 [[ ! (-d ~/.emacs.d) ]] && mkdir ~/.emacs.d
 lns "$DIR"/init.el ~/.emacs.d/init.el
 
+
 if [[ $ostype == 'Linux' ]]; then
     lns "$DIR"/.Xresources ~/.Xresources
     xrdb ~/.Xresources
@@ -53,6 +54,9 @@ if [[ $ostype == 'Linux' ]]; then
     lns "$DIR"/xmobar.rc ~/.xmonad/xmobar.rc
     lns "$DIR"/xmonad.hs ~/.xmonad/xmonad.hs
     lns "$DIR"/xmonad-init ~/.xmonad/xmonad-init
+
+    [[ ! (-d ~/.i3) ]] && mkdir ~/.i3
+    lns "$DIR"/i3config ~/.i3/config
 
     [[ ! (-d ~/.config) ]] && mkdir ~/.config
     lns "$DIR"/luakit/luakit ~/.config/luakit
