@@ -151,16 +151,16 @@ add_binds("normal", {
         function (w) w:set_mode("command") end),
 
     -- Scrolling
-    key({}, "j", "Scroll document down.",
+    key({}, "k", "Scroll document down.",
         function (w) w:scroll{ yrel =  scroll_step } end),
 
-    key({}, "k", "Scroll document up.",
+    key({}, "l", "Scroll document up.",
         function (w) w:scroll{ yrel = -scroll_step } end),
 
-    key({}, "h", "Scroll document left.",
+    key({}, "j", "Scroll document left.",
         function (w) w:scroll{ xrel = -scroll_step } end),
 
-    key({}, "l", "Scroll document right.",
+    key({}, ";", "Scroll document right.",
         function (w) w:scroll{ xrel =  scroll_step } end),
 
     key({}, "Down", "Scroll document down.",
