@@ -15,6 +15,9 @@ alias findgrep='find . | xargs grep'
 alias lst='date;ls -lt | head'
 alias spacerm="find -name '* *' -type f | rename 's/ /_/g'"
 
+alias htopm='htop -s PERCENT_MEM'
+alias htopc='htop -s PERCENT_CPU'
+
 
 ###############################
 ##### OS Specific aliases #####
