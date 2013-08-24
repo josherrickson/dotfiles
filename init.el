@@ -20,7 +20,7 @@
                      ;; by M-x package-install)
 
 ; Automatically install important packages on a new system.
-(defvar my-packages '(ace-jump-mode auctex buffer-move ess zenburn-theme multiple-cursors ssh))
+(defvar my-packages '(ace-jump-mode auctex buffer-move ess multiple-cursors ssh))
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -29,6 +29,9 @@
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
 
+;; This points to my fork of bbatsov's excellent zenburn-theme
+;; To use the default, add zenburn-theme to (defvar my-packages...) and remove the next line.
+(add-to-list 'custom-theme-load-path "~/repositories/zenburn-emacs/")
 (load-theme 'zenburn t)  ;; The 't' says not to security check
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
