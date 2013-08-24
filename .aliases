@@ -2,6 +2,8 @@
 ##### Common aliases #####
 ##########################
 
+alias sudo='sudo ' # the space tells it respect aliases from this file
+
 # Color outputs
 alias grep='grep --color=always'
 alias tmux='tmux -2'
@@ -29,7 +31,6 @@ elif [[ $(uname) == 'Linux' ]]; then
     alias ls='ls -AFh --color'
     alias nautilus='nautilus --no-desktop' # to avoid nautilus killing feh wallpaper
     alias sudop='sudo env PATH=$PATH'      # Let sudo use my path
-    alias sudo='sudo '                     # the space tells it respect aliases from this file
     alias lp2='lp -o sides=two-sided-long-edge'
     alias bc='bc -l'
 fi
