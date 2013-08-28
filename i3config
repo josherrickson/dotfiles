@@ -84,6 +84,8 @@ bindsym F7 workspace 7
 bindsym F8 workspace 8
 bindsym F9 workspace 9
 bindsym F10 workspace 10
+bindsym F11 workspace 11
+bindsym F12 workspace 12
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move workspace 1
@@ -106,6 +108,8 @@ bindsym Shift+F7 move workspace 7
 bindsym Shift+F8 move workspace 8
 bindsym Shift+F9 move workspace 9
 bindsym Shift+F10 move workspace 10
+bindsym Shift+F11 move workspace 11
+bindsym Shift+F12 move workspace 12
 
 
 # reload the configuration file
