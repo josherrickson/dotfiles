@@ -112,6 +112,22 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
+#####################
+##### Functions #####
+#####################
+
+# From https://news.ycombinator.com/item?id=6310109
+function bd () {
+  OLDPWD=`pwd`
+  NEWPWD=`echo $OLDPWD | sed 's|\(.*/'$1'[^/]*/\).*|\1|'`
+  index=`echo $NEWPWD | awk '{ print index($1,"/'$1'"); }'`
+  if [ $index -eq 0 ] ; then
+    echo "No such occurrence."
+  else
+    cd "$NEWPWD"
+  fi
+}
+
 ################
 ##### Misc #####
 ################
