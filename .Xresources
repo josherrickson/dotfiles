@@ -4,15 +4,10 @@
 
 Rxvt*background: #252626
 Rxvt*foreground: lightgrey
-!Rxvt*title:      terminal
 Rxvt*saveLines:  1024
 
-!Rxvt*font:     xft:DejaVu Sans Mono:pixelsize=14:antialias=true:hinting=true
-!Rxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=14:antialias=true:hinting=true
 Rxvt*font:     xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true
 Rxvt*boldFont: xft:Ubuntu Mono:bold:pixelsize=16:antialias=true:hinting=true
-!Rxvt*font:     xft:Inconsolata:pixelsize=16:antialias=true:hinting=true
-!Rxvt*boldFont: xft:Inconsolata:bold:pixelsize=16:antialias=true:hinting=true
 
 Rxvt*scrollBar: false
 
@@ -30,11 +25,6 @@ Rxvt.keysym.M-C-v:     perl:clipboard:paste
 
 ! Disables keymap mode
 Rxvt*iso14755: false
-
-! Transparency
-! Rxvt*shading: 0 to 99 darkens, 101 to 200 lightens
-!Rxvt*transparent: true
-!Rxvt*shading: 30
 
 !!! Zenburn colors
 ! Normal
