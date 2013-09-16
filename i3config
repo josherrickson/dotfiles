@@ -3,8 +3,8 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 exec gnome-sound-applet &
-exec nm-applet & # networkmanager from GNOME
-# exec wicd-client -t &                                                   # wicd startup
+# exec nm-applet & # networkmanager from GNOME
+exec wicd-client -t &                                                   # wicd startup
 exec redshift -t 6200:3500 &
 exec dropbox start
 exec unclutter &                                                        # hides mouse on inactivity
