@@ -35,7 +35,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -i -p ">>>"
 
 # change focus
 bindsym $mod+h focus left
