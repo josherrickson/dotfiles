@@ -20,10 +20,10 @@
                      ;; by M-x package-install)
 
 ; Automatically install important packages on a new system.
-(defvar my-packages '(ace-jump-mode auctex buffer-move ess multiple-cursors ssh))
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+;; (defvar my-packages '(ace-jump-mode auctex buffer-move ess multiple-cursors ssh))
+;; (dolist (p my-packages)
+;;  (when (not (package-installed-p p))
+;;    (package-install p)))
 
 (require 'uniquify)         ;; for unique buffer names
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
@@ -226,6 +226,9 @@ goes to the true beginning of the line (before space.)"
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
 ;;;;;;;;;;;;;;;;;;
+
+
+(autoload 'tex-mode "auctex" nil t) ;; Load auctgex when entering tex-mode
 
 (setq
  TeX-engine 'default                       ;; XeTeX causes issues with tikz
