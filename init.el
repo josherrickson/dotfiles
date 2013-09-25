@@ -230,6 +230,10 @@ goes to the true beginning of the line (before space.)"
 
 (autoload 'tex-mode "auctex" nil t) ;; Load auctgex when entering tex-mode
 
+;; Synctex
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode) ;; Auto enter synctex mode
+(setq TeX-source-correlate-start-server t)
+
 (setq
  TeX-engine 'default                       ;; XeTeX causes issues with tikz
  ;TeX-engine 'xetex                        ;; use XeTeX
