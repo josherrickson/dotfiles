@@ -223,6 +223,9 @@ goes to the true beginning of the line (before space.)"
  comint-scroll-show-maximum-output t
  comint-move-point-for-output      t)
 
+;; TRAMP
+(setq password-cache-expiry 3600) ;; cache passwords in tramp for 1 hour
+
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
 ;;;;;;;;;;;;;;;;;;
