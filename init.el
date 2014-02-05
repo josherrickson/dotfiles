@@ -44,7 +44,6 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)            ;; use ibuffer
 (global-set-key (kbd "C-x M-f") 'set-fill-column)    ;; Move this to allow ...
 (global-set-key (kbd "C-x f")   'recentf-open-files) ;; ... list recent files
-(global-set-key (kbd "RET")     'newline-and-indent) ;; auto-indent on "enter"
 
 ;; AceJumpMode
 (global-set-key (kbd "M-s")     'ace-jump-mode)      ;; search by ace-jump
@@ -121,6 +120,7 @@
 (size-indication-mode     t ) ;; include file size on toolbar
 (line-number-mode         t ) ;; cursor position line ...
 (column-number-mode       t ) ;; ... and column
+(electric-indent-mode     t ) ;; Automatically indent on newline
 
 (recentf-mode             t )         ;; recent file mode: recentf-open-files
 (setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced to avoid issues on multiple machines
