@@ -228,7 +228,8 @@ goes to the true beginning of the line (before space.)"
 
 ;; Julia
 ;; Only for OS X
-(setq inferior-julia-program-name "/Applications/Julia-0.2.0.app/Contents/Resources/julia/bin/julia-basic")
+(when (equal system-type 'darwin)
+  (setq inferior-julia-program-name "/Applications/Julia-0.2.0.app/Contents/Resources/julia/bin/julia-basic"))
 
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
