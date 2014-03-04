@@ -248,6 +248,14 @@ goes to the true beginning of the line (before space.)"
  TeX-PDF-mode t                            ;; PDF instead of dvi
  TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
 
+;; For multi-file documents, add the following snippet to the end of each file
+;; included via \input{file} (no .tex)
+;; %%% Local Variables:
+;; %%% TeX-master: "main"
+;; %%% End:
+;; Note that the TeX-master line doesn't include .tex either
+(setq TeX-master nil )
+
 ;; Set list of programs to open output (Linux or Mac)
 (setq TeX-view-program-list '(("open" "open %o")
                               ("evince" "evince %o")
