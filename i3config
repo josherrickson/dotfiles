@@ -5,7 +5,7 @@
 exec gnome-sound-applet &
 exec nm-applet &                                                        # networkmanager from GNOME
 # exec wicd-client -t &                                                 # wicd startup
-exec redshift -t 5700:3500 -m vidmode -l 42:-83 &
+exec redshift -t 5700:3500 -m vidmode &
 # exec dropbox start
 exec unclutter &                                                        # hides mouse on inactivity
 exec echo 0 | sudo tee -a /sys/class/leds/smc::kbd_backlight/brightness # Turn off keyboard backlight
