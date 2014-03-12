@@ -195,6 +195,14 @@ goes to the true beginning of the line (before space.)"
             (incf counter)
             (forward-line)))))))
 
+;; Does align-regexp over ALL entries in the line instead of just the first
+;; http://www.emacswiki.org/emacs/AlignCommands
+(defun align-all (start end regexp)
+  "Aligns on the same regexp as often as it appears in a line"
+  (interactive "r\nsAlign regexp: ")
+  (align-regexp start end
+                (concat "\\(\\s-*\\)" regexp) 1 1 t))
+
 ;;;;;;;;;;;;;;;
 ;;;;; ESS ;;;;;
 ;;;;;;;;;;;;;;;
