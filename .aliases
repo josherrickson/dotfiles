@@ -29,8 +29,9 @@ if [[ $(uname) == 'Darwin' ]]; then
     alias ls='ls -AhFG'
 elif [[ $(uname) == 'Linux' ]]; then
     alias ls='ls -AFh --color'
-    alias nautilus='nautilus --no-desktop' # to avoid nautilus killing feh wallpaper
-    alias sudop='sudo env PATH=$PATH'      # Let sudo use my path
-    alias lp2='lp -o sides=two-sided-long-edge'
+    alias nautilus='nautilus --no-desktop'                   # to avoid nautilus killing feh wallpaper
+    alias sudop='sudo env PATH=$PATH'                        # Let sudo use my path
+    alias lp2='lp -o KMDuplex=True'                          # Specific for Kinota Milota
+    alias lp2s='lp -o KMDuplex=True -o StapleLocation=LeftW' # Specific for Kinota Milota
     alias bc='bc -l'
 fi
