@@ -25,7 +25,6 @@
 ;;  (when (not (package-installed-p p))
 ;;    (package-install p)))
 
-(require 'uniquify)         ;; for unique buffer names
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
 
@@ -48,6 +47,8 @@
 ;; AceJumpMode
 (global-set-key (kbd "M-s")     'ace-jump-mode)      ;; search by ace-jump
 (global-set-key (kbd "M-r")     'ace-jump-line-mode) ;; ace-jump to lines
+(global-set-key (kbd "C-c M-s") 'isearch-forward-symbol-at-point)
+                                                     ;; selects symbol under cursor and search
 
 ;; Multiple-cursors
 ;(global-set-key (kbd "C-c M-c") 'mc/edit-lines)
@@ -71,8 +72,6 @@
  tab-always-indent 'complete          ;; some sort of smart-tabbing thing
  inhibit-startup-message t            ;; Don't show start-up message...
  initial-scratch-message nil          ;; ... or *scratch* message
- uniquify-buffer-name-style 'post-forward
-                                      ;; uniqify as file|dir
  visible-bell t                       ;; no beeps on errors ...
  scroll-error-top-bottom t            ;; ... and don't error too soon
  ring-bell-function 'ignore           ;; no bells at all
@@ -113,14 +112,14 @@
                         "\\.ido.last\\'"))
 
 ;; mode loadings
-(show-paren-mode          t ) ;; show matching parens
-(global-auto-revert-mode  t ) ;; revert buffers when changed
-(transient-mark-mode      t ) ;; visual highlighting
-(delete-selection-mode    t ) ;; typing replaces selected text
-(size-indication-mode     t ) ;; include file size on toolbar
-(line-number-mode         t ) ;; cursor position line ...
-(column-number-mode       t ) ;; ... and column
-(electric-indent-mode     t ) ;; Automatically indent on newline
+(show-paren-mode          t   ) ;; show matching parens
+(global-auto-revert-mode  t   ) ;; revert buffers when changed
+(transient-mark-mode      t   ) ;; visual highlighting
+(delete-selection-mode    t   ) ;; typing replaces selected text
+(size-indication-mode     t   ) ;; include file size on toolbar
+(line-number-mode         t   ) ;; cursor position line ...
+(column-number-mode       t   ) ;; ... and column
+(electric-pair-mode       nil ) ;; Ensure that electric-pairing isn't activated
 
 (recentf-mode             t )         ;; recent file mode: recentf-open-files
 (setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced to avoid issues on multiple machines
