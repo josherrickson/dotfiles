@@ -320,63 +320,7 @@ goes to the true beginning of the line (before space.)"
 ;;;;; Org-mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
 
-;; (global-set-key (kbd "C-c a") 'org-agenda)  ;; access agenda (personal calendar)
-;; (setq
-;;  org-agenda-files '("~/.emacs.d/org")       ;; location of .org agenda files
-;;  org-agenda-start-on-weekday 0              ;; start on sunday, not monday
-;;  org-agenda-timegrid-use-ampm 1             ;; 12-hour instead of 24-hour in agenda view
-;;  org-agenda-time-grid '((daily today)       ;; only change from default is show time-grid every day regardless of events
-;;                         #("----------------" 0 16 (org-heading t))
-;;                         (800 1000 1200 1400 1600 1800 2000)))
-
-;; ;; Declare this now since org isn't loaded until asked for
-;; ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Declaring-Functions.html
-;; (declare-function org-agenda-goto-today "org-agenda" nil)
-
-;; ;; Jump to the beginning of "now - - ..." in the agenda buffer
-;; (defun org-agenda-goto-now ()
-;;   "Go to the 'now' entry on today."
-;;   (interactive)
-;;   (org-agenda-goto-today)
-;;   (re-search-forward "now - - - - - - - -")
-;;   (goto-char (match-beginning 0)))
-
-;; ;; Jump to "now - - ...", or jump between "now" and "today"
-;; (defun org-agenda-goto-now-dynamic ()
-;;   "Go to the 'now' entry on today. If already there, jump to 'today'."
-;;   (interactive)
-;;   (let ((cur (point)))
-;;     (org-agenda-goto-now)
-;;     (when (= cur (point))
-;;       (org-agenda-goto-today))))
-
-;; ;; Replace '.' with dynamic goto-now in org-agenda-mode
-;; (add-hook 'org-agenda-mode-hook
-;;           (lambda ()
-;;             (local-set-key (kbd ".") 'org-agenda-goto-now-dynamic)))
-
-
-;; ;; Color entries from each file separately
-;; ;; http://stackoverflow.com/questions/17066580/color-code-agenda-view-per-file
-;; (add-hook 'org-finalize-agenda-hook
-;;           (lambda ()
-;;             (save-excursion
-;;               (color-org-header "Personal:"  "green")
-;;               (color-org-header "Birthdays:" "gold")
-;;               (color-org-header "Holidays:"  "khaki")
-;;               (color-org-header "Class:"     "blue")
-;;               (color-org-header "Work:"      "orange")
-;;               (color-org-header "Wedding:"   "color-135")
-;;               (color-org-header "Research:"  "OrangeRed"))))
-
-;; (defun color-org-header (tag col)
-;;   "Colors org-agenda entries of category 'tag' with color 'col'."
-;;   (interactive)
-;;   (goto-char (point-min))
-;;   (while (re-search-forward tag nil t)
-;;     (add-text-properties (match-beginning 0) (point-at-eol)
-;;                          `(face (:foreground ,col)))))
-
+(setq org-hide-leading-stars t)
 ;;;;;;;;;;;;;;;;;;;;
 ;;;;; Ido-mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
