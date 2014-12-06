@@ -64,10 +64,15 @@
 ;;;;; Settings ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
 
-(setq-default tab-width 2             ;; default tab width is 2 spaces
-              indent-tabs-mode nil    ;; don't allow tabs (spaces instead)
-              indicate-empty-lines t  ;; show end of file
-              fill-column 115)        ;; column width to 115 by default
+
+;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>) need
+;; setq-default, otherwise setq is fine.
+(setq-default
+ tab-width 2                          ;; default tab width is 2 spaces
+ indent-tabs-mode nil                 ;; don't allow tabs (spaces instead)
+ indicate-empty-lines t               ;; show end of file
+ fill-column 115                      ;; column width to 115 by default
+)
 (setq
  tab-always-indent 'complete          ;; some sort of smart-tabbing thing
  inhibit-startup-message t            ;; Don't show start-up message...
