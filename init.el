@@ -67,7 +67,7 @@
 (setq-default tab-width 2             ;; default tab width is 2 spaces
               indent-tabs-mode nil    ;; don't allow tabs (spaces instead)
               indicate-empty-lines t  ;; show end of file
-              fill-column 115)         ;; column width to 115 by default
+              fill-column 115)        ;; column width to 115 by default
 (setq
  tab-always-indent 'complete          ;; some sort of smart-tabbing thing
  inhibit-startup-message t            ;; Don't show start-up message...
@@ -86,6 +86,7 @@
  show-paren-delay 0                   ;; don't delay showing parens
  read-buffer-completion-ignore-case t ;; don't worry about case in minibuffer
  read-file-name-completion-ignore-case t
+ electric-pair-mode nil               ;; Ensure that electric-pairing isn't activated
 )
 
 (fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
@@ -119,7 +120,6 @@
 (size-indication-mode     t   ) ;; include file size on toolbar
 (line-number-mode         t   ) ;; cursor position line ...
 (column-number-mode       t   ) ;; ... and column
-(electric-pair-mode       nil ) ;; Ensure that electric-pairing isn't activated
 
 (recentf-mode             t )         ;; recent file mode: recentf-open-files
 (setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced to avoid issues on multiple machines
