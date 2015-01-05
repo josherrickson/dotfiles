@@ -125,6 +125,7 @@
 (size-indication-mode     t   ) ;; include file size on toolbar
 (line-number-mode         t   ) ;; cursor position line ...
 (column-number-mode       t   ) ;; ... and column
+(setq electric-pair-mode  nil ) ;; Ensure that electric-pairing isn't activated
 
 (recentf-mode             t )         ;; recent file mode: recentf-open-files
 (setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced to avoid issues on multiple machines
