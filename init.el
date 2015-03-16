@@ -337,3 +337,7 @@ goes to the true beginning of the line (before space.)"
       ido-save-directory-list-file "~/.emacs.d/.ido.last") ;; move save file
 ;; Don't list these files
 (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc"))
+
+;; This page break is to ensure no local variables are set
+;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
+
