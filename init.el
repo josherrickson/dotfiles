@@ -249,7 +249,7 @@ goes to the true beginning of the line (before space.)"
 ;;;;;;;;;;;;;;;;;;
 
 
-(autoload 'tex-mode "auctex" nil t) ;; Load auctgex when entering tex-mode
+(autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
 
 ;; Synctex
 (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode) ;; Auto enter synctex mode
