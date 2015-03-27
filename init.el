@@ -28,9 +28,9 @@
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
 
-;; I occasionally fork bbatsov's excellent zenburn-theme, so I install this via git instead of
-;; via the packages.
-;; To use the default, add zenburn-theme to (defvar my-packages...) and remove the next line.
+;; I occasionally fork bbatsov's excellent zenburn-theme, so I install this via
+;; git instead of via the packages.  To use the default, add zenburn-theme to
+;; (defvar my-packages...) and remove the next line.
 (add-to-list 'custom-theme-load-path "~/repositories/zenburn-emacs/")
 (load-theme 'zenburn t)  ;; The 't' says not to security check
 
@@ -48,7 +48,8 @@
 (global-set-key (kbd "M-s")     'ace-jump-mode)      ;; search by ace-jump
 (global-set-key (kbd "M-r")     'ace-jump-line-mode) ;; ace-jump to lines
 (global-set-key (kbd "C-c M-s") 'isearch-forward-symbol-at-point)
-                                                     ;; selects symbol under cursor and search
+                                                     ;; selects symbol under
+                                                     ;; cursor and search
 
 ;; Multiple-cursors
 ;(global-set-key (kbd "C-c M-c") 'mc/edit-lines)
@@ -65,13 +66,13 @@
 ;;;;;;;;;;;;;;;;;;;;
 
 
-;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>) need
-;; setq-default, otherwise setq is fine.
+;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>)
+;; need setq-default, otherwise setq is fine.
 (setq-default
  tab-width 2                          ;; default tab width is 2 spaces
  indent-tabs-mode nil                 ;; don't allow tabs (spaces instead)
  indicate-empty-lines t               ;; show end of file
- fill-column 115                      ;; column width to 115 by default
+ fill-column 80                       ;; column default width
 )
 (setq
  tab-always-indent 'complete          ;; some sort of smart-tabbing thing
@@ -84,20 +85,23 @@
  make-backup-files nil                ;; ... and more backups ...
  auto-save-default nil                ;; ... and autosave ...
  auto-save-list-file-prefix nil       ;; ... and recovery
- vc-follow-symlinks t                 ;; open symlinks to version controlled files
+ vc-follow-symlinks t                 ;; open symlinks to version controlled
+                                      ;; files
  ns-pop-up-frames nil                 ;; OS X specific: new buffer, not file
  echo-keystrokes 0.01                 ;; show commands instantly in minibuffer
  scroll-conservatively 5              ;; only scroll a bit when moving cursor
  show-paren-delay 0                   ;; don't delay showing parens
  read-buffer-completion-ignore-case t ;; don't worry about case in minibuffer
  read-file-name-completion-ignore-case t
- electric-pair-mode nil               ;; Ensure that electric-pairing isn't activated
+ electric-pair-mode nil               ;; Ensure that electric-pairing isn't
+                                      ;; activated
 )
 
 (fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
 (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
                                       ;; trailing whitespace is deleted
-(setq delete-trailing-lines t)        ;; delete-trailing-whitespace will also do this
+(setq delete-trailing-lines t)        ;; delete-trailing-whitespace will also do
+                                      ;; this
 
 ;; Needed when installing aspell by homebrew (may work without it if you install
 ;; to /usr/bin/aspell)
@@ -128,7 +132,8 @@
 (setq electric-pair-mode  nil ) ;; Ensure that electric-pairing isn't activated
 
 (recentf-mode             t )         ;; recent file mode: recentf-open-files
-(setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced to avoid issues on multiple machines
+(setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced to avoid
+                                      ;; issues on multiple machines
 
 (global-linum-mode t)         ;; show row numbers
 (setq linum-format            ;; add space after row number, right align
@@ -252,7 +257,8 @@ goes to the true beginning of the line (before space.)"
 (autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
 
 ;; Synctex
-(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode) ;; Auto enter synctex mode
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode) ;; Auto enter synctex
+                                                       ;; mode
 (setq TeX-source-correlate-start-server t)
 
 (setq
