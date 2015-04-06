@@ -221,7 +221,6 @@ goes to the true beginning of the line (before space.)"
 (add-to-list 'auto-mode-alist '("\\.R$" . r-mode))
 (autoload 'R        "ess-site" nil t) ;; Only load ess if starting R,
 (autoload 'r-mode   "ess-site" nil t) ;; or opening an R file,
-(autoload 'Rnw-mode "ess-site" nil t) ;; or opening a Sweave file.
 
 (setq ess-ask-for-ess-directory nil      ;; just run R wherever the file lives
       ess-history-file nil               ;; don't save history
@@ -256,83 +255,37 @@ goes to the true beginning of the line (before space.)"
 
 (autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
 
-;; Synctex
-(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode) ;; Auto enter synctex
-                                                       ;; mode
-(setq TeX-source-correlate-start-server t)
-
 (setq
- TeX-engine 'default                       ;; XeTeX causes issues with tikz
- ;TeX-engine 'xetex                        ;; use XeTeX
+ ;TeX-engine 'default                      ;; XeTeX causes issues with tikz
+ TeX-engine 'xetex                         ;; use XeTeX
  TeX-PDF-mode t                            ;; PDF instead of dvi
  TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
 
-;; For multi-file documents, add the following snippet to the end of each file
-;; included via \input{file} (no .tex)
-;; %%% Local Variables:
-;; %%% TeX-master: "main"
-;; %%% End:
-;; Note that the TeX-master line doesn't include .tex either
-(setq TeX-master nil )
+(add-hook 'LaTeX-mode-hook (lambda ()
+  (push
+    '("Latexmk" "latexmk -pdf -pvc %s" TeX-run-command nil t
+      :help "Run Latexmk on file")
+    TeX-command-list)))
 
-;; Set list of programs to open output (Linux or Mac)
-(setq TeX-view-program-list '(("open" "open %o")
-                              ("evince" "evince %o")
-                              ("zathura" "zathura %o")))
+;; For multi-file documents, use `C-c _` to add master information to the file
+;; Second command removes automation
+(setq TeX-master nil
+      TeX-one-master "<none>")
 
-;; use open to open files on OS X
-(when (equal system-type 'darwin)
-  (setq TeX-view-program-selection
-        (quote ((
-                (output-dvistyle-pstricks) "dvips andgv")
-                (output-dvi "open")
-                (output-pdf "open")
-                (output-html "open")))))
+;; OS X use `open`
+(setq TeX-view-program-selection '((output-pdf "open")))
+(setq TeX-view-program-list '(("open" "open %o")))
 
-;; use specific programs in Linux
-(when (equal system-type 'gnu/linux)
-  (setq TeX-view-program-selection
-        (quote ((
-                (output-dvistyle-pstricks) "dvips andgv")
-                (output-dvi "evince")
-                (output-pdf "zathura")
-                (output-html "firefox")))))
 ;; use auto-fill always on tex files
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
-;;;;;;;;;;;;;;;;;;
-;;;;; Sweave ;;;;;
-;;;;;;;;;;;;;;;;;;
-
-;; from https://sites.google.com/site/andreaskiermeier/essmaterials
-
-(defvar TeX-file-extensions)
-(setq TeX-file-extensions
-      '("Snw" "Rnw" "nw" "tex" "sty" "cls" "ltx" "texi" "texinfo"))
-(add-to-list 'auto-mode-alist '("\\.Rnw\\'" . Rnw-mode))
-(add-to-list 'auto-mode-alist '("\\.Snw\\'" . Snw-mode))
-
-;; Define these now to avoid warnings upon compiliation
-;; http://stackoverflow.com/questions/12432093/get-rid-of-reference-to-free-variable-byte-compilation-warnings
-(defvar TeX-expand-list)
-(defvar TeX-command-list)
-(defvar TeX-command-default)
-(add-hook 'Rnw-mode-hook
-          (lambda ()
-            (add-to-list 'TeX-expand-list '("%rnw" file "Rnw" t) t)
-            (add-to-list 'TeX-command-list
-                         '("Sweave" "R CMD Sweave %rnw"
-                           TeX-run-command nil (latex-mode) :help "Run Sweave") t)
-            (add-to-list 'TeX-command-list
-                         '("LatexSweave" "%l %(mode) %s"
-                           TeX-run-TeX nil (latex-mode) :help "Run Latex after Sweave") t)
-            (setq TeX-command-default "Sweave")))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;;;;; Org-mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
 
 (setq org-hide-leading-stars t)
+
 ;;;;;;;;;;;;;;;;;;;;
 ;;;;; Ido-mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
@@ -347,3 +300,17 @@ goes to the true beginning of the line (before space.)"
 ;; This page break is to ensure no local variables are set
 ;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ssh multiple-cursors ess buffer-move auctex ace-jump-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
