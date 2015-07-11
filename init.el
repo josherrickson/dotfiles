@@ -1,7 +1,8 @@
 ;; Turn off mouse interface early to speed up launching time
-(dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode tooltip-mode))
+(dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode
+                              tooltip-mode))
   (when (fboundp mode) (funcall mode -1)))
-(setq inhibit-startup-message t)            ;; Don't show start-up message
+(setq inhibit-startup-message t)       ;; Don't show start-up message
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Package Management ;;;;;
@@ -12,25 +13,31 @@
 
 ;; Two additional, better repos.
 (add-to-list 'package-archives '("marmalade"
-                                 . "http://marmalade-repo.org/packages/") t)
+                                 . "http://marmalade-repo.org/packages/")
+             t)
 (add-to-list 'package-archives '("melpa"
-                                 . "http://melpa.milkbox.net/packages/") t)
+                                 . "http://melpa.milkbox.net/packages/")
+             t)
 
-(package-initialize) ;; initialize packages (needed to load packages installed
-                     ;; by M-x package-install)
+(package-initialize) ;; initialize packages (needed to load packages
+                     ;; installed by M-x package-install)
 
-; Automatically install important packages on a new system.
-;; (defvar my-packages '(ace-jump-mode auctex buffer-move ess multiple-cursors ssh))
+;; Automatically install important packages on a new system.
+
+;; (defvar my-packages '(ace-jump-mode auctex buffer-move ess
+;;                                     multiple-cursors ssh))
 ;; (dolist (p my-packages)
-;;  (when (not (package-installed-p p))
-;;    (package-install p)))
+;;   (when (not (package-installed-p p))
+;;     (package-install p)))
 
-(require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
-(require 'multiple-cursors) ;; load at start to avoid issues with first usage
+(require 'ace-jump-mode)    ;; quicker way to jump around
+                            ;; in repetitious code
+(require 'multiple-cursors) ;; load at start to avoid issues
+                            ;; with first usage
 
-;; I occasionally fork bbatsov's excellent zenburn-theme, so I install this via
-;; git instead of via the packages.  To use the default, add zenburn-theme to
-;; (defvar my-packages...) and remove the next line.
+;; I occasionally fork bbatsov's excellent zenburn-theme, so I install
+;; this via git instead of via the packages.  To use the default, add
+;; zenburn-theme to (defvar my-packages...) and remove the next line.
 (add-to-list 'custom-theme-load-path "~/repositories/zenburn-emacs/")
 (load-theme 'zenburn t)  ;; The 't' says not to security check
 
@@ -38,18 +45,22 @@
 ;;;;; Key Bindings ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "C-c M-w") 'kill-region)        ;; Move this to allow ...
-(global-set-key (kbd "C-w")     'backward-kill-word) ;; ... delete a whole word
-(global-set-key (kbd "C-x C-b") 'ibuffer)            ;; use ibuffer
-(global-set-key (kbd "C-x M-f") 'set-fill-column)    ;; Move this to allow ...
-(global-set-key (kbd "C-x f")   'recentf-open-files) ;; ... list recent files
+;; Move this to allow deleting a whole word
+(global-set-key (kbd "C-c M-w") 'kill-region)
+(global-set-key (kbd "C-w")     'backward-kill-word)
+
+;; Move this to allow listing recent files
+(global-set-key (kbd "C-x M-f") 'set-fill-column)
+(global-set-key (kbd "C-x f")   'recentf-open-files)
+
+;; Use ibuffer instead of regular buffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; AceJumpMode
-(global-set-key (kbd "M-s")     'ace-jump-mode)      ;; search by ace-jump
-(global-set-key (kbd "M-r")     'ace-jump-line-mode) ;; ace-jump to lines
+(global-set-key (kbd "M-s")     'ace-jump-mode)
+(global-set-key (kbd "M-r")     'ace-jump-line-mode)
+;; selects symbol under cursor and search
 (global-set-key (kbd "C-c M-s") 'isearch-forward-symbol-at-point)
-                                                     ;; selects symbol under
-                                                     ;; cursor and search
 
 ;; Multiple-cursors
 ;(global-set-key (kbd "C-c M-c") 'mc/edit-lines)
@@ -57,7 +68,8 @@
 (global-set-key (kbd "M-@") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-#") 'mc/mark-all-like-this)
 
-;; Change from zap-to-char to zap-up-to-char (don't delete the char itself)
+;; Change from zap-to-char to zap-up-to-char (don't delete the char
+;; itself)
 (autoload 'zap-up-to-char "misc" 'interactive)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
@@ -66,16 +78,18 @@
 ;;;;;;;;;;;;;;;;;;;;
 
 
-;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>)
-;; need setq-default, otherwise setq is fine.
+;; Variables which are `buffer-local` (check with 5th line of C-h v
+;; <varname>) need setq-default, otherwise setq is fine.
 (setq-default
  tab-width 2                          ;; default tab width is 2 spaces
- indent-tabs-mode nil                 ;; don't allow tabs (spaces instead)
+ indent-tabs-mode nil                 ;; don't allow tabs (spaces
+                                      ;; instead)
  indicate-empty-lines t               ;; show end of file
- fill-column 80                       ;; column default width
+ fill-column 70                       ;; column default width
 )
 (setq
- tab-always-indent 'complete          ;; some sort of smart-tabbing thing
+ tab-always-indent 'complete          ;; some sort of smart-tabbing
+                                      ;; thing
  inhibit-startup-message t            ;; Don't show start-up message...
  initial-scratch-message nil          ;; ... or *scratch* message
  visible-bell t                       ;; no beeps on errors ...
@@ -85,36 +99,42 @@
  make-backup-files nil                ;; ... and more backups ...
  auto-save-default nil                ;; ... and autosave ...
  auto-save-list-file-prefix nil       ;; ... and recovery
- vc-follow-symlinks t                 ;; open symlinks to version controlled
-                                      ;; files
- ns-pop-up-frames nil                 ;; OS X specific: new buffer, not file
- echo-keystrokes 0.01                 ;; show commands instantly in minibuffer
- scroll-conservatively 5              ;; only scroll a bit when moving cursor
+ vc-follow-symlinks t                 ;; open symlinks to version
+                                      ;; controlled files
+ ns-pop-up-frames nil                 ;; OS X specific: new buffer,
+                                      ;; not file
+ echo-keystrokes 0.01                 ;; show commands instantly in
+                                      ;; minibuffer
+ scroll-conservatively 5              ;; only scroll a bit when moving
+                                      ;; cursor
  show-paren-delay 0                   ;; don't delay showing parens
- read-buffer-completion-ignore-case t ;; don't worry about case in minibuffer
+ read-buffer-completion-ignore-case t ;; don't worry about case in
+                                      ;; minibuffer
  read-file-name-completion-ignore-case t
- electric-pair-mode nil               ;; Ensure that electric-pairing isn't
-                                      ;; activated
+ electric-pair-mode nil               ;; Ensure that electric-pairing
+                                      ;; isn't activated
 )
 
 (fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
 (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
-                                      ;; trailing whitespace is deleted
-(setq delete-trailing-lines t)        ;; delete-trailing-whitespace will also do
-                                      ;; this
+                                      ;; trailing whitespace is
+                                      ;; deleted
+(setq delete-trailing-lines t)        ;; delete-trailing-whitespace
+                                      ;; will also do this
 
-;; Needed when installing aspell by homebrew (may work without it if you install
-;; to /usr/bin/aspell)
+;; Needed when installing aspell by homebrew (may work without it if
+;; you install to /usr/bin/aspell)
 (when (equal system-type 'darwin)
   (defvar ispell-program-name)
   (defvar ispell-extra-args)
   (setq ispell-program-name "/usr/local/bin/aspell")
-  (setq ispell-extra-args '("--sug-mode=ultra"))) ;; faster but less accurate
+  (setq ispell-extra-args '("--sug-mode=ultra"))) ;; faster but less
+                                                  ;; accurate
 
 ;; When using q to quit ibuffer, kill *Ibuffer*
 (defadvice ibuffer-quit (after kill-ibuffer activate)
-      "Kill the ibuffer buffer on exit."
-      (kill-buffer "*Ibuffer*"))
+  "Kill the ibuffer buffer on exit."
+  (kill-buffer "*Ibuffer*"))
 
 ;; don't list these files in recentf
 (setq recentf-exclude '("\\cookies\\'"
@@ -129,18 +149,23 @@
 (size-indication-mode     t   ) ;; include file size on toolbar
 (line-number-mode         t   ) ;; cursor position line ...
 (column-number-mode       t   ) ;; ... and column
-(setq electric-pair-mode  nil ) ;; Ensure that electric-pairing isn't activated
+(setq electric-pair-mode  nil ) ;; Ensure that electric-pairing isn't
+                                ;; activated
 
-(recentf-mode             t )         ;; recent file mode: recentf-open-files
-(setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced to avoid
-                                      ;; issues on multiple machines
+(recentf-mode             t )         ;; recent file mode:
+                                      ;; recentf-open-files
+(setq recentf-save-file "~/.recentf") ;; Put it somewhere not synced
+                                      ;; to avoid issues on multiple
+                                      ;; machines
 
 (global-linum-mode t)         ;; show row numbers
-(setq linum-format            ;; add space after row number, right align
+(setq linum-format            ;; add space after row number, right
+                              ;; align
       (lambda (line)
         (propertize (format
                      (let ((w (length (number-to-string
-                                       (count-lines (point-min) (point-max))))))
+                                       (count-lines (point-min)
+                                                    (point-max))))))
                        (concat "%" (number-to-string w) "d ")) line) 'face 'linum)))
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -172,13 +197,15 @@ goes to the true beginning of the line (before space.)"
       (beginning-of-line))))
 (global-set-key (kbd "C-a") 'beginning-of-line-dynamic)
 
-;; GUI Emacs on Mac doesn't respect system PATH, this syncs them on launch.
+;; GUI Emacs on Mac doesn't respect system PATH, this syncs them on
+;; launch.
 ;; http://stackoverflow.com/questions/2266905/emacs-is-ignoring-my-path-when-it-runs-a-compile-command
 (defun set-exec-path-from-shell-PATH ()
   "Sets the exec-path to PATH from the system."
   (let ((path-from-shell
          (replace-regexp-in-string "[[:space:]\n]*$" ""
-                                   (shell-command-to-string "$SHELL -c 'echo $PATH'"))))
+                                   (shell-command-to-string
+                                    "$SHELL -c 'echo $PATH'"))))
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 (when (equal system-type 'darwin) (set-exec-path-from-shell-PATH))
@@ -205,8 +232,8 @@ goes to the true beginning of the line (before space.)"
             (incf counter)
             (forward-line)))))))
 
-;; Does align-regexp over ALL entries in the line instead of just the first
-;; http://www.emacswiki.org/emacs/AlignCommands
+;; Does align-regexp over ALL entries in the line instead of just the
+;; first http://www.emacswiki.org/emacs/AlignCommands
 (defun align-all (start end regexp)
   "Aligns on the same regexp as often as it appears in a line"
   (interactive "r\nsAlign regexp: ")
@@ -222,10 +249,12 @@ goes to the true beginning of the line (before space.)"
 (autoload 'R        "ess-site" nil t) ;; Only load ess if starting R,
 (autoload 'r-mode   "ess-site" nil t) ;; or opening an R file,
 
-(setq ess-ask-for-ess-directory nil      ;; just run R wherever the file lives
+(setq ess-ask-for-ess-directory nil      ;; just run R wherever the
+                                         ;; file lives
       ess-history-file nil               ;; don't save history
-      ess-eval-visibly-p nil             ;; when running R, don't show code,
-      ;; just output (greatly speeds running)
+      ess-eval-visibly-p nil             ;; when running R, don't show
+                                         ;; code, just output (greatly
+                                         ;; speeds running)
       inferior-R-args
       "--no-restore --no-save --quiet") ;; R startup conditions
 
@@ -252,11 +281,12 @@ goes to the true beginning of the line (before space.)"
 ;;;;; Auctex ;;;;;
 ;;;;;;;;;;;;;;;;;;
 
-
-(autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
+(autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering
+                                      ;; tex-mode
 
 (setq
- ;TeX-engine 'default                      ;; XeTeX causes issues with tikz
+ ;TeX-engine 'default                      ;; XeTeX causes issues with
+                                           ;; tikz
  TeX-engine 'xetex                         ;; use XeTeX
  TeX-PDF-mode t                            ;; PDF instead of dvi
  TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
@@ -267,7 +297,8 @@ goes to the true beginning of the line (before space.)"
       :help "Run Latexmk on file")
     TeX-command-list)))
 
-;; For multi-file documents, use `C-c _` to add master information to the file
+;; For multi-file documents, use `C-c _` to add master information to
+;; the file.
 ;; Second command removes automation
 (setq TeX-master nil
       TeX-one-master "<none>")
@@ -293,24 +324,11 @@ goes to the true beginning of the line (before space.)"
 (ido-mode t)                     ;; enable ido-mode by default
 (setq ido-enable-flex-matching t ;; fuzzy matching
       ido-case-fold t            ;; ignore case
-      ido-save-directory-list-file "~/.emacs.d/.ido.last") ;; move save file
+      ;; move save file
+      ido-save-directory-list-file "~/.emacs.d/.ido.last")
 ;; Don't list these files
 (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc"))
 
 ;; This page break is to ensure no local variables are set
 ;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ssh multiple-cursors ess buffer-move auctex ace-jump-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
