@@ -1,6 +1,7 @@
 # hard code the US repo for CRAN
+options("download.file.method" = "libcurl")
 r <- getOption("repos")
-r["CRAN"] <- "http://cran.mtu.edu"
+r["CRAN"] <- "https://mirrors.nics.utk.edu/cran/"
 options(repos = r)
 rm(r)
 
