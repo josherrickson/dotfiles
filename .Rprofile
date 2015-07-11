@@ -1,6 +1,6 @@
 # hard code the US repo for CRAN
 r <- getOption("repos")
-r["CRAN"] <- "https://rweb.quant.ku.edu/cran/"
+r["CRAN"] <- "http://cran.mtu.edu"
 options(repos = r)
 rm(r)
 
