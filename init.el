@@ -270,12 +270,7 @@ goes to the true beginning of the line (before space.)"
  comint-move-point-for-output      t)
 
 ;; TRAMP
-(setq password-cache-expiry 3600) ;; cache passwords in tramp for 1 hour
-
-;; Julia
-;; Only for OS X
-(when (equal system-type 'darwin)
-  (setq inferior-julia-program-name "/Applications/Julia-0.2.0.app/Contents/Resources/julia/bin/julia-basic"))
+(setq password-cache-expiry 3600) ;; cache passwords in tramp for 1 hr
 
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
