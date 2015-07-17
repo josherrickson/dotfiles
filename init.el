@@ -240,6 +240,18 @@ goes to the true beginning of the line (before space.)"
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
+;; Makes yanked text available in the os clipboard. The sources
+;; also has a function to paste from clipboard, but Cmd-V works fine
+;; for that and I don't want to lose my yank queue.
+;; https://gist.github.com/the-kenny/267162
+(defun copy-to-clipboard (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(setq interprogram-cut-function 'copy-to-clipboard)
+
 ;;;;;;;;;;;;;;;
 ;;;;; ESS ;;;;;
 ;;;;;;;;;;;;;;;
