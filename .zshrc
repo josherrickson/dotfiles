@@ -138,6 +138,7 @@ function font_test () {
     print "Punctuation: \t, . ? : ; _ ! "
     print "Symbols:\t\` ~  @ # $ % ^ & * - + = | / \\"
     print "Ambiguity:\t1Il ij ao DO0Q B8 \`\`''\" ({ ,. ;: "
+    ls -AhFG
 }
 
 
