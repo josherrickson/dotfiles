@@ -128,6 +128,20 @@ function bd () {
   fi
 }
 
+# From https://github.com/dbb/githome
+function font_test () {
+    print "Letters:\tAaBbCcDdEeFfGgHhIiJjKkLlMm"
+    print "\t\tNnOoPpQqRrSsTtUuVvWwXxYyZz"
+    print "Digits:\t\t0123456789"
+    print "Brackets:\t( ) [ ] { } < > "
+    print "Quotes:\t\t\"foo\" 'bar' "
+    print "Punctuation: \t, . ? : ; _ ! "
+    print "Symbols:\t\` ~  @ # $ % ^ & * - + = | / \\"
+    print "Ambiguity:\t1Il ij ao DO0Q B8 \`\`''\" ({ ,. ;: "
+}
+
+
+
 ################
 ##### Misc #####
 ################
