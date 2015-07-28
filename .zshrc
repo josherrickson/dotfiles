@@ -23,11 +23,7 @@ precmd(){
 ##### auto-complete #####
 #########################
 
-if [[ $(uname) == 'Darwin' ]]; then
-    zstyle :compinstall filename '/Users/josh/.zshrc'
-elif [[ $(uname)  == 'Linux' ]]; then
-    zstyle :compinstall filename '/home/josh/.zshrc'
-fi
+zstyle :compinstall filename '/Users/josh/.zshrc'
 zstyle ':completion:*' menu select                  # sets completion to be menu driven
 zstyle ':completion:*' hosts off                    # Don't uses my hosts file (since I use it for
                                                     # domain blacklisting)
@@ -42,13 +38,7 @@ unsetopt CORRECT CORRECT_ALL       # don't correct spelling
 ##### Path #####
 ################
 
-if [[ $(uname) == 'Darwin' ]]; then
-    PATH=/usr/local/bin:$PATH:/Library/TeX/texbin:/usr/local/sbin
-elif [[ $(uname)  == 'Linux' ]]; then
-    PATH=/usr/local/texlive/2013/bin/x86_64-linux:$PATH:/usr/local/share/python
-    INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/info:$INFOPATH
-    MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
-fi
+PATH=/usr/local/bin:$PATH:/Library/TeX/texbin:/usr/local/sbin
 export PATH
 
 PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
