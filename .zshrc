@@ -3,19 +3,26 @@
 ###################
 
 HISTFILE=~/.zshhist       # where to save history
-HISTSIZE=1000000          # how many lines of history to keep internally
-SAVEHIST=1000000          # how many lines of history to write to HISTFILE
-setopt INC_APPEND_HISTORY # append rather than overwrite the history file
-setopt SHARE_HISTORY      # allow multiple instances to write from history
-setopt HIST_IGNORE_DUPS   # Sequential duplicate commands only get one history entry.
+HISTSIZE=1000000          # how many lines of history to keep
+                          # internally
+SAVEHIST=1000000          # how many lines of history to write to
+                          # HISTFILE
+setopt INC_APPEND_HISTORY # append rather than overwrite the history
+                          # file
+setopt SHARE_HISTORY      # allow multiple instances to write from
+                          # history
+setopt HIST_IGNORE_DUPS   # Sequential duplicate commands only get one
+                          # history entry.
 
-export LESSHISTFILE=/dev/null # less doesn't need to pollute with a history
+export LESSHISTFILE=/dev/null # less doesn't need to pollute with a
+                              # history
 
 #######################
 ##### job counter #####
 #######################
 
-# Count the number of jobs (if 0, return nothing, not 0) to use in PROMPT later
+# Count the number of jobs (if 0, return nothing, not 0) to use in
+# PROMPT later
 precmd(){
     psvar[2]=$#jobstates; [[ $psvar[2] -eq 0 ]] && psvar[2]=() }
 
@@ -24,10 +31,11 @@ precmd(){
 #########################
 
 zstyle :compinstall filename '/Users/josh/.zshrc'
-zstyle ':completion:*' menu select                  # sets completion to be menu driven
-zstyle ':completion:*' hosts off                    # Don't uses my hosts file (since I use it for
-                                                    # domain blacklisting)
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # ignore case in tab complete
+zstyle ':completion:*' menu select # sets completion to be menu driven
+zstyle ':completion:*' hosts off   # Don't uses my hosts file (since I
+                                   # use it for domain blacklisting)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # ignore case in
+                                                    # tab complete
 
 autoload -Uz compinit
 compinit
@@ -73,7 +81,8 @@ vcs_info_wrapper() {
 }
 
 ## PROMPT is where the cursor is at, RPROMPT is on the right-hand-side
-# left prompt is >>> by default, but (#)>>> when there are # jobs in the background
+# left prompt is >>> by default, but (#)>>> when there are # jobs in
+# the background
 # right prompt is current dir
 PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[green]%}>>> %{$reset_color%}'
 RPROMPT=$'$(vcs_info_wrapper)%{$fg[green]%}%~%{$reset_color%}%'
@@ -82,8 +91,8 @@ RPROMPT=$'$(vcs_info_wrapper)%{$fg[green]%}%~%{$reset_color%}%'
 ##### edit-command-line #####
 #############################
 
-# Calling C-x C-e while typing a command will open the command in EDITOR. Easy
-# to edit a complicated command.
+# Calling C-x C-e while typing a command will open the command in
+# EDITOR. Easy to edit a complicated command.
 autoload edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
@@ -98,7 +107,8 @@ export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
 export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
 export LESS_TERMCAP_me=$'\E[0m'           # end mode
 export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info
+                                          # box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
@@ -137,21 +147,27 @@ function font_test () {
 ##### Misc #####
 ################
 
-export EDITOR="emacs -nw"      # for short edits, the terminal is faster
+export EDITOR="emacs -nw"      # for short edits, the terminal is
+                               # faster
 setopt EXTENDED_GLOB           # more options for matching
 setopt nobeep                  # no beeping!
-setopt longlistjobs            # gives more information when suspending a job
-setopt AUTO_RESUME             # Commands without arguments will first try to resume
-                               # suspended programs of the same name.
+setopt longlistjobs            # gives more information when
+                               # suspending a job
+setopt AUTO_RESUME             # Commands without arguments will first
+                               # try to resume suspended programs of
+                               # the same name.
 bindkey -e                     # Emacs controls
 #bindkey -v                    # Vi controls
-bindkey -M vicmd "q" push-line # Use alt-q to store a line, let you run a
-                               # new line, then restore the first line
+bindkey -M vicmd "q" push-line # Use alt-q to store a line, let you
+                               # run a new line, then restore the
+                               # first line
 
 autoload -U select-word-style
-select-word-style bash         # For ctrl-w to NOT annihilate an entire path
+select-word-style bash         # For ctrl-w to NOT annihilate an
+                               # entire path
 
-autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W *.txt.old org/*.txt'
+autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W
+                               # *.txt.old org/*.txt'
 
 #######################
 ##### Other Files #####
@@ -159,4 +175,5 @@ autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W *.txt.old o
 
 source ~/.aliases
 source ~/.aliases-private
-source ~/repositories/bashmarks/bashmarks.sh # clone from git@github.com:josherrickson/bashmarks.git
+# clone from git@github.com:josherrickson/bashmarks.git
+source ~/repositories/bashmarks/bashmarks.sh
