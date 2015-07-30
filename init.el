@@ -252,6 +252,17 @@ goes to the true beginning of the line (before space.)"
 
 (setq interprogram-cut-function 'copy-to-clipboard)
 
+;; Launch R, split into side-by-side buffers, and make the left buffer
+;; an R-mode file to edit. If R is already running, don't restart it.
+(defun rr ()
+  (interactive)
+  (if (get-buffer "*R*")
+      (switch-to-buffer "*R*")
+    (R))
+  (split-window-right)
+  (switch-to-buffer "rscript")
+  (r-mode))
+
 ;;;;;;;;;;;;;;;
 ;;;;; ESS ;;;;;
 ;;;;;;;;;;;;;;;
