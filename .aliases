@@ -10,8 +10,6 @@ alias tmux='tmux -2'
 
 alias ipl='ipython --pylab'
 alias qp='python'
-alias temacs='emacs -nw'
-alias bemacs='TERM=xterm emacs -nw' # for TTY
 
 alias findgrep='find . | xargs grep'
 alias lst='date;ls -lt | head'
@@ -34,4 +32,6 @@ elif [[ $(uname) == 'Linux' ]]; then
     alias lp2='lp -o KMDuplex=True -o fit-to-page' # Specific for Kinota Milota
     alias lp2s='lp2 -o StapleLocation=LeftW'       # Specific for Kinota Milota
     alias bc='bc -l'
+    alias temacs='emacs -nw'
+    alias bemacs='TERM=xterm emacs -nw' # for TTY
 fi
