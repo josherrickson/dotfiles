@@ -35,10 +35,11 @@ if [[ $(uname) == 'Darwin' ]]; then
 elif [[ $(uname)  == 'Linux' ]]; then
     zstyle :compinstall filename '/home/josh/.zshrc'
 fi
-zstyle ':completion:*' menu select                  # sets completion to be menu driven
-zstyle ':completion:*' hosts off                    # Don't uses my hosts file (since I use it for
-                                                    # domain blacklisting)
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # ignore case in tab complete
+zstyle ':completion:*' menu select # sets completion to be menu driven
+zstyle ':completion:*' hosts off   # Don't uses my hosts file (since I
+                                   # use it for domain blacklisting)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # ignore case in
+                                                    # tab complete
 
 autoload -Uz compinit
 compinit
