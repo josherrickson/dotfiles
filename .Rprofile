@@ -1,12 +1,8 @@
-# hard code the US repo for CRAN
-options("download.file.method" = "libcurl")
-r <- getOption("repos")
-r["CRAN"] <- "https://mirrors.nics.utk.edu/cran/"
-options(repos = r)
-rm(r)
-
-# Don't spam large data sets
-options(max.print = 1000)
+# Hardcode a https mirror.
+options(
+  download.file.method = "libcurl",
+  repos = c(CRAN = "https://mirrors.nics.utk.edu/cran/"),
+  max.print = 1000)
 
 # Stick these in their own environment so that rm(list=ls()) doesn't
 # kill them

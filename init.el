@@ -281,9 +281,7 @@ goes to the true beginning of the line (before space.)"
       inferior-R-args
       "--no-restore --no-save --quiet") ;; R startup conditions
 
-(setq ess-default-style 'GNU) ;; better indenting
-(setq ess-fancy-comments nil) ;; don't distinguish #, ##, ###
-
+(setq ess-default-style 'RStudio) ;; better indenting
 
 ;; force ESS to scroll R to the bottom after running code
 (setq
