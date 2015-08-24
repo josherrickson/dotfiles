@@ -22,13 +22,11 @@
 (package-initialize) ;; initialize packages (needed to load packages
                      ;; installed by M-x package-install)
 
-;; Automatically install important packages on a new system.
-
-;; (defvar my-packages '(ace-jump-mode auctex buffer-move ess
-;;                                     multiple-cursors ssh))
-;; (dolist (p my-packages)
-;;   (when (not (package-installed-p p))
-;;     (package-install p)))
+(custom-set-variables
+ '(package-selected-packages
+   (quote
+    (multiple-cursors markdown-mode ess buffer-move auctex
+    ace-jump-mode))))
 
 (require 'ace-jump-mode)    ;; quicker way to jump around
                             ;; in repetitious code
