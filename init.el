@@ -25,8 +25,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (multiple-cursors markdown-mode ess buffer-move auctex
-    ace-jump-mode))))
+    (ssh multiple-cursors markdown-mode ess buffer-move auctex ace-jump-mode))))
 
 (require 'ace-jump-mode)    ;; quicker way to jump around
                             ;; in repetitious code
