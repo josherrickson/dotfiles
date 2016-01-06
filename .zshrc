@@ -185,5 +185,3 @@ autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W
 
 source ~/.aliases
 source ~/.aliases-private
-# clone from git@github.com:josherrickson/bashmarks.git
-source ~/repositories/bashmarks/bashmarks.sh
