@@ -323,6 +323,11 @@ goes to the true beginning of the line (before space.)"
 ;; use auto-fill always on tex files
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Markdown-mode ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'auto-mode-alist '("\\.Rmd$" . markdown-mode))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;;;;; Org-mode ;;;;;
