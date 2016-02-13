@@ -20,6 +20,8 @@ alias htopc='htop --sort-key PERCENT_CPU'
 
 alias git-status-all='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo -e \"\nGIT STATUS IN ${dir//\.git/}\" && git status -s" ; done'
 
+alias R='R --quiet'
+
 ###############################
 ##### OS Specific aliases #####
 ###############################
