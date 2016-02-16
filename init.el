@@ -328,6 +328,9 @@ goes to the true beginning of the line (before space.)"
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'auto-mode-alist '("\\.Rmd$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+
+(setq markdown-enable-math t) ;; Highlight latex math snippets
 
 ;;;;;;;;;;;;;;;;;;;;
 ;;;;; Org-mode ;;;;;
