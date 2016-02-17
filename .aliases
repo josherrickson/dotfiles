@@ -28,6 +28,7 @@ alias R='R --quiet'
 
 if [[ $(uname) == 'Darwin' ]]; then
     alias ls='ls -AhFG'
+    alias rmds_store='find . -name ".DS_Store" -print0 | xargs -0 rm'
 elif [[ $(uname) == 'Linux' ]]; then
     alias ls='ls -AFh --color'
     alias nautilus='nautilus --no-desktop'         # to avoid nautilus killing feh wallpaper
