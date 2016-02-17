@@ -15,6 +15,16 @@ attach(list(
         n <- min(n, length(x)); return(x[1:n])
       };
       n <- min(n, dim(x)); x[1:n, 1:n]
+    },
+    round0 = function(x, digits=2, ...) {
+      if(!is.data.frame(x)) {
+        return(round(x, digits=digits, ...))
+      }
+
+      isnum <- sapply(x, is.numeric)
+
+      x[,isnum] <- round(x[,isnum], digits=digits, ...)
+      return(x)
     }),
     name = 'MyFunctions'
     )
