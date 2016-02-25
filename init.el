@@ -25,7 +25,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (ssh multiple-cursors markdown-mode ess buffer-move auctex ace-jump-mode))))
+    (flycheck polymode ssh multiple-cursors markdown-mode ess buffer-move auctex ace-jump-mode))))
 
 (require 'ace-jump-mode)    ;; quicker way to jump around
                             ;; in repetitious code
@@ -327,7 +327,7 @@ goes to the true beginning of the line (before space.)"
 ;;;;; Markdown-mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'auto-mode-alist '("\\.Rmd$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
 (setq markdown-enable-math t) ;; Highlight latex math snippets
@@ -349,6 +349,12 @@ goes to the true beginning of the line (before space.)"
       ido-save-directory-list-file "~/.emacs.d/.ido.last")
 ;; Don't list these files
 (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc"))
+
+;;;;;;;;;;;;;;;;;;;;
+;;;;; Flycheck ;;;;;
+;;;;;;;;;;;;;;;;;;;;
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; This page break is to ensure no local variables are set
 ;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
