@@ -24,7 +24,7 @@
 (custom-set-variables
  '(package-selected-packages
    (quote
-    (flycheck polymode ssh multiple-cursors markdown-mode ess buffer-move auctex ace-jump-mode))))
+    (polymode ssh multiple-cursors markdown-mode ess buffer-move auctex ace-jump-mode))))
 
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
@@ -309,12 +309,6 @@
       ido-save-directory-list-file "~/.emacs.d/.ido.last") ;; move save file
 
 (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc")) ;; Don't list these files
-
-;;;;;;;;;;;;;;;;;;;;
-;;;;; Flycheck ;;;;;
-;;;;;;;;;;;;;;;;;;;;
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; This page break is to ensure no local variables are set
 ;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
