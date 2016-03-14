@@ -310,6 +310,21 @@
 
 (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc")) ;; Don't list these files
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; fill-column per mode ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Use a wider fill-column for text-only modes (e.g. not likely to be run side-by-side with terminal/output.
+
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (set-fill-column 150)))
+
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (set-fill-column 150)))
+
+
 ;; This page break is to ensure no local variables are set
 ;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
 
