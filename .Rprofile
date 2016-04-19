@@ -1,8 +1,18 @@
 # Hardcode a https mirror.
-options(
-  download.file.method = "libcurl",
-  repos = c(CRAN = "https://mirrors.nics.utk.edu/cran/"),
-  max.print = 1000)
+.First <- function() {
+  options(
+    download.file.method = "libcurl",
+    repos = c(CRAN = "https://cran.rstudio.com/"),
+    max.print = 1000,
+    browserNLdisabled = TRUE
+  )
+}
+
+if (interactive()) {
+  suppressMessages(require(devtools))
+  suppressMessages(require(testthat))
+}
+
 
 # Stick these in their own environment so that rm(list=ls()) doesn't
 # kill them
