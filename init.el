@@ -259,6 +259,7 @@
 ;;;;; Auctex ;;;;;
 ;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'auto-mode-alist '("\\.Rnw$" . LaTeX-mode)) ;; Rnw loads latex-mode
 (autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
 
 (setq
