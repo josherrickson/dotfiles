@@ -324,6 +324,10 @@
           (lambda ()
             (set-fill-column 150)))
 
+(add-hook 'TeX-mode-hook
+          (lambda ()
+            (set-fill-column 150)))
+
 
 ;; This page break is to ensure no local variables are set
 ;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
