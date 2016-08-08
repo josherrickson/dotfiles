@@ -38,4 +38,6 @@ elif [[ $(uname) == 'Linux' ]]; then
     alias bc='bc -l'
     alias temacs='emacs -nw'
     alias bemacs='TERM=xterm emacs -nw' # for TTY
+else
+    alias ls='ls -AhG --color'
 fi

@@ -32,7 +32,7 @@ precmd(){
 
 if [[ $(uname) == 'Darwin' ]]; then
     zstyle :compinstall filename '/Users/josh/.zshrc'
-elif [[ $(uname)  == 'Linux' ]]; then
+else
     zstyle :compinstall filename '/home/josh/.zshrc'
 fi
 zstyle ':completion:*' menu select # sets completion to be menu driven
@@ -184,4 +184,4 @@ autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W
 #######################
 
 source ~/.aliases
-source ~/.aliases-private
+#source ~/.aliases-private
