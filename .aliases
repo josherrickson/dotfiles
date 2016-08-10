@@ -40,4 +40,5 @@ elif [[ $(uname) == 'Linux' ]]; then
     alias bemacs='TERM=xterm emacs -nw' # for TTY
 else
     alias ls='ls -AhG --color'
+    alias R='/cygdrive/c/Program\ Files/R/R-3.1.3/bin/R --no-save --quiet'
 fi
