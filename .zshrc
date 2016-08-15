@@ -75,25 +75,12 @@ setopt prompt_subst
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git cvs svn
-# Displays if there are changes
-zstyle ':vcs_info:*' stagedstr 'S'
-zstyle ':vcs_info:*' unstagedstr 'U'
-zstyle ':vcs_info:*' check-for-changes true
 # During special actions like rebasing
 zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 # During normal use
-zstyle ':vcs_info:*' formats '%F{4}[%b%f%F{2}%c%F{3}%u%f%F{4}]%f '
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
-
+zstyle ':vcs_info:*' formats '%F{4}[%b]%f '
 # For branching on SVN
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{3}:%r%F{4}'
-
-+vi-git-untracked() {
-  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
-     [[ $(git ls-files --other --directory --exclude-standard | sed q | wc -l | tr -d ' ') == 1 ]] ; then
-       hook_com[unstaged]+='%F{1}?%f'
-  fi
-}
 
 # or use pre_cmd, see man zshcontrib
 vcs_info_wrapper() {
