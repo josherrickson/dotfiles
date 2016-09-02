@@ -40,6 +40,7 @@ fi
 lns "$DIR"/.aliases ~/.aliases
 lns "$DIR"/.Rprofile ~/.Rprofile
 lns "$DIR"/.zshrc ~/.zshrc
+lns "$DIR"/.tmux-conf ~/.tmux-conf
 lns "$DIR"/.vimrc ~/.vimrc
 lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
 [[ ! (-d ~/.emacs.d) ]] && mkdir ~/.emacs.d
