@@ -22,6 +22,8 @@ alias git-status-all='find . -type d -name ".git" | while read dir ; do sh -c "c
 
 alias R='R --quiet'
 
+alias emacs='emacs -nw'
+
 ###############################
 ##### OS Specific aliases #####
 ###############################
