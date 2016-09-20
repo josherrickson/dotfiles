@@ -6,6 +6,7 @@ alias sudo='sudo ' # the space tells it respect aliases from this file
 
 # Color outputs
 alias grep='grep --color=always'
+alias fgrep='fgrep --color=always'
 alias tmux='tmux -2'
 
 alias ipl='ipython --pylab'
