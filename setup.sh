@@ -60,8 +60,4 @@ if [[ $ostype == 'Linux' ]]; then
     lns "$DIR"/i3config ~/.i3/config
     lns "$DIR"/i3status.conf ~/.i3/i3status.conf
 
-    [[ ! (-d ~/.config) ]] && mkdir ~/.config
-    lns "$DIR"/luakit/luakit ~/.config/luakit
-    [[ ! (-d ~/.local/share/luakit) ]] && mkdir -p ~/.local/share/luakit
-    lns "$DIR"/luakit/adblock ~/.local/share/luakit/adblock
 fi
