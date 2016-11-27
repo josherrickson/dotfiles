@@ -6,8 +6,8 @@ Rxvt*background: #252626
 Rxvt*foreground: lightgrey
 Rxvt*saveLines:  1024
 
-Rxvt*font:     xft:Droid Sans Mono:pixelsize=14:antialias=true:hinting=true
-Rxvt*boldFont: xft:Droid Sans Mono:bold:pixelsize=14:antialias=true:hinting=true
+Rxvt*font:     xft:DejaVu Sans Mono:pixelsize=16:antialias=true:hinting=true
+Rxvt*boldFont: xft:DejaVu Sans Mono:bold:pixelsize=16:antialias=true:hinting=true
 
 Rxvt*scrollBar: false
 
