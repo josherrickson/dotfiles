@@ -263,8 +263,9 @@
 (autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
 
 (setq
- ;TeX-engine 'default                      ;; XeTeX causes issues with tikz
- TeX-engine 'xetex                         ;; use XeTeX
+ ;TeX-engine 'default                       ;; XeTeX causes issues with tikz
+ ;TeX-engine 'xetex                        ;; use XeTeX
+ TeX-engine 'pdflatex
  TeX-PDF-mode t                            ;; PDF instead of dvi
  TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
 
