@@ -95,7 +95,7 @@ vcs_info_wrapper() {
 # the background
 # right prompt is current dir
 PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[green]%}>>> %{$reset_color%}'
-RPROMPT=$'$(vcs_info_wrapper)%{$fg[green]%}%~%{$reset_color%}%'
+RPROMPT=$'$(vcs_info_wrapper)%{$fg[green]%}%~ [%T]%{$reset_color%}%'
 
 #############################
 ##### edit-command-line #####
