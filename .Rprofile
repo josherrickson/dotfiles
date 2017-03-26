@@ -3,8 +3,8 @@
   options(
     download.file.method = "libcurl",
     repos = c(CRAN = "https://cran.rstudio.com/"),
-    max.print = 1000,
-    browserNLdisabled = TRUE
+    max.print = 1000#,
+#    browserNLdisabled = TRUE
   )
 }
 
