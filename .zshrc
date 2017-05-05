@@ -2,17 +2,17 @@
 ##### History #####
 ###################
 
-HISTFILE=~/.zshhist       # where to save history
-HISTSIZE=1000000          # how many lines of history to keep
-                          # internally
-SAVEHIST=1000000          # how many lines of history to write to
-                          # HISTFILE
-setopt INC_APPEND_HISTORY # append rather than overwrite the history
-                          # file
-setopt SHARE_HISTORY      # allow multiple instances to write from
-                          # history
-setopt HIST_IGNORE_DUPS   # Sequential duplicate commands only get one
-                          # history entry.
+HISTFILE=~/.zshhist           # where to save history
+HISTSIZE=1000000              # how many lines of history to keep
+                              # internally
+SAVEHIST=1000000              # how many lines of history to write to
+                              # HISTFILE
+setopt INC_APPEND_HISTORY     # append rather than overwrite the history
+                              # file
+setopt SHARE_HISTORY          # allow multiple instances to write from
+                              # history
+setopt HIST_IGNORE_ALL_DUPS   # Duplicate commands only get one
+                              # history entry.
 
 export LESSHISTFILE=/dev/null # less doesn't need to pollute with a
                               # history
