@@ -1,8 +1,8 @@
 #!/bin/bash
 
-islaptop=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Macbook")
+islaptop=$(/usr/sbin/system_profiler SPHardwareDataType | grep "MacBook")
 
-if [ "$islaptop" != '']; then
+if [ -n "$islaptop" ]; then
     HEART='♥'
 
      if [[ `uname` == 'Linux' ]]; then
