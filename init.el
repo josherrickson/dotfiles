@@ -18,11 +18,6 @@
 
 (package-initialize) ;; initialize packages (needed to load packages installed by M-x package-install)
 
-(custom-set-variables
- '(package-selected-packages
-   (quote
-    (polymode ssh multiple-cursors markdown-mode ess buffer-move auctex ace-jump-mode))))
-
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
 
