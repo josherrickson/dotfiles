@@ -21,6 +21,7 @@
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
 
+;; Clone https://github.com/sellout/emacs-color-theme-solarized
 (add-to-list 'custom-theme-load-path "~/repositories/emacs-color-theme-solarized/")
 (load-theme 'solarized t)  ;; The 't' says not to security check
 (setq frame-background-mode 'dark)
