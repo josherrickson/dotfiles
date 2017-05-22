@@ -26,10 +26,9 @@
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
 
-;; I occasionally fork bbatsov's excellent zenburn-theme, so I install this via git instead of via the packages.  To use the default, add
-;; zenburn-theme to (defvar my-packages...) and remove the next line.
-(add-to-list 'custom-theme-load-path "~/repositories/zenburn-emacs/")
-(load-theme 'zenburn t)  ;; The 't' says not to security check
+(add-to-list 'custom-theme-load-path "~/repositories/emacs-color-theme-solarized/")
+(load-theme 'solarized t)  ;; The 't' says not to security check
+(setq frame-background-mode 'dark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Key Bindings ;;;;;
