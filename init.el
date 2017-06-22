@@ -12,9 +12,10 @@
 (require 'package)
 
 ;; Two additional, better repos.
-(add-to-list 'package-archives '("marmalade"
-                                 . "http://marmalade-repo.org/packages/")
-             t)
+(add-to-list 'package-archives
+;;             '("marmalade" . "http://marmalade-repo.org/packages/")
+             '("melpa" . "https://melpa.org/packages/")
+             )
 
 (package-initialize) ;; initialize packages (needed to load packages installed by M-x package-install)
 
