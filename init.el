@@ -26,6 +26,9 @@
 (add-to-list 'custom-theme-load-path "~/repositories/emacs-color-theme-solarized/")
 (load-theme 'solarized t)  ;; The 't' says not to security check
 (setq frame-background-mode 'dark)
+;; Fix a bug with lots of "Unable to load color" warnings, see
+;; https://github.com/sellout/emacs-color-theme-solarized/issues/175
+(customize-set-variable 'solarized-termcolors 256)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Key Bindings ;;;;;
