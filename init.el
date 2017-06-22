@@ -120,8 +120,7 @@
 
 (recentf-mode             t   )        ;; recent file mode:
                                        ;; recentf-open-files
-(setq recentf-save-file "~/.emacs.d/.recentf"
-      recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
+(setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
                         "\\archive-contents\\'"
                         "\\.ido.last\\'"))
 
