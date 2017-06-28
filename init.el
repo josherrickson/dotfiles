@@ -22,13 +22,7 @@
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
 
-;; Clone https://github.com/sellout/emacs-color-theme-solarized
-(add-to-list 'custom-theme-load-path "~/repositories/emacs-color-theme-solarized/")
-(load-theme 'solarized t)  ;; The 't' says not to security check
-(setq frame-background-mode 'dark)
-;; Fix a bug with lots of "Unable to load color" warnings, see
-;; https://github.com/sellout/emacs-color-theme-solarized/issues/175
-(customize-set-variable 'solarized-termcolors 256)
+(load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Key Bindings ;;;;;
