@@ -284,6 +284,19 @@
 
 (setq markdown-enable-math t) ;; Highlight latex math snippets
 
+;; Add Stata-inserting function
+(defun insert-stata-dyndoc-chucnk ()
+  "Inserts the tags for a Stata dyndoc chunk."
+  (interactive)
+  (insert "~~~~\n<<dd_do>>\n")
+  (save-excursion
+    (insert "\n<</dd_do>>\n~~~~")))
+
+(add-hook 'markdown-mode-hook
+          (lambda () (local-set-key (kbd "C-c C-s d") 'insert-stata-dyndoc-chucnk)))
+
+
+
 ;;;;;;;;;;;;;;;;;;;;
 ;;;;; Org-mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
