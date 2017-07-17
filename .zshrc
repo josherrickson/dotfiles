@@ -94,8 +94,14 @@ vcs_info_wrapper() {
 # left prompt is >>> by default, but (#)>>> when there are # jobs in
 # the background
 # right prompt is current dir
-PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[green]%}>>> %{$reset_color%}'
+if [[ $(uname) == 'Darwin' ]]; then
+    PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[green]%}>>> %{$reset_color%}'
+elif [[ $(uname)  == 'Linux' ]]; then
+    PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[blue]%}>>> %{$reset_color%}'
+fi
 RPROMPT=$'$(vcs_info_wrapper)%{$fg[green]%}%~ [%T]%{$reset_color%}%'
+# Only difference between versions is color to easier identify when on the server
+
 
 #############################
 ##### edit-command-line #####
