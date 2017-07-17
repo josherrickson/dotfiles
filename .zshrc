@@ -97,7 +97,7 @@ vcs_info_wrapper() {
 if [[ $(uname) == 'Darwin' ]]; then
     PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[green]%}>>> %{$reset_color%}'
 elif [[ $(uname)  == 'Linux' ]]; then
-    PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[blue]%}[%m] >>> %{$reset_color%}'
+    PROMPT=$'%{$fg[red]%}%(2v:(%2v):)%{$reset_color%}%{$fg[blue]%}[%m]>>> %{$reset_color%}'
 fi
 RPROMPT=$'$(vcs_info_wrapper)%{$fg[green]%}%~ [%T]%{$reset_color%}%'
 # Only difference between versions is color to easier identify when on the server
