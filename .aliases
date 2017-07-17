@@ -9,9 +9,6 @@ alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
 alias tmux='tmux -2'
 
-alias ipl='ipython --pylab'
-alias qp='python'
-
 alias findgrep='find . | xargs grep'
 alias lst='date;ls -lt | head'
 alias spacerm="find -name '* *' -type f | rename 's/ /_/g'"
