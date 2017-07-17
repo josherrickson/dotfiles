@@ -40,7 +40,6 @@ fi
 lns "$DIR"/.aliases ~/.aliases
 lns "$DIR"/.Rprofile ~/.Rprofile
 lns "$DIR"/.zshrc ~/.zshrc
-lns "$DIR"/.tmux.conf ~/.tmux.conf
 lns "$DIR"/.tmux-scripts ~/.tmux-scripts
 lns "$DIR"/.vimrc ~/.vimrc
 lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
@@ -61,4 +60,7 @@ if [[ $ostype == 'Linux' ]]; then
     lns "$DIR"/i3config ~/.i3/config
     lns "$DIR"/i3status.conf ~/.i3/i3status.conf
 
+    lns "$DIR"/.tmux.conf.linux ~/.tmux.conf
+elif [[ $ostype == 'Darwin' ]]; then
+    lns "$DIR"/.tmux.conf.mac ~/.tmux.conf
 fi
