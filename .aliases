@@ -8,6 +8,13 @@ alias sudo='sudo ' # the space tells it respect aliases from this file
 alias grep='grep --color=always'
 alias fgrep='fgrep --color=always'
 alias tmux='tmux -2'
+if [[ $(uname) == 'Darwin' ]]; then
+    alias ls='ls -AhFG'
+elif [[ $(uname) == 'Linux' ]]; then
+    alias ls='ls -AFh --color'
+else # Cygwin on Windows
+    alias ls='ls -AhG --color'
+fi
 
 alias findgrep='find . | xargs grep'
 alias lst='date;ls -lt | head'
@@ -28,12 +35,9 @@ alias emacs='emacs -nw'
 ###############################
 
 if [[ $(uname) == 'Darwin' ]]; then
-    alias ls='ls -AhFG'
     alias rmds_store='find . -name ".DS_Store" -print0 | xargs -0 rm'
 elif [[ $(uname) == 'Linux' ]]; then
-    alias ls='ls -AFh --color'
     alias bc='bc -l'
 else
-    alias ls='ls -AhG --color'
     alias R='/cygdrive/c/Program\ Files/R/R-3.1.3/bin/R --no-save --quiet'
 fi
