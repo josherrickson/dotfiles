@@ -35,7 +35,7 @@ alias emacs='emacs -nw'
 ###############################
 
 if [[ $(uname) == 'Darwin' ]]; then
-    alias rmds_store='find . -name ".DS_Store" -print0 | xargs -0 rm'
+    alias rmds_store='find ~ -name ".DS_Store" -depth -exec rm {} \;'
 elif [[ $(uname) == 'Linux' ]]; then
     alias bc='bc -l'
     alias git='scl enable rh-git29 httpd24 -- git' # Only for scl, see
