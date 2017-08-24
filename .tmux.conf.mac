@@ -3,13 +3,14 @@ set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
 
 set-option -g default-shell /usr/local/bin/zsh
 
-# split panes using | and -
-# Also, new splits and panes should use the same path.
+# split panes using | and -, using the same path.
 bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
-bind c new-window -c "#{pane_current_path}"
+
+# Command to open new pane in current path
+bind v new-window -c "#{pane_current_path}"
 
 # reload config file (change file location to your the tmux.conf you want to use)
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
