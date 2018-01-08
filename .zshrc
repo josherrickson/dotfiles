@@ -50,17 +50,8 @@ unsetopt CORRECT CORRECT_ALL       # don't correct spelling
 ##### Path #####
 ################
 
-if [[ $(uname) == 'Darwin' ]]; then
-    PATH=/usr/local/bin:$PATH:~/anaconda/bin:/Library/TeX/texbin:/usr/local/sbin
-elif [[ $(uname)  == 'Linux' ]]; then
-    PATH=/usr/local/texlive/2013/bin/x86_64-linux:$PATH:/usr/local/share/python
-    INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/info:$INFOPATH
-    MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
-fi
+PATH=/usr/local/bin:$PATH:~/anaconda/bin:/Library/TeX/texbin:/usr/local/sbin
 export PATH
-
-PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
-export PYTHONPATH
 
 ##################
 ##### Prompt #####
