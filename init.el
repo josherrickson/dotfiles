@@ -205,7 +205,8 @@
       (process-send-string proc text)
       (process-send-eof proc))))
 
-(setq interprogram-cut-function 'copy-to-clipboard)
+(when (equal system-type 'darwin)
+  (setq interprogram-cut-function 'copy-to-clipboard))
 
 ;; Launch R, split into side-by-side buffers, and make the left buffer an R-mode file to edit. If R is already running, don't restart it.
 (defun rr ()
