@@ -12,6 +12,7 @@
 if (interactive()) {
   suppressMessages(require(devtools))
 }
+suppressMessages(require(logitr))
 
 
 # Stick these in their own environment so that rm(list=ls()) doesn't
