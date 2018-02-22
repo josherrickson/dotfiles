@@ -226,6 +226,11 @@
 (autoload 'R        "ess-site" nil t) ;; Only load ess if starting R,
 (autoload 'r-mode   "ess-site" nil t) ;; or opening an R file,
 
+(add-to-list 'auto-mode-alist '("\\.do$" . stata-mode))
+(add-to-list 'auto-mode-alist '("\\.ado$" . stata-mode))
+(autoload 'Stata        "ess-site" nil t) ;; Only load ess if starting R,
+(autoload 'stata-mode   "ess-site" nil t) ;; or opening an R file,
+
 (setq ess-ask-for-ess-directory nil      ;; just run R wherever the file lives
       ess-history-file nil               ;; don't save history
       ess-eval-visibly-p nil             ;; when running R, don't show code, just output (greatly speeds running)
@@ -243,6 +248,9 @@
 
 ;; TRAMP
 (setq password-cache-expiry 3600) ;; cache passwords in tramp for 1 hr
+
+;; Stata
+(setq inferior-STA-program-name '"stata-se")
 
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
