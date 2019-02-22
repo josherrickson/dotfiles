@@ -176,6 +176,12 @@ select-word-style bash         # For ctrl-w to NOT annihilate an
 autoload -Uz zmv               # For mass renaming eg 'noglob zmv -W
                                # *.txt.old org/*.txt'
 
+####################
+##### Homebrew #####
+####################
+
+export HOMEBREW_NO_INSTALL_CLEANUP=0
+
 #######################
 ##### Other Files #####
 #######################
