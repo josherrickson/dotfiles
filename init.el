@@ -288,8 +288,11 @@
 ;;;;; Markdown-mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown+r-mode))
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md$" . poly-markdown-mode))
+(autoload 'poly-markdown-mode   "polymode" nil t) ;; or opening an R file,
+(autoload 'poly-markdown-mode   "poly-markdown" nil t) ;; or opening an R file,
+
 
 (setq markdown-enable-math t) ;; Highlight latex math snippets
 
