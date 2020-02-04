@@ -24,6 +24,18 @@
 
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Custom variable location ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Rather that letting emacs stick custom-set-variables in here, place it in a different file that is
+;; not under version control.
+;; https://old.reddit.com/r/emacs/comments/67pzh5/using_customsetvariables_programmatically/dgsxvm3/
+
+(setq custom-file "~/.emacs.d/custom.el")
+(if (file-exists-p custom-file)
+    (load custom-file))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Key Bindings ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
