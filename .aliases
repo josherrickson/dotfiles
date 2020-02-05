@@ -23,7 +23,7 @@ alias spacerm="find -name '* *' -type f | rename 's/ /_/g'"
 alias htopm='htop --sort-key PERCENT_MEM'
 alias htopc='htop --sort-key PERCENT_CPU'
 
-alias git-status-all='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo -e \"\nGIT STATUS IN ${dir//\.git/}\" && git status -s" ; done'
+alias git-status-all='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo \"GIT STATUS IN ${dir//\.git/}\" && git status -s" ; done'
 alias cdg='cd $(git rev-parse --show-toplevel)'
 
 alias R='R --quiet'
