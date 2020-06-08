@@ -30,6 +30,8 @@ alias R='R --quiet'
 
 alias emacs='emacs -nw'
 
+alias install_R_deps='bash ~/.bash-scripts/install_R_deps.sh'
+
 ###############################
 ##### OS Specific aliases #####
 ###############################
