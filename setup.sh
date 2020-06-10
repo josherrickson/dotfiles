@@ -52,14 +52,14 @@ if [[ $ostype == 'Linux' ]]; then
     lns "$DIR"/.Xresources ~/.Xresources
     xrdb ~/.Xresources
 
-    [[ ! (-d ~/.xmonad) ]] && mkdir ~/.xmonad
-    lns "$DIR"/xmobar.rc ~/.xmonad/xmobar.rc
-    lns "$DIR"/xmonad.hs ~/.xmonad/xmonad.hs
-    lns "$DIR"/xmonad-init ~/.xmonad/xmonad-init
+    #[[ ! (-d ~/.xmonad) ]] && mkdir ~/.xmonad
+    #lns "$DIR"/xmobar.rc ~/.xmonad/xmobar.rc
+    #lns "$DIR"/xmonad.hs ~/.xmonad/xmonad.hs
+    #lns "$DIR"/xmonad-init ~/.xmonad/xmonad-init
 
-    [[ ! (-d ~/.i3) ]] && mkdir ~/.i3
-    lns "$DIR"/i3config ~/.i3/config
-    lns "$DIR"/i3status.conf ~/.i3/i3status.conf
+    [[ ! (-d ~/.config/i3) ]] && mkdir ~/.config/i3
+    lns "$DIR"/i3config ~/.config/i3/config
+    lns "$DIR"/i3status.conf ~/.config/i3/i3status.conf
 
     lns "$DIR"/.tmux.conf.linux ~/.tmux.conf
 elif [[ $ostype == 'Darwin' ]]; then
