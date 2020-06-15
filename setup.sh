@@ -42,6 +42,7 @@ lns "$DIR"/.Rprofile ~/.Rprofile
 lns "$DIR"/.zshrc ~/.zshrc
 lns "$DIR"/.tmux-scripts ~/.tmux-scripts
 lns "$DIR"/.bash-scripts ~/.bash-scripts
+lns "$DIR"/fish ~/.config/fish
 lns "$DIR"/.vimrc ~/.vimrc
 lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
 [[ ! (-d ~/.emacs.d) ]] && mkdir ~/.emacs.d
