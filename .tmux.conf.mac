@@ -1,7 +1,11 @@
 # https://www.elmund.io/osx/2015/07/10/open-command-in-osx-tmux/
 set -g default-command "reattach-to-user-namespace -l /usr/local/bin/fish"
 
-set-option -g default-shell /usr/local/bin/fish
+# DO NOT CHANGE
+set-option -g default-shell /bin/bash
+# If this is not set to bash, then `pane_current_path` is always ~.
+# Setting default-command to fish above should be sufficient.
+# https://github.com/fish-shell/fish-shell/issues/5699
 
 # split panes using | and -, using the same path.
 bind | split-window -h -c "#{pane_current_path}"
