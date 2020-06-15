@@ -1,7 +1,7 @@
 # https://www.elmund.io/osx/2015/07/10/open-command-in-osx-tmux/
-set -g default-command "reattach-to-user-namespace -l /usr/local/bin/zsh"
+set -g default-command "reattach-to-user-namespace -l /usr/local/bin/fish"
 
-set-option -g default-shell /usr/local/bin/zsh
+set-option -g default-shell /usr/local/bin/fish
 
 # split panes using | and -, using the same path.
 bind | split-window -h -c "#{pane_current_path}"
