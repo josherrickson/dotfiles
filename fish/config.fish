@@ -11,3 +11,17 @@ set -xg EDITOR emacs
 # you need all three of those. fish in tmux in Terminal.app has proper $TERM, zsh in tmux
 # in iTerm2 has proper $TERM.)
 set -xg TERM xterm-256color
+
+set -xg PATH $PATH /Users/josh/.local/bin
+
+# Color for man
+set -xU LESS_TERMCAP_md (printf "\e[01;31m")
+set -xU LESS_TERMCAP_me (printf "\e[0m")
+set -xU LESS_TERMCAP_se (printf "\e[0m")
+set -xU LESS_TERMCAP_so (printf "\e[01;44;33m")
+set -xU LESS_TERMCAP_ue (printf "\e[0m")
+set -xU LESS_TERMCAP_us (printf "\e[01;32m")In
+set -xU LESS "--RAW-CONTROL-CHARS"
+
+# Color for less. Requires highlight installed.
+export LESSOPEN="| highlight %s --out-format xterm256 --force"
