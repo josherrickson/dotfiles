@@ -230,6 +230,13 @@
   (switch-to-buffer "rscript")
   (r-mode))
 
+;; https://stackoverflow.com/a/25792294
+(defun new-empty-frame ()
+  "Open a new frame with a buffer named untitled<N>. The buffer is not associated with a file."
+  (interactive)
+  (switch-to-buffer-other-frame (generate-new-buffer "untitled")))
+(global-set-key (kbd "C-C n") 'new-empty-frame)
+
 ;;;;;;;;;;;;;;;
 ;;;;; ESS ;;;;;
 ;;;;;;;;;;;;;;;
