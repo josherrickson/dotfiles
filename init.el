@@ -17,7 +17,8 @@
              '("melpa" . "https://melpa.org/packages/")
              )
 
-(package-initialize) ;; initialize packages (needed to load packages installed by M-x package-install)
+(when (< emacs-major-version 27)
+  (package-initialize)) ;; initialize packages (needed to load packages installed by M-x package-install; only needed in pre 27)
 
 (require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
 (require 'multiple-cursors) ;; load at start to avoid issues with first usage
