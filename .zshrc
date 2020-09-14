@@ -50,7 +50,7 @@ unsetopt CORRECT CORRECT_ALL       # don't correct spelling
 ##### Path #####
 ################
 
-PATH=/usr/local/bin:$PATH:~/anaconda/bin:~/Library/Python/3.7/bin:/Library/TeX/texbin:/usr/local/sbin:/Applications/Stata/StataSE.app/Contents/MacOS
+PATH=/usr/local/bin:$PATH:~/anaconda/bin:~/Library/Python/3.7/bin:/Library/TeX/texbin:/usr/local/sbin:/Applications/Stata/StataSE.app/Contents/MacOS:~/.local/bin
 export PATH
 
 ##################
