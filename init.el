@@ -43,7 +43,6 @@
 ;;;;; Settings ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
 
-
 ;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>) need setq-default, otherwise setq is fine.
 (setq-default
  tab-width 2                          ;; default tab width is 2 spaces
@@ -90,11 +89,9 @@
 (size-indication-mode     t   ) ;; include file size on toolbar
 (line-number-mode         t   ) ;; cursor position line ...
 (column-number-mode       t   ) ;; ... and column
-(setq electric-pair-mode  nil ) ;; Ensure that electric-pairing isn't activated
 
 (show-paren-mode          t   ) ;; show matching parens
 (setq show-paren-delay    0   ) ;; don't delay showing parens
-
 
 (global-linum-mode        t  ) ;; show row numbers
 (setq linum-format             ;; add space after row number, right align
