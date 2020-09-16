@@ -81,6 +81,24 @@
         comint-scroll-show-maximum-output  t
         comint-move-point-for-output       t))
 
+;; recentf
+;; Accessing recently opened files
+(use-package recentf
+  :init
+  (recentf-mode t)
+  :bind (("C-x M-f" . set-fill-column) ;; to make room
+         ("C-x f" . recentf-open-files))
+  :config
+  (setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
+                          "\\archive-contents\\'"
+                          "\\.ido.last\\'")))
+
+;; poly-mode for R
+(use-package poly-R
+  :ensure t
+  :config
+  (setq markdown-enable-math t)) ;; Highlight latex math snippets
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom variable location ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -100,10 +118,6 @@
 ;; Move this to allow deleting a whole word
 (global-set-key (kbd "C-c M-w") 'kill-region)
 (global-set-key (kbd "C-w")     'backward-kill-word)
-
-;; Move this to allow listing recent files
-(global-set-key (kbd "C-x M-f") 'set-fill-column)
-(global-set-key (kbd "C-x f")   'recentf-open-files)
 
 ;; Change from zap-to-char to zap-up-to-char (don't delete the char itself)
 (autoload 'zap-up-to-char "misc" 'interactive)
@@ -165,11 +179,6 @@
 (show-paren-mode          t   ) ;; show matching parens
 (setq show-paren-delay    0   ) ;; don't delay showing parens
 
-(recentf-mode             t   )        ;; recent file mode:
-                                       ;; recentf-open-files
-(setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
-                        "\\archive-contents\\'"
-                        "\\.ido.last\\'"))
 
 (global-linum-mode        t  ) ;; show row numbers
 (setq linum-format             ;; add space after row number, right align
@@ -274,10 +283,16 @@
   (switch-to-buffer-other-frame (generate-new-buffer "untitled")))
 (global-set-key (kbd "C-C n") 'new-empty-frame)
 
-;;;;;;;;;;;;;;;
-;;;;; ESS ;;;;;
-;;;;;;;;;;;;;;;
+;; Add Stata-inserting function
+(defun insert-stata-dyndoc-chucnk ()
+  "Inserts the tags for a Stata dyndoc chunk."
+  (interactive)
+  (insert "~~~~\n<<dd_do>>\n")
+  (save-excursion
+    (insert "\n<</dd_do>>\n~~~~")))
 
+(add-hook 'markdown-mode-hook
+          (lambda () (local-set-key (kbd "C-c C-s d") 'insert-stata-dyndoc-chucnk)))
 
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
@@ -309,30 +324,6 @@
 
 ;; use auto-fill always on tex files
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Markdown-mode ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-to-list 'auto-mode-alist '("\\.Rmd$" . poly-markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md$" . poly-markdown-mode))
-(autoload 'poly-markdown-mode   "polymode" nil t) ;; or opening an R file,
-(autoload 'poly-markdown-mode   "poly-markdown" nil t) ;; or opening an R file,
-
-
-(setq markdown-enable-math t) ;; Highlight latex math snippets
-
-;; Add Stata-inserting function
-(defun insert-stata-dyndoc-chucnk ()
-  "Inserts the tags for a Stata dyndoc chunk."
-  (interactive)
-  (insert "~~~~\n<<dd_do>>\n")
-  (save-excursion
-    (insert "\n<</dd_do>>\n~~~~")))
-
-(add-hook 'markdown-mode-hook
-          (lambda () (local-set-key (kbd "C-c C-s d") 'insert-stata-dyndoc-chucnk)))
-
 
 
 ;;;;;;;;;;;;;;;;;;;;
