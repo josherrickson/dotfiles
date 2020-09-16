@@ -52,7 +52,7 @@
 ;; Cleaner way of switching buffers
 (use-package ibuffer
   :bind ("C-x b" . ibuffer))
-  :init
+  :config
   (defadvice ibuffer-quit (after kill-ibuffer activate) ;; ensures the ibuffer doesn't hang around
     "Kill the ibuffer buffer on exit."
     (kill-buffer "*Ibuffer*"))
@@ -60,7 +60,7 @@
 ;; tramp
 ;; Opening remote files over ssh
 (use-package tramp
-  :init
+  :config
   (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
 
 ;; ess - emacs speaks statistics
@@ -69,6 +69,7 @@
 (use-package ess
   :init
   (require 'ess-site)
+  :config
   (setq ess-ask-for-ess-directory nil        ;; just run R wherever the file lives
         ess-history-file nil                 ;; don't save history
         ess-eval-visibly-p nil               ;; when running R, don't show code, just output (greatly speeds running)
