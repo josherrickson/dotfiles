@@ -10,10 +10,12 @@
 
 ;; Two additional, better repos.
 (add-to-list 'package-archives
-;;             '("marmalade" . "http://marmalade-repo.org/packages/")
+;;           '("marmalade" . "http://marmalade-repo.org/packages/")
              '("melpa" . "https://melpa.org/packages/")
              )
+;; marmalade has a lot of duplicates and seems less comprehensive
 
+;; Better organization of packages, and enables auto-installation
 ;; https://github.com/jwiegley/use-package
 (when (not (package-installed-p 'use-package))
   (package-refresh-contents)
@@ -219,12 +221,10 @@
   :config
   (setq markdown-enable-math t)) ;; Highlight latex math snippets
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Interal Packages/Modes Settings ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Internal Packages/Modes Settings ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; recentf
-;; Accessing recently opened files
 (use-package recentf
   :init
   (recentf-mode t)
@@ -235,8 +235,6 @@
                           "\\archive-contents\\'"
                           "\\.ido.last\\'")))
 
-;; tramp
-;; Opening remote files over ssh
 (use-package tramp
   :config
   (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
@@ -246,6 +244,7 @@
   :init
   (setq org-hide-leading-stars t))
 
+;; Enables better matching in minibuffer (e.g. find file, switch buffer)
 (use-package ido
   :init
   (ido-mode t)
@@ -292,21 +291,14 @@
 
 ;; Use a wider fill-column for text-only modes (e.g. not likely to be run side-by-side with terminal/output.
 
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (set-fill-column 150)))
+(add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 150)))
+(add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
+(add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
+(add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
 
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (set-fill-column 150)))
-
-(add-hook 'TeX-mode-hook
-          (lambda ()
-            (set-fill-column 150)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Custom variable location ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Stop emacs from messing with this file! ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rather that letting emacs stick custom-set-variables in here, place it in a different file that is
 ;; not under version control.
