@@ -8,28 +8,54 @@
 ;;;;; Package Management ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; https://github.com/jwiegley/use-package
-(require 'use-package)
-;; Packages should be auto-installed if missing when called via `use-package`
-(setq use-package-always-ensure t)
-
-;; use M-x list-packages or package-list-packages
-(use-package package)
-
-
 ;; Two additional, better repos.
 (add-to-list 'package-archives
 ;;             '("marmalade" . "http://marmalade-repo.org/packages/")
              '("melpa" . "https://melpa.org/packages/")
              )
 
-(when (< emacs-major-version 27)
-  (package-initialize)) ;; initialize packages (needed to load packages installed by M-x package-install; only needed in pre 27)
+;; https://github.com/jwiegley/use-package
+(when (not (package-installed-p 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 
-(use-package ace-jump-mode)    ;; quicker way to jump around in repetitious code
-(use-package multiple-cursors) ;; load at start to avoid issues with first usage
+;; Older version protection
+(when (< emacs-major-version 27)
+  (package-initialize) ;; initialize packages (needed to load packages installed by M-x package-install; only needed in pre 27)
+  (use-package package)) ;; This may not be needed.
 
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Load Packages ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ace-jump-mode
+;; a quicker way to jump around in repetitious code
+(use-package ace-jump-mode
+  :ensure t
+  :bind (("M-s" . ace-jump-mode)
+         ("M-r" . ace-jump-line-mode)
+         ("C-c M-s" . isearch-forward-symbol-at-point)))
+
+;; multiple-cursors
+;; Selecting and editing repeated words
+(use-package multiple-cursors
+  :ensure t
+  :bind (;; ("C-c M-c" . mc/edit-lines)
+         ("M-!" . mc/mark-next-like-this)
+         ("M-@" . mc/mark-previous-like-this)
+         ("M-#" . mc/mark-all-like-this)))
+
+;; ibuffer
+;; Cleaner way of switching buffers
+(use-package ibuffer
+  :bind ("C-x b" . ibuffer))
+  :init
+  (defadvice ibuffer-quit (after kill-ibuffer activate) ;; ensures the ibuffer doesn't hang around
+    "Kill the ibuffer buffer on exit."
+    (kill-buffer "*Ibuffer*"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom variable location ;;;;;
@@ -43,9 +69,9 @@
 (if (file-exists-p custom-file)
     (load custom-file))
 
-;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Key Bindings ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; General Key Bindings ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Move this to allow deleting a whole word
 (global-set-key (kbd "C-c M-w") 'kill-region)
@@ -54,21 +80,6 @@
 ;; Move this to allow listing recent files
 (global-set-key (kbd "C-x M-f") 'set-fill-column)
 (global-set-key (kbd "C-x f")   'recentf-open-files)
-
-;; Use ibuffer instead of regular buffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;; AceJumpMode
-(global-set-key (kbd "M-s")     'ace-jump-mode)
-(global-set-key (kbd "M-r")     'ace-jump-line-mode)
-;; selects symbol under cursor and search
-(global-set-key (kbd "C-c M-s") 'isearch-forward-symbol-at-point)
-
-;; Multiple-cursors
-;(global-set-key (kbd "C-c M-c") 'mc/edit-lines)
-(global-set-key (kbd "M-!") 'mc/mark-next-like-this)
-(global-set-key (kbd "M-@") 'mc/mark-previous-like-this)
-(global-set-key (kbd "M-#") 'mc/mark-all-like-this)
 
 ;; Change from zap-to-char to zap-up-to-char (don't delete the char itself)
 (autoload 'zap-up-to-char "misc" 'interactive)
@@ -116,11 +127,6 @@
   (defvar ispell-extra-args)
   (setq ispell-program-name "/usr/local/bin/aspell")
   (setq ispell-extra-args '("--sug-mode=ultra"))) ;; faster but less accurate
-
-;; When using q to quit ibuffer, kill *Ibuffer*
-(defadvice ibuffer-quit (after kill-ibuffer activate)
-  "Kill the ibuffer buffer on exit."
-  (kill-buffer "*Ibuffer*"))
 
 
 ;; mode loadings
