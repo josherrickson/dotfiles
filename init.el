@@ -139,27 +139,6 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 (when (equal system-type 'darwin) (set-exec-path-from-shell-PATH))
 
-;; Run over a section to increment all numbers in the region http://jmdavisblog.blogspot.com/2013/08/a-handful-of-emacs-utilities.html
-(defun inc-num-region (p m)
-  "Increments the numbers in a given region."
-  (interactive "r")
-  (save-restriction
-    (save-excursion
-      (narrow-to-region p m)
-      (goto-char (point-min))
-      (forward-line)
-      (let ((counter 1))
-        (while (not (eq (point)
-                        (point-max)))
-          (goto-char (point-at-eol))
-          (search-backward-regexp "[0-9]+" (point-at-bol) t)
-          (let* ((this-num (string-to-number (match-string 0)))
-                 (new-num-str (number-to-string (+ this-num
-                                                   counter))))
-            (replace-match new-num-str)
-            (incf counter)
-            (forward-line)))))))
-
 ;; Does align-regexp over ALL entries in the line instead of just the first http://www.emacswiki.org/emacs/AlignCommands
 (defun align-all (start end regexp)
   "Aligns on the same regexp as often as it appears in a line."
@@ -175,19 +154,8 @@
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
-
 (when (equal system-type 'darwin)
   (setq interprogram-cut-function 'copy-to-clipboard))
-
-;; Launch R, split into side-by-side buffers, and make the left buffer an R-mode file to edit. If R is already running, don't restart it.
-(defun rr ()
-  (interactive)
-  (if (get-buffer "*R*")
-      (switch-to-buffer "*R*")
-    (R))
-  (split-window-right)
-  (switch-to-buffer "rscript")
-  (r-mode))
 
 ;; https://stackoverflow.com/a/25792294
 (defun new-empty-frame ()
@@ -196,14 +164,13 @@
   (switch-to-buffer-other-frame (generate-new-buffer "untitled")))
 (global-set-key (kbd "C-C n") 'new-empty-frame)
 
-;; Add Stata-inserting function
+;; Inserts stata do chunk
 (defun insert-stata-dyndoc-chucnk ()
   "Inserts the tags for a Stata dyndoc chunk."
   (interactive)
   (insert "~~~~\n<<dd_do>>\n")
   (save-excursion
     (insert "\n<</dd_do>>\n~~~~")))
-
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-s d") 'insert-stata-dyndoc-chucnk)))
 
