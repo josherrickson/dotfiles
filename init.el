@@ -259,6 +259,10 @@
   (when (string= system-type "darwin")
     (setq dired-use-ls-dired t
           insert-directory-program "/usr/local/bin/gls"))
+  ;; dired creates a new buffer for each directory. This encourages dired to reuse the same buffer.
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
+  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
+  (put 'dired-find-alternate-file 'disabled nil)
   :custom
   (dired-listing-switches "-AFBhl --group-directories-first"))
 
