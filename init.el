@@ -57,6 +57,29 @@
     "Kill the ibuffer buffer on exit."
     (kill-buffer "*Ibuffer*"))
 
+;; tramp
+;; Opening remote files over ssh
+(use-package tramp
+  :init
+  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
+
+;; ess - emacs speaks statistics
+;; For R and R files
+;; ess-stata has been removed :-(
+(use-package ess
+  :init
+  (require 'ess-site)
+  (setq ess-ask-for-ess-directory nil        ;; just run R wherever the file lives
+        ess-history-file nil                 ;; don't save history
+        ess-eval-visibly-p nil               ;; when running R, don't show code, just output (greatly speeds running)
+        inferior-R-args
+          "--no-restore --no-save --quiet"   ;; R startup conditions
+        ess-style 'RStudio                   ;; better indenting
+        comint-scroll-to-bottom-on-input   t ;; force ESS to scroll R to the bottom after running code
+        comintq-scroll-to-bottom-on-output t
+        comint-scroll-show-maximum-output  t
+        comint-move-point-for-output       t))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom variable location ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -254,36 +277,6 @@
 ;;;;; ESS ;;;;;
 ;;;;;;;;;;;;;;;
 
-;; load ESS only on demand - if opening a .R file, or calling r-mode
-(add-to-list 'auto-mode-alist '("\\.R$" . r-mode))
-(autoload 'R        "ess-site" nil t) ;; Only load ess if starting R,
-(autoload 'r-mode   "ess-site" nil t) ;; or opening an R file,
-
-(add-to-list 'auto-mode-alist '("\\.do$" . stata-mode))
-(add-to-list 'auto-mode-alist '("\\.ado$" . stata-mode))
-(autoload 'Stata        "ess-site" nil t) ;; Only load ess if starting R,
-(autoload 'stata-mode   "ess-site" nil t) ;; or opening an R file,
-
-(setq ess-ask-for-ess-directory nil      ;; just run R wherever the file lives
-      ess-history-file nil               ;; don't save history
-      ess-eval-visibly-p nil             ;; when running R, don't show code, just output (greatly speeds running)
-      inferior-R-args
-      "--no-restore --no-save --quiet") ;; R startup conditions
-
-(setq ess-default-style 'RStudio) ;; better indenting
-
-;; force ESS to scroll R to the bottom after running code
-(setq
- comint-scroll-to-bottom-on-input  t
- comint-scroll-to-bottom-on-output t
- comint-scroll-show-maximum-output t
- comint-move-point-for-output      t)
-
-;; TRAMP
-(setq password-cache-expiry 3600) ;; cache passwords in tramp for 1 hr
-
-;; Stata
-(setq inferior-STA-program-name '"stata-se")
 
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
