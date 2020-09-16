@@ -8,8 +8,14 @@
 ;;;;; Package Management ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; https://github.com/jwiegley/use-package
+(require 'use-package)
+;; Packages should be auto-installed if missing when called via `use-package`
+(setq use-package-always-ensure t)
+
 ;; use M-x list-packages or package-list-packages
-(require 'package)
+(use-package package)
+
 
 ;; Two additional, better repos.
 (add-to-list 'package-archives
@@ -20,8 +26,8 @@
 (when (< emacs-major-version 27)
   (package-initialize)) ;; initialize packages (needed to load packages installed by M-x package-install; only needed in pre 27)
 
-(require 'ace-jump-mode)    ;; quicker way to jump around in repetitious code
-(require 'multiple-cursors) ;; load at start to avoid issues with first usage
+(use-package ace-jump-mode)    ;; quicker way to jump around in repetitious code
+(use-package multiple-cursors) ;; load at start to avoid issues with first usage
 
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
