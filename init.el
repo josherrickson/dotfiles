@@ -254,6 +254,14 @@
 
   (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc")))  ;; Don't list these files
 
+(use-package dired
+  :config
+  (when (string= system-type "darwin")
+    (setq dired-use-ls-dired t
+          insert-directory-program "/usr/local/bin/gls"))
+  :custom
+  (dired-listing-switches "-AFBhl --group-directories-first"))
+
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
 ;;;;;;;;;;;;;;;;;;
