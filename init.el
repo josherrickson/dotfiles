@@ -27,81 +27,6 @@
 
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Load Packages ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; ace-jump-mode
-;; a quicker way to jump around in repetitious code
-(use-package ace-jump-mode
-  :ensure t
-  :bind (("M-s" . ace-jump-mode)
-         ("M-r" . ace-jump-line-mode)
-         ("C-c M-s" . isearch-forward-symbol-at-point)))
-
-;; multiple-cursors
-;; Selecting and editing repeated words
-(use-package multiple-cursors
-  :ensure t
-  :bind (;; ("C-c M-c" . mc/edit-lines)
-         ("M-!" . mc/mark-next-like-this)
-         ("M-@" . mc/mark-previous-like-this)
-         ("M-#" . mc/mark-all-like-this)))
-
-;; tramp
-;; Opening remote files over ssh
-(use-package tramp
-  :config
-  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
-
-;; ess - emacs speaks statistics
-;; For R and R files
-;; ess-stata has been removed :-(
-(use-package ess
-  :init
-  (require 'ess-site)
-  :config
-  (setq ess-ask-for-ess-directory nil        ;; just run R wherever the file lives
-        ess-history-file nil                 ;; don't save history
-        ess-eval-visibly-p nil               ;; when running R, don't show code, just output (greatly speeds running)
-        inferior-R-args
-          "--no-restore --no-save --quiet"   ;; R startup conditions
-        ess-style 'RStudio                   ;; better indenting
-        comint-scroll-to-bottom-on-input   t ;; force ESS to scroll R to the bottom after running code
-        comintq-scroll-to-bottom-on-output t
-        comint-scroll-show-maximum-output  t
-        comint-move-point-for-output       t))
-
-;; recentf
-;; Accessing recently opened files
-(use-package recentf
-  :init
-  (recentf-mode t)
-  :bind (("C-x M-f" . set-fill-column) ;; to make room
-         ("C-x f" . recentf-open-files))
-  :config
-  (setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
-                          "\\archive-contents\\'"
-                          "\\.ido.last\\'")))
-
-;; poly-mode for R
-(use-package poly-R
-  :ensure t
-  :config
-  (setq markdown-enable-math t)) ;; Highlight latex math snippets
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Custom variable location ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Rather that letting emacs stick custom-set-variables in here, place it in a different file that is
-;; not under version control.
-;; https://old.reddit.com/r/emacs/comments/67pzh5/using_customsetvariables_programmatically/dgsxvm3/
-
-(setq custom-file "~/.emacs.d/custom.el")
-(if (file-exists-p custom-file)
-    (load custom-file))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; General Key Bindings ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -285,6 +210,87 @@
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-s d") 'insert-stata-dyndoc-chucnk)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Load External Packages ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; ace-jump-mode
+;; a quicker way to jump around in repetitious code
+(use-package ace-jump-mode
+  :ensure t
+  :bind (("M-s" . ace-jump-mode)
+         ("M-r" . ace-jump-line-mode)
+         ("C-c M-s" . isearch-forward-symbol-at-point)))
+
+;; multiple-cursors
+;; Selecting and editing repeated words
+(use-package multiple-cursors
+  :ensure t
+  :bind (;; ("C-c M-c" . mc/edit-lines)
+         ("M-!" . mc/mark-next-like-this)
+         ("M-@" . mc/mark-previous-like-this)
+         ("M-#" . mc/mark-all-like-this)))
+
+;; ess - emacs speaks statistics
+;; For R and R files
+;; ess-stata has been removed :-(
+(use-package ess
+  :init
+  (require 'ess-site)
+  :config
+  (setq ess-ask-for-ess-directory nil        ;; just run R wherever the file lives
+        ess-history-file nil                 ;; don't save history
+        ess-eval-visibly-p nil               ;; when running R, don't show code, just output (greatly speeds running)
+        inferior-R-args
+          "--no-restore --no-save --quiet"   ;; R startup conditions
+        ess-style 'RStudio                   ;; better indenting
+        comint-scroll-to-bottom-on-input   t ;; force ESS to scroll R to the bottom after running code
+        comintq-scroll-to-bottom-on-output t
+        comint-scroll-show-maximum-output  t
+        comint-move-point-for-output       t))
+
+;; poly-mode for R
+(use-package poly-R
+  :ensure t
+  :config
+  (setq markdown-enable-math t)) ;; Highlight latex math snippets
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Interal Packages/Modes Settings ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; recentf
+;; Accessing recently opened files
+(use-package recentf
+  :init
+  (recentf-mode t)
+  :bind (("C-x M-f" . set-fill-column) ;; to make room
+         ("C-x f" . recentf-open-files))
+  :config
+  (setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
+                          "\\archive-contents\\'"
+                          "\\.ido.last\\'")))
+
+;; tramp
+;; Opening remote files over ssh
+(use-package tramp
+  :config
+  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
+
+(use-package org
+  :mode (("\\.org$" . org-mode))
+  :init
+  (setq org-hide-leading-stars t))
+
+(use-package ido
+  :init
+  (ido-mode t)
+  (setq ido-enable-flex-matching t                           ;; fuzzy matching
+        ido-case-fold t                                      ;; ignore case
+        ido-save-directory-list-file "~/.emacs.d/.ido.last") ;; move save file
+
+  (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc")))  ;; Don't list these files
+
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
 ;;;;;;;;;;;;;;;;;;
@@ -316,24 +322,6 @@
 ;; use auto-fill always on tex files
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
-
-;;;;;;;;;;;;;;;;;;;;
-;;;;; Org-mode ;;;;;
-;;;;;;;;;;;;;;;;;;;;
-
-(setq org-hide-leading-stars t)
-
-;;;;;;;;;;;;;;;;;;;;
-;;;;; Ido-mode ;;;;;
-;;;;;;;;;;;;;;;;;;;;
-
-(ido-mode t)                                               ;; enable ido-mode by default
-(setq ido-enable-flex-matching t                           ;; fuzzy matching
-      ido-case-fold t                                      ;; ignore case
-      ido-save-directory-list-file "~/.emacs.d/.ido.last") ;; move save file
-
-(add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc")) ;; Don't list these files
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; fill-column per mode ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -352,6 +340,17 @@
           (lambda ()
             (set-fill-column 150)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Custom variable location ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Rather that letting emacs stick custom-set-variables in here, place it in a different file that is
+;; not under version control.
+;; https://old.reddit.com/r/emacs/comments/67pzh5/using_customsetvariables_programmatically/dgsxvm3/
+
+(setq custom-file "~/.emacs.d/custom.el")
+(if (file-exists-p custom-file)
+    (load custom-file))
 
 ;; This page break is to ensure no local variables are set
 ;; https://stackoverflow.com/questions/18099531/how-to-ignore-a-local-variables-list-in-text
