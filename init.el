@@ -48,15 +48,6 @@
          ("M-@" . mc/mark-previous-like-this)
          ("M-#" . mc/mark-all-like-this)))
 
-;; ibuffer
-;; Cleaner way of switching buffers
-(use-package ibuffer
-  :bind ("C-x b" . ibuffer))
-  :config
-  (defadvice ibuffer-quit (after kill-ibuffer activate) ;; ensures the ibuffer doesn't hang around
-    "Kill the ibuffer buffer on exit."
-    (kill-buffer "*Ibuffer*"))
-
 ;; tramp
 ;; Opening remote files over ssh
 (use-package tramp
