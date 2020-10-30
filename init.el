@@ -244,6 +244,9 @@
   :init
   (setq org-hide-leading-stars t))
 
+(use-package diminish
+  :ensure t)
+
 ;; Enables better matching in minibuffer (e.g. find file, switch buffer)
 (use-package ivy
   :ensure t
