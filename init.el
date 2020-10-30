@@ -253,19 +253,24 @@
   :demand t
   :config
   (setq ivy-use-virtual-buffers t
-        ivy-count-format "%d/%d "))
+        ivy-count-format "%d/%d ")
+  ;; Ignore order of space-separated items
+  (setq ivy-re-builders-alist
+        '((t . ivy--regex-ignore-order)))
+  :bind (("C-c C-r" . ivy-resume)))
 
+;; Enables ivy in more locations
 (use-package counsel
   :ensure t
   :init
   (counsel-mode 1)
   :diminish counsel-mode)
 
+;; Uses ivy for searching
 (use-package swiper
   :ensure t
   :config
   :bind (("C-s" . swiper)))
-
 
 (use-package dired
   :config
