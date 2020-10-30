@@ -245,14 +245,6 @@
   (setq org-hide-leading-stars t))
 
 ;; Enables better matching in minibuffer (e.g. find file, switch buffer)
-;; (use-package ido
-;;   :init
-;;   (ido-mode t)
-;;   (setq ido-enable-flex-matching t                           ;; fuzzy matching
-;;         ido-case-fold t                                      ;; ignore case
-;;         ido-save-directory-list-file "~/.emacs.d/.ido.last") ;; move save file
-;;  (add-to-list 'ido-ignore-files '("\.DS_Store", "\.pyc")))  ;; Don't list these files
-
 (use-package ivy
   :ensure t
   :init
