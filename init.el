@@ -201,8 +201,8 @@
 ;; For R and R files
 ;; ess-stata has been removed :-(
 (use-package ess
-  :init
-  (require 'ess-site)
+  :ensure t
+  :defer t
   :config
   (setq ess-ask-for-ess-directory nil        ;; just run R wherever the file lives
         ess-history-file nil                 ;; don't save history
@@ -218,6 +218,7 @@
 ;; poly-mode for R
 (use-package poly-R
   :ensure t
+  :defer t
   :config
   (setq markdown-enable-math t)) ;; Highlight latex math snippets
 
@@ -253,7 +254,13 @@
   :bind (("C-s" . swiper)))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :init
+  ;; Binding this in init and using defer ensures that a) magit is only loaded on demand (which
+  ;;   speeds up emacs startup) and b) makes C-x g work even if magit-status isn't loaded (so
+  ;;    calling C-x g loads magit if needed).
+  (bind-key "C-x g" 'magit-status)
+  :defer t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -271,12 +278,14 @@
                           "\\.ido.last\\'")))
 
 (use-package tramp
+  :defer t
   :config
   (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
 
 (use-package org
+  :defer t
   :mode (("\\.org$" . org-mode))
-  :init
+  :config
   (setq org-hide-leading-stars t))
 
 (use-package dired
