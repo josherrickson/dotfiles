@@ -221,29 +221,6 @@
   :config
   (setq markdown-enable-math t)) ;; Highlight latex math snippets
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Internal Packages/Modes Settings ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package recentf
-  :init
-  (recentf-mode t)
-  :bind (("C-x M-f" . set-fill-column) ;; to make room
-         ("C-x f" . recentf-open-files))
-  :config
-  (setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
-                          "\\archive-contents\\'"
-                          "\\.ido.last\\'")))
-
-(use-package tramp
-  :config
-  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
-
-(use-package org
-  :mode (("\\.org$" . org-mode))
-  :init
-  (setq org-hide-leading-stars t))
-
 (use-package diminish
   :ensure t)
 
@@ -274,6 +251,29 @@
   :ensure t
   :config
   :bind (("C-s" . swiper)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Internal Packages/Modes Settings ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package recentf
+  :init
+  (recentf-mode t)
+  :bind (("C-x M-f" . set-fill-column) ;; to make room
+         ("C-x f" . recentf-open-files))
+  :config
+  (setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
+                          "\\archive-contents\\'"
+                          "\\.ido.last\\'")))
+
+(use-package tramp
+  :config
+  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
+
+(use-package org
+  :mode (("\\.org$" . org-mode))
+  :init
+  (setq org-hide-leading-stars t))
 
 (use-package dired
   :config
