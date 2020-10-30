@@ -252,6 +252,10 @@
   :config
   :bind (("C-s" . swiper)))
 
+(use-package magit
+  :ensure t)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages/Modes Settings ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
