@@ -4,6 +4,14 @@
   (when (fboundp mode) (funcall mode -1)))
 (setq inhibit-startup-message t)       ;; Don't show start-up message
 
+;; Display start-up time for debugging.
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs init time was %s."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time))) )))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Package Management ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
