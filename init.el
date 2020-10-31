@@ -2,7 +2,6 @@
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode
                               tooltip-mode))
   (when (fboundp mode) (funcall mode -1)))
-(setq inhibit-startup-message t)       ;; Don't show start-up message
 
 ;; Display start-up time for debugging.
 (add-hook 'emacs-startup-hook
