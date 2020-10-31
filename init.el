@@ -15,12 +15,9 @@
 ;;;;; Package Management ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Two additional, better repos.
-(add-to-list 'package-archives
-;;           '("marmalade" . "http://marmalade-repo.org/packages/")
-             '("melpa" . "https://melpa.org/packages/")
-             )
-;; marmalade has a lot of duplicates and seems less comprehensive
+(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"))
 
 ;; Better organization of packages, and enables auto-installation
 ;; https://github.com/jwiegley/use-package
