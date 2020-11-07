@@ -67,6 +67,7 @@
  make-backup-files nil                ;; ... and more backups ...
  auto-save-default nil                ;; ... and autosave ...
  auto-save-list-file-prefix nil       ;; ... and recovery
+ sentence-end-double-space nil        ;; single space follows a period
  vc-follow-symlinks t                 ;; open symlinks to version controlled files
  echo-keystrokes 0.01                 ;; show commands instantly in minibuffer
  scroll-conservatively 5              ;; only scroll a bit when moving cursor
@@ -307,7 +308,7 @@
   (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
   (put 'dired-find-alternate-file 'disabled nil)
   :custom
-  (dired-listing-switches "-AFBhl --group-directories-first"))
+  (dired-listing-switches "-AFBhl"))
 
 ;;;;;;;;;;;;;;;;;;
 ;;;;; Auctex ;;;;;
