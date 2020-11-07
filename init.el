@@ -266,6 +266,11 @@
   (bind-key "C-x g" 'magit-status)
   :defer t)
 
+;; Mode for fishshell scripts
+(use-package fish-mode
+  :ensure t
+  :defer t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages/Modes Settings ;;;;;
