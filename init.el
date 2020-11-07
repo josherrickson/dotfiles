@@ -272,6 +272,16 @@
   :ensure t
   :defer t)
 
+;; Enables a popup shell via C-t
+(use-package shell-pop
+  :ensure t
+  :bind (("C-t" . shell-pop))
+  :config
+  (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+  ;; fishshell has problems with ansi-term unfortunately
+  (setq shell-pop-term-shell "/usr/local/bin/zsh")
+  ;; need to do this manually or not picked up by `shell-pop'
+  (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages/Modes Settings ;;;;;
