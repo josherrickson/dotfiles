@@ -45,6 +45,9 @@
 (autoload 'zap-up-to-char "misc" 'interactive)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
+;; Rotates between just-one-space, no-space, original spacing.
+(bind-key "M-SPC" 'cycle-spacing)
+
 ;;;;;;;;;;;;;;;;;;;;
 ;;;;; Settings ;;;;;
 ;;;;;;;;;;;;;;;;;;;;
@@ -190,6 +193,7 @@
   (let ((fill-column (point-max)))
     (fill-paragraph nil region)))
 (bind-key "M-Q" 'my/unfill-paragraph)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Load External Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
