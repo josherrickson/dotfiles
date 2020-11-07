@@ -265,7 +265,8 @@
 (use-package swiper
   :ensure t
   :config
-  :bind (("C-s" . swiper)))
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper)))
 
 (use-package magit
   :ensure t
