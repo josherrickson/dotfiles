@@ -198,13 +198,13 @@
 ;;;;; Load External Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; ace-jump-mode
-;; a quicker way to jump around in repetitious code
-(use-package ace-jump-mode
+;; Jump to a specified location. Replaces ace-jump-mode
+(use-package avy
   :ensure t
-  :bind (("M-s" . ace-jump-mode)
-         ("M-r" . ace-jump-line-mode)
-         ("C-c M-s" . isearch-forward-symbol-at-point)))
+  :bind (("M-s" . avy-goto-word-1))
+  :config
+  (setq avy-background t))
+
 
 ;; multiple-cursors
 ;; Selecting and editing repeated words
