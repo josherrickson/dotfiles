@@ -1,3 +1,7 @@
+;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Early Initialization
+;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Turn off mouse interface early to speed up launching time
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode
                               tooltip-mode))
@@ -11,9 +15,9 @@
                              (float-time
                               (time-subtract after-init-time before-init-time))) )))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Package Management ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;
+;;; Package Management
+;;;;;;;;;;;;;;;;;;;;;;
 
 (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -33,9 +37,9 @@
 
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; General Key Bindings ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+;;; General Key Bindings
+;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Move this to allow deleting a whole word
 (global-set-key (kbd "C-c M-w") 'kill-region)
@@ -48,9 +52,9 @@
 ;; Rotates between just-one-space, no-space, original spacing.
 (bind-key "M-SPC" 'cycle-spacing)
 
-;;;;;;;;;;;;;;;;;;;;
-;;;;; Settings ;;;;;
-;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;
+;;; Settings
+;;;;;;;;;;;;
 
 ;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>) need setq-default, otherwise setq is fine.
 (setq-default
@@ -112,9 +116,9 @@
                                                     (point-max))))))
                        (concat "%" (number-to-string w) "d ")) line) 'face 'linum)))
 
-;;;;;;;;;;;;;;;;;;;;;
-;;;;; Functions ;;;;;
-;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;; Functions
+;;;;;;;;;;;;;
 
 ;; Select the current word. http://xahlee.org/emacs/elisp_examples.html
 (defun my/select-current-word ()
@@ -194,9 +198,9 @@
     (fill-paragraph nil region)))
 (bind-key "M-Q" 'my/unfill-paragraph)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Load External Packages ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Load External Packages
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Jump to a specified location. Replaces ace-jump-mode
 (use-package avy
@@ -297,9 +301,9 @@
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Internal Packages/Modes Settings ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Internal Packages/Modes Settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package recentf
   :init
@@ -334,9 +338,9 @@
   :custom
   (dired-listing-switches "-AFBhl"))
 
-;;;;;;;;;;;;;;;;;;
-;;;;; Auctex ;;;;;
-;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;
+;;; Auctex
+;;;;;;;;;;
 
 (add-to-list 'auto-mode-alist '("\\.Rnw$" . LaTeX-mode)) ;; Rnw loads latex-mode
 (autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
@@ -365,9 +369,9 @@
 ;; use auto-fill always on tex files
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; fill-column per mode ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;
+;;; fill-column per mode
+;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Use a wider fill-column for text-only modes (e.g. not likely to be run side-by-side with terminal/output.
 
@@ -376,9 +380,9 @@
 (add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
 (add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; Stop emacs from messing with this file! ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Stop emacs from messing with this file!
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rather that letting emacs stick custom-set-variables in here, place it in a different file that is
 ;; not under version control.
