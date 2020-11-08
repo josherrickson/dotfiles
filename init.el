@@ -117,7 +117,7 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 ;; Select the current word. http://xahlee.org/emacs/elisp_examples.html
-(defun select-current-word ()
+(defun my/select-current-word ()
   "Select the word under cursor. 'word' here is considered any alphanumeric sequence with '_' or '-'."
   (interactive)
   (let (pt)
@@ -125,21 +125,21 @@
     (setq pt (point))
     (skip-chars-forward "-_A-Za-z0-9")
     (set-mark pt)))
-(global-set-key (kbd "M-~") 'select-current-word)
+(global-set-key (kbd "M-~") 'my/select-current-word)
 
 ;; Make C-a smarter. http://www.cs.utah.edu/~aek/code/init.el.html
-(defun beginning-of-line-dynamic ()
+(defun my/beginning-of-line-dynamic ()
   "Jumps to the beginning of text on line. If already there, goes to the true beginning of the line (before space.)"
   (interactive)
   (let ((cur (point)))
     (beginning-of-line-text)
     (when (= cur (point))
       (beginning-of-line))))
-(global-set-key (kbd "C-a") 'beginning-of-line-dynamic)
+(global-set-key (kbd "C-a") 'my/beginning-of-line-dynamic)
 
 ;; GUI Emacs on Mac doesn't respect system PATH, this syncs them on launch.
 ;; http://stackoverflow.com/questions/2266905/emacs-is-ignoring-my-path-when-it-runs-a-compile-command
-(defun set-exec-path-from-shell-PATH ()
+(defun my/set-exec-path-from-shell-PATH ()
   "Sets the exec-path to PATH from the system."
   (let ((path-from-shell
          (replace-regexp-in-string "[[:space:]\n]*$" ""
@@ -147,7 +147,7 @@
                                     "$SHELL -c 'echo $PATH'"))))
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
-(when (equal system-type 'darwin) (set-exec-path-from-shell-PATH))
+(when (equal system-type 'darwin) (my/set-exec-path-from-shell-PATH))
 
 ;; Does align-regexp over ALL entries in the line instead of just the first http://www.emacswiki.org/emacs/AlignCommands
 (defun align-all (start end regexp)
@@ -158,31 +158,31 @@
 
 ;; Makes yanked text available in the os clipboard. The sources also has a function to paste from clipboard, but Cmd-V works fine for that and I don't
 ;; want to lose my yank queue.  https://gist.github.com/the-kenny/267162
-(defun copy-to-clipboard (text &optional push)
+(defun my/copy-to-clipboard (text &optional push)
   "Copy the selection to OS X clipboard."
   (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
 (when (equal system-type 'darwin)
-  (setq interprogram-cut-function 'copy-to-clipboard))
+  (setq interprogram-cut-function 'my/copy-to-clipboard))
 
 ;; https://stackoverflow.com/a/25792294
-(defun new-empty-frame ()
+(defun my/new-empty-frame ()
   "Open a new frame with a buffer named untitled<N>. The buffer is not associated with a file."
   (interactive)
   (switch-to-buffer-other-frame (generate-new-buffer "untitled")))
-(global-set-key (kbd "C-C n") 'new-empty-frame)
+(global-set-key (kbd "C-C n") 'my/new-empty-frame)
 
 ;; Inserts stata do chunk
-(defun insert-stata-dyndoc-chucnk ()
+(defun my/insert-stata-dyndoc-chucnk ()
   "Inserts the tags for a Stata dyndoc chunk."
   (interactive)
   (insert "~~~~\n<<dd_do>>\n")
   (save-excursion
     (insert "\n<</dd_do>>\n~~~~")))
 (add-hook 'markdown-mode-hook
-          (lambda () (local-set-key (kbd "C-c C-s d") 'insert-stata-dyndoc-chucnk)))
+          (lambda () (local-set-key (kbd "C-c C-s d") 'my/insert-stata-dyndoc-chucnk)))
 
 ;; The inverse of fill-paragraph, http://pages.sachachua.com/.emacs.d/Sacha.html#org3dd06d8
 (defun my/unfill-paragraph (&optional region)
