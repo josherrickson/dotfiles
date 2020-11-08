@@ -1,6 +1,5 @@
-;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Early Initialization
-;;;;;;;;;;;;;;;;;;;;;;;;
+;==============================
 
 ;; Turn off mouse interface early to speed up launching time
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode
@@ -15,10 +14,10 @@
                              (float-time
                               (time-subtract after-init-time before-init-time))) )))
 
-;;;;;;;;;;;;;;;;;;;;;;
 ;;; Package Management
-;;;;;;;;;;;;;;;;;;;;;;
+;==============================
 
+;; Access to alternative packages
 (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"))
@@ -35,13 +34,13 @@
   (package-initialize) ;; initialize packages (needed to load packages installed by M-x package-install; only needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
+;; Load color theme
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
-;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; General Key Bindings
-;;;;;;;;;;;;;;;;;;;;;;;;
+;==============================
 
-;; Move this to allow deleting a whole word
+;; Adjust bindgs for killing
 (global-set-key (kbd "C-c M-w") 'kill-region)
 (global-set-key (kbd "C-w")     'backward-kill-word)
 
@@ -52,10 +51,10 @@
 ;; Rotates between just-one-space, no-space, original spacing.
 (bind-key "M-SPC" 'cycle-spacing)
 
-;;;;;;;;;;;;
 ;;; Settings
-;;;;;;;;;;;;
+;==============================
 
+;;;; Variables
 ;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>) need setq-default, otherwise setq is fine.
 (setq-default
  tab-width 2                          ;; default tab width is 2 spaces
@@ -83,10 +82,9 @@
  electric-pair-mode nil               ;; Ensure that electric-pairing isn't activated
 )
 
-(fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
+;; Remove trailing whtiespace and lines upon saving
 (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
-                                      ;; trailing whitespace is deleted
-(setq delete-trailing-lines t)        ;; delete-trailing-whitespace will also do this
+(setq delete-trailing-lines t)
 
 ;; Needed when installing aspell by homebrew (may work without it if you install to /usr/bin/aspell)
 (when (equal system-type 'darwin)
@@ -95,12 +93,11 @@
   (setq ispell-program-name "/usr/local/bin/aspell")
   (setq ispell-extra-args '("--sug-mode=ultra"))) ;; faster but less accurate
 
-
-;; mode loadings
+;;;; Modes
 (global-auto-revert-mode  t   ) ;; revert buffers when changed
 (transient-mark-mode      t   ) ;; visual highlighting
 (delete-selection-mode    t   ) ;; typing replaces selected text
-(size-indication-mode     t   ) ;; include file size on toolbar
+(size-indication-mode     t   ) ;; include file size on mode line
 (line-number-mode         t   ) ;; cursor position line ...
 (column-number-mode       t   ) ;; ... and column
 
@@ -116,9 +113,17 @@
                                                     (point-max))))))
                        (concat "%" (number-to-string w) "d ")) line) 'face 'linum)))
 
-;;;;;;;;;;;;;
+;;;; Miscellaneous
+;; Use a wider fill-column for text-only modes (e.g. not likely to be run side-by-side with terminal/output.
+(add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 150)))
+(add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
+(add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
+(add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
+
+(fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
+
 ;;; Functions
-;;;;;;;;;;;;;
+;==============================
 
 ;; Select the current word. http://xahlee.org/emacs/elisp_examples.html
 (defun my/select-current-word ()
@@ -198,19 +203,25 @@
     (fill-paragraph nil region)))
 (bind-key "M-Q" 'my/unfill-paragraph)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Load External Packages
-;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; External Packages
+;==============================
+
+;;;; diminish
+;; Using :diminish in use-packge hides minor-modes from mode line
+(use-package diminish
+  :ensure t)
+
+;;;; avy
 ;; Jump to a specified location. Replaces ace-jump-mode
 (use-package avy
   :ensure t
   :bind (("M-s" . avy-goto-word-1))
   :config
-  (setq avy-background t))
+  (setq avy-background t)) ;; gray text other then matches
 
 
-;; multiple-cursors
+;;;; multiple-cursors
 ;; Selecting and editing repeated words
 (use-package multiple-cursors
   :ensure t
@@ -219,9 +230,9 @@
          ("M-@" . mc/mark-previous-like-this)
          ("M-#" . mc/mark-all-like-this)))
 
-;; ess - emacs speaks statistics
+;;;; emacs speaks statistics
 ;; For R and R files
-;; ess-stata has been removed :-(
+;; ess-stata has been removed (https://github.com/emacs-ess/ESS/issues/1033)
 (use-package ess
   :ensure t
   :defer t
@@ -244,9 +255,7 @@
   :config
   (setq markdown-enable-math t)) ;; Highlight latex math snippets
 
-(use-package diminish
-  :ensure t)
-
+;;;; ivy, counsel, swiper
 ;; Enables better matching in minibuffer (e.g. find file, switch buffer)
 (use-package ivy
   :ensure t
@@ -276,6 +285,8 @@
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
 
+;;;; magit
+;; Git access inside emacs
 (use-package magit
   :ensure t
   :init
@@ -285,11 +296,13 @@
   (bind-key "C-x g" 'magit-status)
   :defer t)
 
+;;;; fish-mode
 ;; Mode for fishshell scripts
 (use-package fish-mode
   :ensure t
   :defer t)
 
+;;;; shell-pop
 ;; Enables a popup shell via C-t
 (use-package shell-pop
   :ensure t
@@ -301,46 +314,50 @@
   ;; need to do this manually or not picked up by `shell-pop'
   (shell-pop--set-shell-type 'shell-pop-shell-type shell-pop-shell-type))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Internal Packages/Modes Settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; Internal Packages
+;==============================
+
+;;;; recentf
 (use-package recentf
   :init
   (recentf-mode t)
   :bind (("C-x M-f" . set-fill-column) ;; to make room
          ("C-x f" . recentf-open-files))
   :config
-  (setq recentf-exclude '("\\cookies\\'" ;; don't list these files in recentf
+  (setq recentf-exclude '("\\cookies\\'"            ;; don't list these files in recentf
                           "\\archive-contents\\'"
                           "\\.ido.last\\'")))
-
+;;;; tramp
 (use-package tramp
   :defer t
   :config
   (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
 
+;;;; org
 (use-package org
   :defer t
   :mode (("\\.org$" . org-mode))
   :config
-  (setq org-hide-leading-stars t))
+  (setq org-hide-leading-stars t)) ;; In subsections (e.g. ***) hides all but the last *
 
+;;;; dired
 (use-package dired
   :config
   (when (string= system-type "darwin")
-    (setq dired-use-ls-dired t
-          insert-directory-program "/usr/local/bin/gls"))
+    (setq dired-use-ls-dired t                            ;; On OSX, ls isn't gnu-ls so causes some issues.
+          insert-directory-program "/usr/local/bin/gls")) ;; Install `coreutils` via homebrew, this enables it
   ;; dired creates a new buffer for each directory. This encourages dired to reuse the same buffer.
-  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
-  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)                         ;; was dired-advertised-find-file
+  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))) ;; was dired-up-directory
   (put 'dired-find-alternate-file 'disabled nil)
   :custom
-  (dired-listing-switches "-AFBhl"))
+  (dired-listing-switches "-AFBhl")) ;; switches passed to ls
 
-;;;;;;;;;;
+
 ;;; Auctex
-;;;;;;;;;;
+;==============================
+;; Haven't gotten around to use-package'ing this yet.
 
 (add-to-list 'auto-mode-alist '("\\.Rnw$" . LaTeX-mode)) ;; Rnw loads latex-mode
 (autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
@@ -369,20 +386,8 @@
 ;; use auto-fill always on tex files
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
-;;;;;;;;;;;;;;;;;;;;;;;;
-;;; fill-column per mode
-;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Use a wider fill-column for text-only modes (e.g. not likely to be run side-by-side with terminal/output.
-
-(add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 150)))
-(add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
-(add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
-(add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Stop emacs from messing with this file!
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Custom file
+;==============================
 
 ;; Rather that letting emacs stick custom-set-variables in here, place it in a different file that is
 ;; not under version control.
