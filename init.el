@@ -303,10 +303,10 @@
   :defer t)
 
 ;;;; shell-pop
-;; Enables a popup shell via C-t
+;; Enables a popup shell via M-"
 (use-package shell-pop
   :ensure t
-  :bind (("C-t" . shell-pop))
+  :bind (("M-\"" . shell-pop))
   :config
   (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
   ;; fishshell has problems with ansi-term unfortunately
