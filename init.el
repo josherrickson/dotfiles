@@ -94,24 +94,17 @@
   (setq ispell-extra-args '("--sug-mode=ultra"))) ;; faster but less accurate
 
 ;;;; Modes
-(global-auto-revert-mode  t   ) ;; revert buffers when changed
-(transient-mark-mode      t   ) ;; visual highlighting
-(delete-selection-mode    t   ) ;; typing replaces selected text
-(size-indication-mode     t   ) ;; include file size on mode line
-(line-number-mode         t   ) ;; cursor position line ...
-(column-number-mode       t   ) ;; ... and column
+(global-auto-revert-mode          t ) ;; revert buffers when changed
+(transient-mark-mode              t ) ;; visual highlighting
+(delete-selection-mode            t ) ;; typing replaces selected text
+(size-indication-mode             t ) ;; include file size on mode line
+(line-number-mode                 t ) ;; cursor position line ...
+(column-number-mode               t ) ;; ... and column
+(global-display-line-numbers-mode t ) ;; Post emacs 26, always display line numbers.
 
 (show-paren-mode          t   ) ;; show matching parens
 (setq show-paren-delay    0   ) ;; don't delay showing parens
 
-(global-linum-mode        t  ) ;; show row numbers
-(setq linum-format             ;; add space after row number, right align
-      (lambda (line)
-        (propertize (format
-                     (let ((w (length (number-to-string
-                                       (count-lines (point-min)
-                                                    (point-max))))))
-                       (concat "%" (number-to-string w) "d ")) line) 'face 'linum)))
 
 ;;;; Miscellaneous
 ;; Use a wider fill-column for text-only modes (e.g. not likely to be run side-by-side with terminal/output.
