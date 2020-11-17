@@ -1,5 +1,6 @@
-;;; Early Initialization
-;==============================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Early Initialization ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Turn off mouse interface early to speed up launching time
 (dolist (mode '(menu-bar-mode tool-bar-mode scroll-bar-mode
@@ -15,8 +16,9 @@
                               (time-subtract after-init-time
                                              before-init-time))) )))
 
-;;; Package Management
-;==============================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Package Management ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Access to alternative packages
 (add-to-list 'package-archives '("gnu"   .
@@ -43,8 +45,9 @@
 ;; Load color theme
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
-;;; General Key Bindings
-;==============================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; General Key Bindings ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Adjust bindgs for killing
 (global-set-key (kbd "C-c M-w") 'kill-region)
@@ -57,8 +60,9 @@
 ;; Rotates between just-one-space, no-space, original spacing.
 (bind-key "M-SPC" 'cycle-spacing)
 
-;;; Internal Packages
-;==============================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Internal Packages ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;; emacs
 ;; Anything which is defined in C Source Code, or most built-in
@@ -178,8 +182,9 @@
   :config
   (setq show-paren-delay 0)) ;; don't delay showing parens
 
-;;; Functions
-;==============================
+;;;;;;;;;;;;;;;;;;;;;
+;;;;; Functions ;;;;;
+;;;;;;;;;;;;;;;;;;;;;
 
 ;; Select the current word.
 ;; http://xahlee.org/emacs/elisp_examples.html
@@ -269,9 +274,9 @@ is not associated with a file."
     (fill-paragraph nil region)))
 (bind-key "M-Q" 'my/unfill-paragraph)
 
-
-;;; External Packages
-;==============================
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; External Packages ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;; diminish
 ;; Using :diminish in use-packge hides minor-modes from mode line
@@ -414,9 +419,9 @@ is not associated with a file."
   :ensure t
   :defer t)
 
-
-;;; Custom file
-;==============================
+;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; Custom file ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Rather that letting emacs stick custom-set-variables in here, place
 ;; it in a different file that is not under version control.
