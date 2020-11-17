@@ -191,6 +191,23 @@
 ;;;;; Functions ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;
 
+;;;;; Non-interactive functions
+
+;; Makes yanked text available in the os clipboard. The sources also
+;; has a function to paste from clipboard, but Cmd-V works fine for
+;; that and I don't want to lose my yank queue.
+;; https://gist.github.com/the-kenny/267162
+(defun my/copy-to-clipboard (text &optional push)
+  "Copy the selection to OS X clipboard."
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+(when (equal system-type 'darwin)
+  (setq interprogram-cut-function 'my/copy-to-clipboard))
+
+;;;;; Interactive functions
+
 ;; Select the current word.
 ;; http://xahlee.org/emacs/elisp_examples.html
 (defun my/select-current-word ()
@@ -216,18 +233,6 @@ to the true beginning of the line (before space.)"
       (beginning-of-line))))
 (global-set-key (kbd "C-a") 'my/beginning-of-line-dynamic)
 
-;; GUI Emacs on Mac doesn't respect system PATH, this syncs them on
-;; launch.
-;; http://stackoverflow.com/questions/2266905/emacs-is-ignoring-my-path-when-it-runs-a-compile-command
-(defun my/set-exec-path-from-shell-PATH ()
-  "Sets the exec-path to PATH from the system."
-  (let ((path-from-shell
-         (replace-regexp-in-string "[[:space:]\n]*$" ""
-                                   (shell-command-to-string
-                                    "$SHELL -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-(when (equal system-type 'darwin) (my/set-exec-path-from-shell-PATH))
 
 ;; Does align-regexp over ALL entries in the line instead of just the
 ;; first http://www.emacswiki.org/emacs/AlignCommands
@@ -237,18 +242,6 @@ to the true beginning of the line (before space.)"
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
-;; Makes yanked text available in the os clipboard. The sources also
-;; has a function to paste from clipboard, but Cmd-V works fine for
-;; that and I don't want to lose my yank queue.
-;; https://gist.github.com/the-kenny/267162
-(defun my/copy-to-clipboard (text &optional push)
-  "Copy the selection to OS X clipboard."
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
-(when (equal system-type 'darwin)
-  (setq interprogram-cut-function 'my/copy-to-clipboard))
 
 ;; https://stackoverflow.com/a/25792294
 (defun my/new-empty-frame ()
@@ -432,6 +425,14 @@ is not associated with a file."
 (use-package fish-mode
   :ensure t
   :defer t)
+
+;;;; exec-path-from-shell
+;; GUI Emacs doesn't inherit from terminal environment variables (e.g.
+;; PATH). This fixes it.
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (exec-path-from-shell-initialize))
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
