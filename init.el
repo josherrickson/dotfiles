@@ -287,6 +287,13 @@
         '((t . ivy--regex-ignore-order)))
   :bind (("C-c C-r" . ivy-resume)))
 
+(use-package ivy-rich
+  :ensure t
+  :init
+  (ivy-rich-mode 1)
+  :config
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
+
 ;; Enables ivy in more locations
 (use-package counsel
   :ensure t
