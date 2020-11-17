@@ -12,15 +12,19 @@
             (message "Emacs init time was %s."
                      (format "%.2f seconds"
                              (float-time
-                              (time-subtract after-init-time before-init-time))) )))
+                              (time-subtract after-init-time
+                                             before-init-time))) )))
 
 ;;; Package Management
 ;==============================
 
 ;; Access to alternative packages
-(add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("gnu"   .
+                                 "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" .
+                                 "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org"   .
+                                 "https://orgmode.org/elpa/"))
 
 ;; Better organization of packages, and enables auto-installation
 ;; https://github.com/jwiegley/use-package
@@ -31,7 +35,9 @@
 
 ;; Older version protection
 (when (< emacs-major-version 27)
-  (package-initialize) ;; initialize packages (needed to load packages installed by M-x package-install; only needed in pre 27)
+  (package-initialize) ;; initialize packages (needed to load packages
+                       ;; installed by M-x package-install; only
+                       ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
 ;; Load color theme
@@ -44,7 +50,7 @@
 (global-set-key (kbd "C-c M-w") 'kill-region)
 (global-set-key (kbd "C-w")     'backward-kill-word)
 
-;; Change from zap-to-char to zap-up-to-char (don't delete the char itself)
+;; Move from zap-to-char to zap-up-to-char (don't delete char itself)
 (autoload 'zap-up-to-char "misc" 'interactive)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
@@ -55,15 +61,16 @@
 ;==============================
 
 ;;;; Variables
-;; Variables which are `buffer-local` (check with 5th line of C-h v <varname>) need setq-default, otherwise setq is fine.
+;; Variables which are `buffer-local` (check with 5th line of
+;; C-h v <varname>) need setq-default, otherwise setq is fine.
 (setq-default
  tab-width 2                          ;; default tab width is 2 spaces
- indent-tabs-mode nil                 ;; don't allow tabs (spaces instead)
+ indent-tabs-mode nil                 ;; spaces instead of tabs
  indicate-empty-lines t               ;; show end of file
  fill-column 70                       ;; column default width
 )
 (setq
- tab-always-indent 'complete          ;; some sort of smart-tabbing thing
+ tab-always-indent 'complete          ;; indent if possible, otherwise complete-at-point
  inhibit-startup-message t            ;; Don't show start-up message...
  initial-scratch-message nil          ;; ... or *scratch* message
  visible-bell t                       ;; no beeps on errors ...
@@ -86,12 +93,14 @@
 (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
 (setq delete-trailing-lines t)
 
-;; Needed when installing aspell by homebrew (may work without it if you install to /usr/bin/aspell)
+;; Needed when installing aspell by homebrew (may work without it if
+;; you install to /usr/bin/aspell)
 (when (equal system-type 'darwin)
   (defvar ispell-program-name)
   (defvar ispell-extra-args)
   (setq ispell-program-name "/usr/local/bin/aspell")
-  (setq ispell-extra-args '("--sug-mode=ultra"))) ;; faster but less accurate
+  ;; ultra is faster but less accurate
+  (setq ispell-extra-args '("--sug-mode=ultra")))
 
 ;;;; Modes
 (global-auto-revert-mode          t ) ;; revert buffers when changed
@@ -103,7 +112,8 @@
 
 
 ;;;; Miscellaneous
-;; Use a wider fill-column for text-only modes (e.g. not likely to be run side-by-side with terminal/output.
+;; Use a wider fill-column for text-only modes (e.g. not likely to be
+;; run side-by-side with terminal/output.
 (add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 150)))
 (add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
 (add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
@@ -114,9 +124,11 @@
 ;;; Functions
 ;==============================
 
-;; Select the current word. http://xahlee.org/emacs/elisp_examples.html
+;; Select the current word.
+;; http://xahlee.org/emacs/elisp_examples.html
 (defun my/select-current-word ()
-  "Select the word under cursor. 'word' here is considered any alphanumeric sequence with '_' or '-'."
+  "Select the word under cursor. 'word' here is considered any
+alphanumeric sequence with '_' or '-'."
   (interactive)
   (let (pt)
     (skip-chars-backward "-_A-Za-z0-9")
@@ -125,9 +137,11 @@
     (set-mark pt)))
 (global-set-key (kbd "M-~") 'my/select-current-word)
 
-;; Make C-a smarter. http://www.cs.utah.edu/~aek/code/init.el.html
+;; Make C-a smarter.
+;; http://www.cs.utah.edu/~aek/code/init.el.html
 (defun my/beginning-of-line-dynamic ()
-  "Jumps to the beginning of text on line. If already there, goes to the true beginning of the line (before space.)"
+  "Jumps to the beginning of text on line. If already there, goes
+to the true beginning of the line (before space.)"
   (interactive)
   (let ((cur (point)))
     (beginning-of-line-text)
@@ -135,7 +149,8 @@
       (beginning-of-line))))
 (global-set-key (kbd "C-a") 'my/beginning-of-line-dynamic)
 
-;; GUI Emacs on Mac doesn't respect system PATH, this syncs them on launch.
+;; GUI Emacs on Mac doesn't respect system PATH, this syncs them on
+;; launch.
 ;; http://stackoverflow.com/questions/2266905/emacs-is-ignoring-my-path-when-it-runs-a-compile-command
 (defun my/set-exec-path-from-shell-PATH ()
   "Sets the exec-path to PATH from the system."
@@ -147,15 +162,18 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 (when (equal system-type 'darwin) (my/set-exec-path-from-shell-PATH))
 
-;; Does align-regexp over ALL entries in the line instead of just the first http://www.emacswiki.org/emacs/AlignCommands
+;; Does align-regexp over ALL entries in the line instead of just the
+;; first http://www.emacswiki.org/emacs/AlignCommands
 (defun align-all (start end regexp)
   "Aligns on the same regexp as often as it appears in a line."
   (interactive "r\nsAlign regexp: ")
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
-;; Makes yanked text available in the os clipboard. The sources also has a function to paste from clipboard, but Cmd-V works fine for that and I don't
-;; want to lose my yank queue.  https://gist.github.com/the-kenny/267162
+;; Makes yanked text available in the os clipboard. The sources also
+;; has a function to paste from clipboard, but Cmd-V works fine for
+;; that and I don't want to lose my yank queue.
+;; https://gist.github.com/the-kenny/267162
 (defun my/copy-to-clipboard (text &optional push)
   "Copy the selection to OS X clipboard."
   (let ((process-connection-type nil))
@@ -167,7 +185,8 @@
 
 ;; https://stackoverflow.com/a/25792294
 (defun my/new-empty-frame ()
-  "Open a new frame with a buffer named untitled<N>. The buffer is not associated with a file."
+  "Open a new frame with a buffer named untitled<N>. The buffer
+is not associated with a file."
   (interactive)
   (switch-to-buffer-other-frame (generate-new-buffer "untitled")))
 (global-set-key (kbd "C-C n") 'my/new-empty-frame)
@@ -182,9 +201,10 @@
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-s d") 'my/insert-stata-dyndoc-chucnk)))
 
-;; The inverse of fill-paragraph, http://pages.sachachua.com/.emacs.d/Sacha.html#org3dd06d8
+;; The inverse of fill-paragraph,
+;; http://pages.sachachua.com/.emacs.d/Sacha.html#org3dd06d8
 (defun my/unfill-paragraph (&optional region)
-  "Takes a multi-line paragraph and makes it into a single line of text."
+  "Make a multi-line paragraph into a single line of text."
   (interactive (progn
                  (barf-if-buffer-read-only)
                  (list t)))
@@ -221,7 +241,8 @@
 
 ;;;; emacs speaks statistics
 ;; For R and R files
-;; ess-stata has been removed (https://github.com/emacs-ess/ESS/issues/1033)
+;; ess-stata has been removed
+;; (https://github.com/emacs-ess/ESS/issues/1033)
 (use-package ess
   :ensure t
   :defer t
@@ -242,7 +263,8 @@
   :ensure t
   :defer t
   :config
-  (setq markdown-enable-math t)) ;; Highlight latex math snippets
+  ;; Highlight latex math snippets
+  (setq markdown-enable-math t))
 
 ;;;; Auctex
 (use-package auctex
@@ -252,7 +274,8 @@
   :init
   (add-hook 'LaTeX-mode-hook (lambda () ;; add latexmk to C-c C-c list
                                (push
-                                '("Latexmk" "latexmk -pdf -pvc %s" TeX-run-command nil t
+                                '("Latexmk" "latexmk -pdf -pvc %s"
+                                  TeX-run-command nil t
                                   :help "Run Latexmk on file")
                                 TeX-command-list)))
   :config
@@ -263,7 +286,8 @@
    TeX-PDF-mode t                            ;; PDF instead of dvi
    TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
 
-  ;; For multi-file documents, use `C-c _` to add master information to the file.  Second command removes automation
+  ;; For multi-file documents, use `C-c _` to add master information
+  ;; to the file. Second command removes automation
   (setq TeX-master nil
         TeX-one-master "<none>")
 
@@ -272,7 +296,8 @@
   (setq TeX-view-program-list '(("open" "open %o"))))
 
 ;;;; ivy, counsel, swiper
-;; Enables better matching in minibuffer (e.g. find file, switch buffer)
+;; Enables better matching in minibuffer (e.g. find file, switch
+;; buffer)
 (use-package ivy
   :ensure t
   :init
@@ -287,6 +312,8 @@
         '((t . ivy--regex-ignore-order)))
   :bind (("C-c C-r" . ivy-resume)))
 
+;; ivy-buffer has some more niceties, including buffer showing path to
+;; file.
 (use-package ivy-rich
   :ensure t
   :init
@@ -315,9 +342,10 @@
 (use-package magit
   :ensure t
   :init
-  ;; Binding this in init and using defer ensures that a) magit is only loaded on demand (which
-  ;;   speeds up emacs startup) and b) makes C-x g work even if magit-status isn't loaded (so
-  ;;    calling C-x g loads magit if needed).
+  ;; Binding this in init and using defer ensures that
+  ;; a) magit is only loaded on demand (which speeds up emacs startup)
+  ;; b) makes C-x g work even if magit-status not loaded (so calling
+  ;; C-x g loads magit if needed).
   (bind-key "C-x g" 'magit-status)
   :defer t
   :config
@@ -339,7 +367,8 @@
   :bind (("C-x M-f" . set-fill-column) ;; to make room
          ("C-x f" . recentf-open-files))
   :config
-  (setq recentf-exclude '("\\cookies\\'"            ;; don't list these files in recentf
+  ;; don't list these files in recentf
+  (setq recentf-exclude '("\\cookies\\'"
                           "\\archive-contents\\'"
                           "\\.ido.last\\'")))
 ;;;; tramp
@@ -358,10 +387,13 @@
 ;;;; dired
 (use-package dired
   :config
+  ;; On OSX, ls isn't gnu-ls so causes some issues. Install
+  ;; `coreutils` via homebrew first.
   (when (string= system-type "darwin")
-    (setq dired-use-ls-dired t                            ;; On OSX, ls isn't gnu-ls so causes some issues.
-          insert-directory-program "/usr/local/bin/gls")) ;; Install `coreutils` via homebrew, this enables it
-  ;; dired creates a new buffer for each directory. This encourages dired to reuse the same buffer.
+    (setq dired-use-ls-dired t
+          insert-directory-program "/usr/local/bin/gls"))
+  ;; dired creates a new buffer for each directory. This encourages
+  ;; dired to reuse the same buffer.
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)                         ;; was dired-advertised-find-file
   (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))) ;; was dired-up-directory
   (put 'dired-find-alternate-file 'disabled nil)
@@ -385,8 +417,8 @@
 ;;; Custom file
 ;==============================
 
-;; Rather that letting emacs stick custom-set-variables in here, place it in a different file that is
-;; not under version control.
+;; Rather that letting emacs stick custom-set-variables in here, place
+;; it in a different file that is not under version control.
 ;; https://old.reddit.com/r/emacs/comments/67pzh5/using_customsetvariables_programmatically/dgsxvm3/
 
 (setq custom-file "~/.emacs.d/custom.el")
