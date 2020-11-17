@@ -310,7 +310,9 @@
   ;;   speeds up emacs startup) and b) makes C-x g work even if magit-status isn't loaded (so
   ;;    calling C-x g loads magit if needed).
   (bind-key "C-x g" 'magit-status)
-  :defer t)
+  :defer t
+  :config
+  (setq magit-refresh-verbose t)) ;; Give timing information in *Messages* for debugging slowness
 
 ;;;; fish-mode
 ;; Mode for fishshell scripts
