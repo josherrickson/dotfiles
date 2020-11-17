@@ -57,69 +57,126 @@
 ;; Rotates between just-one-space, no-space, original spacing.
 (bind-key "M-SPC" 'cycle-spacing)
 
-;;; Settings
+;;; Internal Packages
 ;==============================
 
-;;;; Variables
+;;;; emacs
+;; Anything which is defined in C Source Code, or most built-in
+;; packges belong here
+(use-package emacs
+  :config
 ;; Variables which are `buffer-local` (check with 5th line of
 ;; C-h v <varname>) need setq-default, otherwise setq is fine.
-(setq-default
- tab-width 2                          ;; default tab width is 2 spaces
- indent-tabs-mode nil                 ;; spaces instead of tabs
- indicate-empty-lines t               ;; show end of file
- fill-column 70                       ;; column default width
+  (setq-default
+   tab-width 2                           ;; default tab width is 2 spaces
+   indent-tabs-mode nil                  ;; spaces instead of tabs
+   indicate-empty-lines t                ;; show end of file
+   fill-column 70)                       ;; column default width
+  (setq
+    inhibit-startup-message t            ;; Don't show start-up message...
+    initial-scratch-message nil          ;; ... or *scratch* message
+    tab-always-indent 'complete          ;; indent if possible, otherwise complete-at-point
+    visible-bell t                       ;; no beeps on errors ...
+    scroll-error-top-bottom t            ;; ... and don't error too soon
+    ring-bell-function 'ignore           ;; no bells at all
+    backup-inhibited t                   ;; disable backups ...
+    make-backup-files nil                ;; ... and more backups ...
+    auto-save-default nil                ;; ... and autosave ...
+    auto-save-list-file-prefix nil       ;; ... and recovery
+    sentence-end-double-space nil        ;; single space follows a period
+    vc-follow-symlinks t                 ;; open symlinks to version controlled files
+    echo-keystrokes 0.01                 ;; show commands instantly in minibuffer
+    scroll-conservatively 5              ;; only scroll a bit when moving cursor
+    read-buffer-completion-ignore-case t ;; don't worry about case in minibuffer
+    read-file-name-completion-ignore-case t
+    electric-pair-mode nil)             ;; Ensure that electric-pairing isn't activated
+  ;; Remove trailing whtiespace and lines upon saving
+  (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
+  (setq delete-trailing-lines t)
+
+  ;; Needed when installing aspell by homebrew (may work without it if
+  ;; you install to /usr/bin/aspell)
+  (when (equal system-type 'darwin)
+    (defvar ispell-program-name)
+    (defvar ispell-extra-args)
+    (setq ispell-program-name "/usr/local/bin/aspell")
+    ;; ultra is faster but less accurate
+    (setq ispell-extra-args '("--sug-mode=ultra")))
+
+  ;; Modes
+  (global-auto-revert-mode          t ) ;; revert buffers when changed
+  (transient-mark-mode              t ) ;; visual highlighting
+  (delete-selection-mode            t ) ;; typing replaces selected text
+  (size-indication-mode             t ) ;; include file size on mode line
+  (line-number-mode                 t ) ;; cursor position line ...
+  (column-number-mode               t ) ;; ... and column
+
+  ;; Use a wider fill-column for text-only modes (e.g. not likely to be
+  ;; run side-by-side with terminal/output.
+  (add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
+  (add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
+  (add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
+
+  ;; Use smaller fill-column for lisp for help buffer
+  (add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 70)))
+
+  (fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
 )
-(setq
- tab-always-indent 'complete          ;; indent if possible, otherwise complete-at-point
- inhibit-startup-message t            ;; Don't show start-up message...
- initial-scratch-message nil          ;; ... or *scratch* message
- visible-bell t                       ;; no beeps on errors ...
- scroll-error-top-bottom t            ;; ... and don't error too soon
- ring-bell-function 'ignore           ;; no bells at all
- backup-inhibited t                   ;; disable backups ...
- make-backup-files nil                ;; ... and more backups ...
- auto-save-default nil                ;; ... and autosave ...
- auto-save-list-file-prefix nil       ;; ... and recovery
- sentence-end-double-space nil        ;; single space follows a period
- vc-follow-symlinks t                 ;; open symlinks to version controlled files
- echo-keystrokes 0.01                 ;; show commands instantly in minibuffer
- scroll-conservatively 5              ;; only scroll a bit when moving cursor
- read-buffer-completion-ignore-case t ;; don't worry about case in minibuffer
- read-file-name-completion-ignore-case t
- electric-pair-mode nil               ;; Ensure that electric-pairing isn't activated
-)
-
-;; Remove trailing whtiespace and lines upon saving
-(add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
-(setq delete-trailing-lines t)
-
-;; Needed when installing aspell by homebrew (may work without it if
-;; you install to /usr/bin/aspell)
-(when (equal system-type 'darwin)
-  (defvar ispell-program-name)
-  (defvar ispell-extra-args)
-  (setq ispell-program-name "/usr/local/bin/aspell")
-  ;; ultra is faster but less accurate
-  (setq ispell-extra-args '("--sug-mode=ultra")))
-
-;;;; Modes
-(global-auto-revert-mode          t ) ;; revert buffers when changed
-(transient-mark-mode              t ) ;; visual highlighting
-(delete-selection-mode            t ) ;; typing replaces selected text
-(size-indication-mode             t ) ;; include file size on mode line
-(line-number-mode                 t ) ;; cursor position line ...
-(column-number-mode               t ) ;; ... and column
 
 
-;;;; Miscellaneous
-;; Use a wider fill-column for text-only modes (e.g. not likely to be
-;; run side-by-side with terminal/output.
-(add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 150)))
-(add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
-(add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
-(add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
+;;;; recentf
+(use-package recentf
+  :init
+  (recentf-mode t)
+  :bind (("C-x M-f" . set-fill-column) ;; to make room
+         ("C-x f" . recentf-open-files))
+  :config
+  ;; don't list these files in recentf
+  (setq recentf-exclude '("\\cookies\\'"
+                          "\\archive-contents\\'"
+                          "\\.ido.last\\'")))
+;;;; tramp
+(use-package tramp
+  :defer t
+  :config
+  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
 
-(fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
+;;;; org
+(use-package org
+  :defer t
+  :mode (("\\.org$" . org-mode))
+  :config
+  (setq org-hide-leading-stars t)) ;; In subsections (e.g. ***) hides all but the last *
+
+;;;; dired
+(use-package dired
+  :config
+  ;; On OSX, ls isn't gnu-ls so causes some issues. Install
+  ;; `coreutils` via homebrew first.
+  (when (string= system-type "darwin")
+    (setq dired-use-ls-dired t
+          insert-directory-program "/usr/local/bin/gls"))
+  ;; dired creates a new buffer for each directory. This encourages
+  ;; dired to reuse the same buffer.
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)                         ;; was dired-advertised-find-file
+  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))) ;; was dired-up-directory
+  (put 'dired-find-alternate-file 'disabled nil)
+  :custom
+  (dired-listing-switches "-AFBhl")) ;; switches passed to ls
+
+;;;; display-line-numbers
+(use-package display-line-numbers
+  :init
+  (global-display-line-numbers-mode t)
+  :config
+  (setq display-line-numbers-grow-only t)) ;; don't shrink line-number space when looking at fewer digits
+
+;;;; paren
+(use-package paren
+  :init
+  (show-paren-mode t)
+  :config
+  (setq show-paren-delay 0)) ;; don't delay showing parens
 
 ;;; Functions
 ;==============================
@@ -357,62 +414,6 @@ is not associated with a file."
   :ensure t
   :defer t)
 
-;;; Internal Packages
-;==============================
-
-;;;; recentf
-(use-package recentf
-  :init
-  (recentf-mode t)
-  :bind (("C-x M-f" . set-fill-column) ;; to make room
-         ("C-x f" . recentf-open-files))
-  :config
-  ;; don't list these files in recentf
-  (setq recentf-exclude '("\\cookies\\'"
-                          "\\archive-contents\\'"
-                          "\\.ido.last\\'")))
-;;;; tramp
-(use-package tramp
-  :defer t
-  :config
-  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
-
-;;;; org
-(use-package org
-  :defer t
-  :mode (("\\.org$" . org-mode))
-  :config
-  (setq org-hide-leading-stars t)) ;; In subsections (e.g. ***) hides all but the last *
-
-;;;; dired
-(use-package dired
-  :config
-  ;; On OSX, ls isn't gnu-ls so causes some issues. Install
-  ;; `coreutils` via homebrew first.
-  (when (string= system-type "darwin")
-    (setq dired-use-ls-dired t
-          insert-directory-program "/usr/local/bin/gls"))
-  ;; dired creates a new buffer for each directory. This encourages
-  ;; dired to reuse the same buffer.
-  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)                         ;; was dired-advertised-find-file
-  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))) ;; was dired-up-directory
-  (put 'dired-find-alternate-file 'disabled nil)
-  :custom
-  (dired-listing-switches "-AFBhl")) ;; switches passed to ls
-
-;;;; display-line-numbers
-(use-package display-line-numbers
-  :init
-  (global-display-line-numbers-mode t)
-  :config
-  (setq display-line-numbers-grow-only t)) ;; don't shrink line-number space when looking at fewer digits
-
-;;;; paren
-(use-package paren
-  :init
-  (show-paren-mode t)
-  :config
-  (setq show-paren-delay 0)) ;; don't delay showing parens
 
 ;;; Custom file
 ;==============================
