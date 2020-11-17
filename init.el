@@ -292,7 +292,8 @@
   :init
   (ivy-rich-mode 1)
   :config
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line) ;; suggested in ivy-rich documentation
+  (setq ivy-rich-path-style 'abbrev)) ;; show full path (with ~ abbrev) instead of relative
 
 ;; Enables ivy in more locations
 (use-package counsel
