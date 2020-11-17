@@ -306,6 +306,7 @@
 (use-package swiper
   :ensure t
   :config
+  (setq swiper-action-recenter t) ;; after returning, center at line
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
 
