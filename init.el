@@ -128,7 +128,7 @@
 )
 
 
-;;;; recentf
+;; Provides access to recently opened files
 (use-package recentf
   :init
   (recentf-mode t)
@@ -139,14 +139,13 @@
   (setq recentf-exclude '("\\cookies\\'"
                           "\\archive-contents\\'"
                           "\\.ido.last\\'")))
-;;;; tramp
+;; Remote editing files via SSH
 (use-package tramp
   :defer t
   :config
   ;; cache passwords in tramp for 1 hr
   (setq password-cache-expiry 3600))
 
-;;;; org
 (use-package org
   :defer t
   :mode (("\\.org$" . org-mode))
@@ -154,7 +153,7 @@
   ;; In subsections (e.g. ***) hides all but the last *
   (setq org-hide-leading-stars t))
 
-;;;; dired
+;; File listings
 (use-package dired
   :config
   ;; On OSX, ls isn't gnu-ls so causes some issues. Install
@@ -172,7 +171,7 @@
   :custom
   (dired-listing-switches "-AFBhl")) ;; switches passed to ls
 
-;;;; display-line-numbers
+;; Display line numbers in left buffer
 (use-package display-line-numbers
   :init
   (global-display-line-numbers-mode t)
@@ -180,7 +179,7 @@
    ;; don't shrink line-number space when looking at fewer digits
   (setq display-line-numbers-grow-only t))
 
-;;;; paren
+;; Show matching parantheses
 (use-package paren
   :init
   (show-paren-mode t)
@@ -233,7 +232,6 @@ to the true beginning of the line (before space.)"
       (beginning-of-line))))
 (global-set-key (kbd "C-a") 'my/beginning-of-line-dynamic)
 
-
 ;; Does align-regexp over ALL entries in the line instead of just the
 ;; first http://www.emacswiki.org/emacs/AlignCommands
 (defun align-all (start end regexp)
@@ -241,7 +239,6 @@ to the true beginning of the line (before space.)"
   (interactive "r\nsAlign regexp: ")
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
-
 
 ;; https://stackoverflow.com/a/25792294
 (defun my/new-empty-frame ()
@@ -277,12 +274,10 @@ is not associated with a file."
 ;;;;; External Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;; diminish
 ;; Using :diminish in use-packge hides minor-modes from mode line
 (use-package diminish
   :ensure t)
 
-;;;; avy
 ;; Jump to a specified location. Replaces ace-jump-mode
 (use-package avy
   :ensure t
@@ -291,7 +286,6 @@ is not associated with a file."
   (setq avy-background t)) ;; gray text other then matches
 
 
-;;;; multiple-cursors
 ;; Selecting and editing repeated words
 (use-package multiple-cursors
   :ensure t
@@ -300,8 +294,7 @@ is not associated with a file."
          ("M-@" . mc/mark-previous-like-this)
          ("M-#" . mc/mark-all-like-this)))
 
-;;;; emacs speaks statistics
-;; For R and R files
+;; Gives R,Rmd,etc modes. Also provides interface to R.
 ;; ess-stata has been removed
 ;; (https://github.com/emacs-ess/ESS/issues/1033)
 (use-package ess
@@ -325,7 +318,7 @@ is not associated with a file."
         comint-scroll-show-maximum-output  t
         comint-move-point-for-output       t))
 
-;; poly-mode for R
+;; Mixing of markdown and R in Rmarkdown files
 (use-package poly-R
   :ensure t
   :defer t
@@ -333,7 +326,7 @@ is not associated with a file."
   ;; Highlight latex math snippets
   (setq markdown-enable-math t))
 
-;;;; Auctex
+;; Latex mode and compilation
 (use-package auctex
   :ensure t
   :defer t
@@ -360,9 +353,7 @@ is not associated with a file."
   (setq TeX-view-program-selection '((output-pdf "open")))
   (setq TeX-view-program-list '(("open" "open %o"))))
 
-;;;; ivy, counsel, swiper
-;; Enables better matching in minibuffer (e.g. find file, switch
-;; buffer)
+;; Better matching in minibuffer (e.g. find file, switch buffer)
 (use-package ivy
   :ensure t
   :init
@@ -377,8 +368,7 @@ is not associated with a file."
         '((t . ivy--regex-ignore-order)))
   :bind (("C-c C-r" . ivy-resume)))
 
-;; ivy-buffer has some more niceties, including buffer showing path to
-;; file.
+;; more niceties for ivy, including buffer showing path to file.
 (use-package ivy-rich
   :ensure t
   :init
@@ -405,7 +395,6 @@ is not associated with a file."
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
 
-;;;; magit
 ;; Git access inside emacs
 (use-package magit
   :ensure t
@@ -420,13 +409,11 @@ is not associated with a file."
   ;; Give timing information in *Messages* for debugging slowness
   (setq magit-refresh-verbose t))
 
-;;;; fish-mode
 ;; Mode for fishshell scripts
 (use-package fish-mode
   :ensure t
   :defer t)
 
-;;;; exec-path-from-shell
 ;; GUI Emacs doesn't inherit from terminal environment variables (e.g.
 ;; PATH). This fixes it.
 (use-package exec-path-from-shell
