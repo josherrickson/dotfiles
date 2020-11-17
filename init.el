@@ -64,30 +64,37 @@
 ;; Variables which are `buffer-local` (check with 5th line of
 ;; C-h v <varname>) need setq-default, otherwise setq is fine.
   (setq-default
-   tab-width 2                           ;; default tab width is 2 spaces
+   tab-width 2                           ;; tab width to 2 spaces
    indent-tabs-mode nil                  ;; spaces instead of tabs
    indicate-empty-lines t                ;; show end of file
    fill-column 70)                       ;; column default width
   (setq
-    inhibit-startup-message t            ;; Don't show start-up message...
+    inhibit-startup-message t            ;; No start-up message...
     initial-scratch-message nil          ;; ... or *scratch* message
-    tab-always-indent 'complete          ;; indent if possible, otherwise complete-at-point
+    tab-always-indent 'complete          ;; indent if possible,
+                                         ;; otherwise complete-at-point
     visible-bell t                       ;; no beeps on errors ...
-    scroll-error-top-bottom t            ;; ... and don't error too soon
+    scroll-error-top-bottom t            ;; ... and no error on scroll
     ring-bell-function 'ignore           ;; no bells at all
     backup-inhibited t                   ;; disable backups ...
     make-backup-files nil                ;; ... and more backups ...
     auto-save-default nil                ;; ... and autosave ...
     auto-save-list-file-prefix nil       ;; ... and recovery
-    sentence-end-double-space nil        ;; single space follows a period
-    vc-follow-symlinks t                 ;; open symlinks to version controlled files
-    echo-keystrokes 0.01                 ;; show commands instantly in minibuffer
-    scroll-conservatively 5              ;; only scroll a bit when moving cursor
-    read-buffer-completion-ignore-case t ;; don't worry about case in minibuffer
+    sentence-end-double-space nil        ;; single space after period
+    vc-follow-symlinks t                 ;; open symlinks to vc files
+    echo-keystrokes 0.01                 ;; instant typing in
+                                         ;; minibuffer
+    scroll-conservatively 5              ;; only scroll a bit when
+                                         ;; moving cursor
+    read-buffer-completion-ignore-case t ;; don't worry about case in
+                                         ;; minibuffer
     read-file-name-completion-ignore-case t
-    electric-pair-mode nil)             ;; Ensure that electric-pairing isn't activated
+    electric-pair-mode nil)              ;; Don't auto-add closing
+                                         ;; parens
+
   ;; Remove trailing whtiespace and lines upon saving
-  (add-hook 'before-save-hook (lambda () (delete-trailing-whitespace)))
+  (add-hook 'before-save-hook (lambda ()
+                                (delete-trailing-whitespace)))
   (setq delete-trailing-lines t)
 
   ;; Needed when installing aspell by homebrew (may work without it if
@@ -102,13 +109,13 @@
   ;; Modes
   (global-auto-revert-mode          t ) ;; revert buffers when changed
   (transient-mark-mode              t ) ;; visual highlighting
-  (delete-selection-mode            t ) ;; typing replaces selected text
-  (size-indication-mode             t ) ;; include file size on mode line
+  (delete-selection-mode            t ) ;; overwrite selected text
+  (size-indication-mode             t ) ;; file size on mode line
   (line-number-mode                 t ) ;; cursor position line ...
   (column-number-mode               t ) ;; ... and column
 
-  ;; Use a wider fill-column for text-only modes (e.g. not likely to be
-  ;; run side-by-side with terminal/output.
+  ;; Use a wider fill-column for text-only modes (e.g. not likely to
+  ;; be run side-by-side with terminal/output.
   (add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
   (add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
   (add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
@@ -116,7 +123,8 @@
   ;; Use smaller fill-column for lisp for help buffer
   (add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 70)))
 
-  (fset 'yes-or-no-p 'y-or-n-p)         ;; 'y or n' instead of 'yes or no'
+  ;; 'y or n' instead of 'yes or no'
+  (fset 'yes-or-no-p 'y-or-n-p)
 )
 
 
@@ -135,14 +143,16 @@
 (use-package tramp
   :defer t
   :config
-  (setq password-cache-expiry 3600)) ;; cache passwords in tramp for 1 hr
+  ;; cache passwords in tramp for 1 hr
+  (setq password-cache-expiry 3600))
 
 ;;;; org
 (use-package org
   :defer t
   :mode (("\\.org$" . org-mode))
   :config
-  (setq org-hide-leading-stars t)) ;; In subsections (e.g. ***) hides all but the last *
+  ;; In subsections (e.g. ***) hides all but the last *
+  (setq org-hide-leading-stars t))
 
 ;;;; dired
 (use-package dired
@@ -154,8 +164,10 @@
           insert-directory-program "/usr/local/bin/gls"))
   ;; dired creates a new buffer for each directory. This encourages
   ;; dired to reuse the same buffer.
-  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)                         ;; was dired-advertised-find-file
-  (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file ".."))) ;; was dired-up-directory
+  (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+  (define-key dired-mode-map (kbd "^") (lambda ()
+                                         (interactive)
+                                         (find-alternate-file "..")))
   (put 'dired-find-alternate-file 'disabled nil)
   :custom
   (dired-listing-switches "-AFBhl")) ;; switches passed to ls
@@ -165,7 +177,8 @@
   :init
   (global-display-line-numbers-mode t)
   :config
-  (setq display-line-numbers-grow-only t)) ;; don't shrink line-number space when looking at fewer digits
+   ;; don't shrink line-number space when looking at fewer digits
+  (setq display-line-numbers-grow-only t))
 
 ;;;; paren
 (use-package paren
@@ -253,7 +266,8 @@ is not associated with a file."
   (save-excursion
     (insert "\n<</dd_do>>\n~~~~")))
 (add-hook 'markdown-mode-hook
-          (lambda () (local-set-key (kbd "C-c C-s d") 'my/insert-stata-dyndoc-chucnk)))
+          (lambda () (local-set-key (kbd "C-c C-s d")
+                                    'my/insert-stata-dyndoc-chucnk)))
 
 ;; The inverse of fill-paragraph,
 ;; http://pages.sachachua.com/.emacs.d/Sacha.html#org3dd06d8
@@ -301,13 +315,19 @@ is not associated with a file."
   :ensure t
   :defer t
   :config
-  (setq ess-ask-for-ess-directory nil        ;; just run R wherever the file lives
+  (setq ess-ask-for-ess-directory nil        ;; just run R wherever
+                                             ;; the file lives
         ess-history-file nil                 ;; don't save history
-        ess-eval-visibly-p nil               ;; when running R, don't show code, just output (greatly speeds running)
+        ess-eval-visibly-p nil               ;; when running R, don't
+                                             ;; show code, just output
+                                             ;; (greatly speeds
+                                             ;; running)
         inferior-R-args
           "--no-restore --no-save --quiet"   ;; R startup conditions
         ess-style 'RStudio                   ;; better indenting
-        comint-scroll-to-bottom-on-input   t ;; force ESS to scroll R to the bottom after running code
+        comint-scroll-to-bottom-on-input   t ;; force ESS to scroll R
+                                             ;; to the bottom after
+                                             ;; running code
         comintq-scroll-to-bottom-on-output t
         comint-scroll-show-maximum-output  t
         comint-move-point-for-output       t))
@@ -334,9 +354,7 @@ is not associated with a file."
                                 TeX-command-list)))
   :config
   (setq
-   Tex-engine 'default                       ;; XeTeX causes issues with tikz
-   ;TeX-engine 'xetex                        ;; use XeTeX
-   ;TeX-engine 'pdflatex
+   Tex-engine 'default
    TeX-PDF-mode t                            ;; PDF instead of dvi
    TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
 
@@ -373,8 +391,11 @@ is not associated with a file."
   :init
   (ivy-rich-mode 1)
   :config
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line) ;; suggested in ivy-rich documentation
-  (setq ivy-rich-path-style 'abbrev)) ;; show full path (with ~ abbrev) instead of relative
+  ;; suggested in ivy-rich documentation
+  (setcdr (assq t ivy-format-functions-alist)
+          #'ivy-format-function-line)
+  ;; show full path (with ~ abbrev) instead of relative
+  (setq ivy-rich-path-style 'abbrev))
 
 ;; Enables ivy in more locations
 (use-package counsel
@@ -403,7 +424,8 @@ is not associated with a file."
   (bind-key "C-x g" 'magit-status)
   :defer t
   :config
-  (setq magit-refresh-verbose t)) ;; Give timing information in *Messages* for debugging slowness
+  ;; Give timing information in *Messages* for debugging slowness
+  (setq magit-refresh-verbose t))
 
 ;;;; fish-mode
 ;; Mode for fishshell scripts
