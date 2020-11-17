@@ -244,6 +244,33 @@
   :config
   (setq markdown-enable-math t)) ;; Highlight latex math snippets
 
+;;;; Auctex
+(use-package auctex
+  :ensure t
+  :defer t
+  :mode ("\\.Rnw$" . LaTeX-mode)
+  :init
+  (add-hook 'LaTeX-mode-hook (lambda () ;; add latexmk to C-c C-c list
+                               (push
+                                '("Latexmk" "latexmk -pdf -pvc %s" TeX-run-command nil t
+                                  :help "Run Latexmk on file")
+                                TeX-command-list)))
+  :config
+  (setq
+   Tex-engine 'default                       ;; XeTeX causes issues with tikz
+   ;TeX-engine 'xetex                        ;; use XeTeX
+   ;TeX-engine 'pdflatex
+   TeX-PDF-mode t                            ;; PDF instead of dvi
+   TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
+
+  ;; For multi-file documents, use `C-c _` to add master information to the file.  Second command removes automation
+  (setq TeX-master nil
+        TeX-one-master "<none>")
+
+  ;; OS X use `open`
+  (setq TeX-view-program-selection '((output-pdf "open")))
+  (setq TeX-view-program-list '(("open" "open %o"))))
+
 ;;;; ivy, counsel, swiper
 ;; Enables better matching in minibuffer (e.g. find file, switch buffer)
 (use-package ivy
@@ -343,38 +370,6 @@
   (show-paren-mode t)
   :config
   (setq show-paren-delay 0)) ;; don't delay showing parens
-
-
-;;; Auctex
-;==============================
-;; Haven't gotten around to use-package'ing this yet.
-
-(add-to-list 'auto-mode-alist '("\\.Rnw$" . LaTeX-mode)) ;; Rnw loads latex-mode
-(autoload 'LaTeX-mode "auctex" nil t) ;; Load auctex when entering tex-mode
-
-(setq
- Tex-engine 'default                       ;; XeTeX causes issues with tikz
- ;TeX-engine 'xetex                        ;; use XeTeX
- ;TeX-engine 'pdflatex
- TeX-PDF-mode t                            ;; PDF instead of dvi
- TeX-newline-function 'newline-and-indent) ;; autoindent in TeX-mode
-
-(add-hook 'LaTeX-mode-hook (lambda ()
-  (push
-    '("Latexmk" "latexmk -pdf -pvc %s" TeX-run-command nil t
-      :help "Run Latexmk on file")
-    TeX-command-list)))
-
-;; For multi-file documents, use `C-c _` to add master information to the file.  Second command removes automation
-(setq TeX-master nil
-      TeX-one-master "<none>")
-
-;; OS X use `open`
-(setq TeX-view-program-selection '((output-pdf "open")))
-(setq TeX-view-program-list '(("open" "open %o")))
-
-;; use auto-fill always on tex files
-(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
 ;;; Custom file
 ;==============================
