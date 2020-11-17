@@ -100,8 +100,6 @@
 (size-indication-mode             t ) ;; include file size on mode line
 (line-number-mode                 t ) ;; cursor position line ...
 (column-number-mode               t ) ;; ... and column
-(global-display-line-numbers-mode t ) ;; Post emacs 26, always display line numbers.
-
 (show-paren-mode          t   ) ;; show matching parens
 (setq show-paren-delay    0   ) ;; don't delay showing parens
 
@@ -347,6 +345,12 @@
   :custom
   (dired-listing-switches "-AFBhl")) ;; switches passed to ls
 
+;;;; display-line-numbers
+(use-package display-line-numbers
+  :init
+  (global-display-line-numbers-mode t)
+  :config
+  (setq display-line-numbers-grow-only t)) ;; don't shrink line-number space when looking at fewer digits
 
 ;;; Auctex
 ;==============================
