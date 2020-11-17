@@ -45,21 +45,6 @@
 ;; Load color theme
 (load-theme 'tsdh-dark t)  ;; The 't' says not to security check
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;; General Key Bindings ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Adjust bindgs for killing
-(global-set-key (kbd "C-c M-w") 'kill-region)
-(global-set-key (kbd "C-w")     'backward-kill-word)
-
-;; Move from zap-to-char to zap-up-to-char (don't delete char itself)
-(autoload 'zap-up-to-char "misc" 'interactive)
-(global-set-key (kbd "M-z") 'zap-up-to-char)
-
-;; Rotates between just-one-space, no-space, original spacing.
-(bind-key "M-SPC" 'cycle-spacing)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -68,6 +53,13 @@
 ;; Anything which is defined in C Source Code, or most built-in
 ;; packges belong here
 (use-package emacs
+  ;; adjust bindings for killing
+  :bind (("C-c M-w" . kill-region)
+         ("C-w"     . backward-kill-word))
+  ;; Move from zap-to-char to zap-up-to-char (don't delete char itself)
+  :bind ("M-z"      . zap-up-to-char)
+  ;; Rotates between just-one-space, no-space, original spacing.
+  :bind ("M-SPC"    . cycle-spacing)
   :config
 ;; Variables which are `buffer-local` (check with 5th line of
 ;; C-h v <varname>) need setq-default, otherwise setq is fine.
