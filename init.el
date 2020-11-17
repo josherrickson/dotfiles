@@ -100,8 +100,6 @@
 (size-indication-mode             t ) ;; include file size on mode line
 (line-number-mode                 t ) ;; cursor position line ...
 (column-number-mode               t ) ;; ... and column
-(show-paren-mode          t   ) ;; show matching parens
-(setq show-paren-delay    0   ) ;; don't delay showing parens
 
 
 ;;;; Miscellaneous
@@ -351,6 +349,14 @@
   (global-display-line-numbers-mode t)
   :config
   (setq display-line-numbers-grow-only t)) ;; don't shrink line-number space when looking at fewer digits
+
+;;;; paren
+(use-package paren
+  :init
+  (show-paren-mode t)
+  :config
+  (setq show-paren-delay 0)) ;; don't delay showing parens
+
 
 ;;; Auctex
 ;==============================
