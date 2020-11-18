@@ -421,6 +421,16 @@ is not associated with a file."
   :init
   (exec-path-from-shell-initialize))
 
+;; when switching buffers or scrolling, point a beacon at the cursor
+(use-package beacon
+  :ensure t
+  :init
+  (beacon-mode 1)
+  :config
+  (setq beacon-blink-duration 1
+        beacon-blink-delay .5
+        beacon-color 0))
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
