@@ -60,6 +60,11 @@
   :bind ("M-z"      . zap-up-to-char)
   ;; Rotates between just-one-space, no-space, original spacing.
   :bind ("M-SPC"    . cycle-spacing)
+  ;; Switch capitalization to dwim (Do What I mean). If a region is
+  ;; selected, call e.g. upcase-region, otherwise call upcase-word.
+  :bind (("M-u"     . upcase-dwim)
+         ("M-c"     . capitalize-dwim)
+         ("M-l"     . downcase-dwim))
   :config
 ;; Variables which are `buffer-local` (check with 5th line of
 ;; C-h v <varname>) need setq-default, otherwise setq is fine.
