@@ -328,7 +328,7 @@ is not associated with a file."
         comint-move-point-for-output       t))
 
 ;; Mixing of markdown and R in Rmarkdown files
-(use-package poly-R
+(use-package poly-markdown
   :ensure t
   :defer t
   :config
