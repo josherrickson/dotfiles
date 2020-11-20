@@ -65,6 +65,10 @@
   :bind (("M-u"     . upcase-dwim)
          ("M-c"     . capitalize-dwim)
          ("M-l"     . downcase-dwim))
+  ;; Run a make command. This replaces send mail.
+  :bind ("C-c C-m"    . compile)
+  :config
+  (setq compilation-read-command nil) ;; Don't prompt for the command, just run the default (make -k)
   :config
 ;; Variables which are `buffer-local` (check with 5th line of
 ;; C-h v <varname>) need setq-default, otherwise setq is fine.
