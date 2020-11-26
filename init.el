@@ -56,6 +56,8 @@
   ;; adjust bindings for killing
   :bind (("C-c M-w" . kill-region)
          ("C-w"     . backward-kill-word))
+  ;; Move from zap-to-char to zap-up-to-char (don't delete char itself)
+  :bind ("M-z"      . zap-up-to-char)
   ;; Rotates between just-one-space, no-space, original spacing.
   :bind ("M-SPC"    . cycle-spacing)
   ;; Switch capitalization to dwim (Do What I mean). If a region is
@@ -292,10 +294,6 @@ is not associated with a file."
   :config
   (setq avy-background t)) ;; gray text other then matches
 
-;; use avy to zap-up-to-char
-(use-package avy-zap
-  :ensure t
-  :bind (("M-z" . avy-zap-up-to-char)))
 
 ;; Selecting and editing repeated words
 (use-package multiple-cursors
