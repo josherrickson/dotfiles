@@ -68,7 +68,9 @@
   ;; Run a make command. This replaces send mail.
   :bind ("C-c C-m"    . compile)
   :config
-  (setq compilation-read-command nil) ;; Don't prompt for the command, just run the default (make -k)
+  (setq compilation-read-command nil) ;; Don't prompt for the command,
+                                      ;; just run the default (make
+                                      ;; -k)
   :config
 ;; Variables which are `buffer-local` (check with 5th line of
 ;; C-h v <varname>) need setq-default, otherwise setq is fine.
@@ -76,7 +78,7 @@
    tab-width 2                           ;; tab width to 2 spaces
    indent-tabs-mode nil                  ;; spaces instead of tabs
    indicate-empty-lines t                ;; show end of file
-   fill-column 70)                       ;; column default width
+   fill-column 80)                       ;; column default width
   (setq
     inhibit-startup-message t            ;; No start-up message...
     initial-scratch-message nil          ;; ... or *scratch* message
@@ -122,15 +124,6 @@
   (size-indication-mode             t ) ;; file size on mode line
   (line-number-mode                 t ) ;; cursor position line ...
   (column-number-mode               t ) ;; ... and column
-
-  ;; Use a wider fill-column for text-only modes (e.g. not likely to
-  ;; be run side-by-side with terminal/output.
-  (add-hook 'markdown-mode-hook   (lambda () (set-fill-column 150)))
-  (add-hook 'LaTeX-mode-hook      (lambda () (set-fill-column 150)))
-  (add-hook 'TeX-mode-hook        (lambda () (set-fill-column 150)))
-
-  ;; Use smaller fill-column for lisp for help buffer
-  (add-hook 'emacs-lisp-mode-hook (lambda () (set-fill-column 70)))
 
   ;; 'y or n' instead of 'yes or no'
   (fset 'yes-or-no-p 'y-or-n-p)
