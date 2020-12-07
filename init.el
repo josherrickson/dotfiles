@@ -31,6 +31,7 @@
 ;; Better organization of packages, and enables auto-installation
 ;; https://github.com/jwiegley/use-package
 (when (not (package-installed-p 'use-package))
+  (require 'package)
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
