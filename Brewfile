@@ -36,9 +36,9 @@ cask "netnewswire"
 cask "skim"
 cask "scroll-reverser"
 cask "calibre"
+cask "rectangle"
 
 mas "NextDNS", id: 1464122853
 mas "1Blocker", id: 1107421413
 mas "1Password 7", id: 1333542190
 mas "SmileAllDay", id: 1180442868
-mas "DoublePane", id: 409737246
