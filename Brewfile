@@ -34,6 +34,8 @@ cask "iterm2"
 cask "mpv"
 cask "netnewswire"
 cask "skim"
+cask "scroll-reverser"
+cask "calibre"
 
 mas "NextDNS", id: 1464122853
 mas "1Blocker", id: 1107421413
