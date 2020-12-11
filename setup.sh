@@ -47,6 +47,8 @@ lns "$DIR"/.vimrc ~/.vimrc
 lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
 [[ ! (-d ~/.emacs.d) ]] && mkdir ~/.emacs.d
 lns "$DIR"/init.el ~/.emacs.d/init.el
+lns "$DIR"/Brewfile ~/Brewfile
+echo "Run \`brew bundle install\` next."
 
 
 if [[ $ostype == 'Linux' ]]; then
