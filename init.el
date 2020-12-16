@@ -325,6 +325,9 @@ is not associated with a file."
 (use-package poly-markdown
   :ensure t
   :defer t
+  :init
+  :mode (".md" . poly-markdown-mode)
+  :mode (".Rmd" . poly-markdown-mode)
   :config
   ;; Highlight latex math snippets
   (setq markdown-enable-math t))
