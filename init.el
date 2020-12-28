@@ -96,8 +96,7 @@
     vc-follow-symlinks t                 ;; open symlinks to vc files
     echo-keystrokes 0.01                 ;; instant typing in
                                          ;; minibuffer
-    scroll-conservatively 5              ;; only scroll a bit when
-                                         ;; moving cursor
+    scroll-conservatively 100            ;; one line scrolling
     read-buffer-completion-ignore-case t ;; don't worry about case in
                                          ;; minibuffer
     read-file-name-completion-ignore-case t
