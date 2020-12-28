@@ -624,7 +624,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Monaco 14</string>
+			<string>ComicMono 15</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -684,7 +684,7 @@
 			<key>Use Non-ASCII Font</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>0.90000000000000002</real>
+			<real>0.93999999999999995</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
