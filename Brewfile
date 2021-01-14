@@ -22,6 +22,7 @@ brew "tree"
 brew "youtube-dl"
 brew "zsh"
 brew "mas"
+brew "tectonic"
 
 cask "firefox-beta"
 cask "gpower"
@@ -37,6 +38,8 @@ cask "skim"
 cask "scroll-reverser"
 cask "calibre"
 cask "rectangle"
+cask "bartender"
+cask "disk-inventory-x"
 
 mas "NextDNS", id: 1464122853
 mas "1Blocker", id: 1107421413
