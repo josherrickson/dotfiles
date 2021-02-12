@@ -40,6 +40,7 @@ fi
 lns "$DIR"/.aliases ~/.aliases
 lns "$DIR"/.Rprofile ~/.Rprofile
 lns "$DIR"/.zshrc ~/.zshrc
+lns "$DIR"/.nanorc ~/.nanorc
 lns "$DIR"/.tmux-scripts ~/.tmux-scripts
 lns "$DIR"/.bash-scripts ~/.bash-scripts
 lns "$DIR"/fish ~/.config/fish
