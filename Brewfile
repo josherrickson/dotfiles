@@ -18,6 +18,7 @@ brew "mawk"
 brew "pandoc"
 brew "r"
 brew "reattach-to-user-namespace"
+brew "sshfs"
 brew "tectonic"
 brew "terminal-notifier"
 brew "tmux"
@@ -45,3 +46,4 @@ mas "1Blocker", id: 1107421413
 mas "1Password 7", id: 1333542190
 mas "NextDNS", id: 1464122853
 mas "SmileAllDay", id: 1180442868
+mas "Hush for Safari", id: 1544743900
