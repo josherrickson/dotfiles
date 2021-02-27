@@ -25,3 +25,6 @@ set -xU LESS "--RAW-CONTROL-CHARS"
 
 # Color for less. Requires highlight installed.
 export LESSOPEN="| highlight %s --out-format xterm256 --force"
+
+# Syncs dircolors with LS_COLOR for treex
+eval (gdircolors -c)
