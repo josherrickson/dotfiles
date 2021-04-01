@@ -293,26 +293,24 @@ buffer is not visiting a file."
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 ;; Open current PDF version of markdown file
-(defun my/view-open-pdf ()
+(defun my/open-file-alternate-extension (extension)
   "Open the pdf verion of the current file, if it is a markdown or Rmarkdown file"
   (interactive)
+  ;; If `extension` has a proceeding period, remove it.
+  (replace-regexp-in-string "$\." "$" extension)
   (let ((buffer (buffer-file-name)))
     (if (member (file-name-extension buffer) '("md" "Rmd"))
         (shell-command (concat "open "
-                               (concat (file-name-sans-extension buffer) ".pdf"))))))
+                               (concat (file-name-sans-extension buffer) "." extension))))))
 
-(bind-key "C-c o p" 'my/view-open-pdf)
-
-;; Open current HTML version of markdown file
-(defun my/view-open-html ()
-  "Open the html verion of the current file, if it is a markdown or Rmarkdown file"
+(defun my/open-markdown-output-html ()
   (interactive)
-  (let ((buffer (buffer-file-name)))
-    (if (member (file-name-extension buffer) '("md" "Rmd"))
-        (shell-command (concat "open "
-                               (concat (file-name-sans-extension buffer) ".html"))))))
-
-(bind-key "C-c o h" 'my/view-open-html)
+  (my/open-file-alternate-extension "html"))
+(bind-key "C-c o h" 'my/open-markdown-output-html)
+(defun my/open-markdown-output-pdf ()
+  (interactive)
+  (my/open-file-alternate-extension "pdf"))
+(bind-key "C-c o p" 'my/open-markdown-output-pdf)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; External Packages ;;;;;
