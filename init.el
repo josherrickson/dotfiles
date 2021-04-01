@@ -292,6 +292,28 @@ buffer is not visiting a file."
                          (ido-read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
+;; Open current PDF version of markdown file
+(defun my/view-open-pdf ()
+  "Open the pdf verion of the current file, if it is a markdown or Rmarkdown file"
+  (interactive)
+  (let ((buffer (buffer-file-name)))
+    (if (member (file-name-extension buffer) '("md" "Rmd"))
+        (shell-command (concat "open "
+                               (concat (file-name-sans-extension buffer) ".pdf"))))))
+
+(bind-key "C-c o p" 'my/view-open-pdf)
+
+;; Open current HTML version of markdown file
+(defun my/view-open-html ()
+  "Open the html verion of the current file, if it is a markdown or Rmarkdown file"
+  (interactive)
+  (let ((buffer (buffer-file-name)))
+    (if (member (file-name-extension buffer) '("md" "Rmd"))
+        (shell-command (concat "open "
+                               (concat (file-name-sans-extension buffer) ".html"))))))
+
+(bind-key "C-c o h" 'my/view-open-html)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; External Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
