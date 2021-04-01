@@ -292,16 +292,16 @@ buffer is not visiting a file."
                          (ido-read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
-;; Open current PDF version of markdown file
+;; Opens a file which has the current buffer name, but a different extension
 (defun my/open-file-alternate-extension (extension)
-  "Open the pdf verion of the current file, if it is a markdown or Rmarkdown file"
+  "Opens the file represented by the current buffer with the new extension.
+
+Useful on md/Rmd files to open their compiled pdf or html versions."
   (interactive)
   ;; If `extension` has a proceeding period, remove it.
   (replace-regexp-in-string "$\." "$" extension)
-  (let ((buffer (buffer-file-name)))
-    (if (member (file-name-extension buffer) '("md" "Rmd"))
-        (shell-command (concat "open "
-                               (concat (file-name-sans-extension buffer) "." extension))))))
+  (shell-command
+   (concat "open " (file-name-sans-extension (buffer-file-name)) "." extension)))
 
 (defun my/open-markdown-output-html ()
   (interactive)
