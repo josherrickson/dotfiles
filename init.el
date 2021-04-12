@@ -365,8 +365,8 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :ensure t
   :defer t
   :init
-  :mode (".md" . poly-markdown-mode)
-  :mode (".Rmd" . poly-markdown-mode)
+  :mode ("\\.md$" . poly-markdown-mode)
+  :mode ("\\.Rmd$" . poly-markdown-mode)
   :config
   ;; Highlight latex math snippets
   (setq markdown-enable-math t))
