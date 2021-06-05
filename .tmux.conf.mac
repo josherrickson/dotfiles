@@ -15,6 +15,9 @@ bind - split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
 
+bind e resize-pane -U 10
+bind E resize-pane -D 10
+
 # Command to open new pane in current path
 bind v new-window -c "#{pane_current_path}"
 
