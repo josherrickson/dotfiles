@@ -12,7 +12,7 @@ set -xg EDITOR emacs
 # in iTerm2 has proper $TERM.)
 set -xg TERM xterm-256color
 
-set -xg PATH /opt/homebrew/bin $PATH /Users/josh/.local/bin
+set -xg PATH /opt/homebrew/bin $PATH /Users/josh/.local/bin ~/.cargo/bin
 
 # Color for man
 set -xU LESS_TERMCAP_md (printf "\e[01;31m")
