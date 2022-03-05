@@ -440,20 +440,6 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
 
-;; Git access inside emacs
-(use-package magit
-  :ensure t
-  :init
-  ;; Binding this in init and using defer ensures that
-  ;; a) magit is only loaded on demand (which speeds up emacs startup)
-  ;; b) makes C-x g work even if magit-status not loaded (so calling
-  ;; C-x g loads magit if needed).
-  (bind-key "C-x g" 'magit-status)
-  :defer t
-  :config
-  ;; Give timing information in *Messages* for debugging slowness
-  (setq magit-refresh-verbose t))
-
 ;; Mode for fishshell scripts
 (use-package fish-mode
   :ensure t
