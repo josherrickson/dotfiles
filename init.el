@@ -462,6 +462,10 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
         beacon-blink-delay .5
         beacon-color 0))
 
+(use-package yaml-mode
+  :ensure t
+  :defer t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
