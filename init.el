@@ -72,9 +72,10 @@
   :bind (("C-c C-m" . (lambda () (interactive)
                         (compile compile-command)))
          ("C-x C-m C-m" . compile))
+  :bind ("C-c c" . comment-or-uncomment-region)
   :config
-;; Variables which are `buffer-local` (check with 5th line of
-;; C-h v <varname>) need setq-default, otherwise setq is fine.
+;; Variables which are `buffer-local` (check with C-h v <varname>) need
+;; setq-default, otherwise setq is fine.
   (setq-default
    tab-width 2                           ;; tab width to 2 spaces
    indent-tabs-mode nil                  ;; spaces instead of tabs
