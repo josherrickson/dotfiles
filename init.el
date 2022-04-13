@@ -130,6 +130,12 @@
   (fset 'yes-or-no-p 'y-or-n-p)
 )
 
+;; Tweak how paragraphs are defined so fill-paragraph (M-q) beahves more as
+;; desired.
+(use-package paragraphs
+  :defer t
+  :config
+  (setq paragraph-separate (concat paragraph-separate "\|^===")))
 
 ;; Provides access to recently opened files
 (use-package recentf
