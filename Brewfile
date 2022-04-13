@@ -41,6 +41,7 @@ cask "ripcord"
 cask "rstudio"
 cask "scroll-reverser"
 cask "skim"
+cask "yacreader"
 
 mas "1Blocker", id: 1107421413
 mas "1Password 7", id: 1333542190
