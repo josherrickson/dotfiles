@@ -43,9 +43,11 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-;; Load color theme
-(load-theme 'tsdh-dark t)  ;; The 't' says not to security check
-
+(use-package gruvbox-theme 
+  :ensure t
+  :load-path "themes"
+  :config
+  (load-theme 'gruvbox-dark-soft t))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -255,14 +257,6 @@ to the true beginning of the line (before space.)"
   (interactive "r\nsAlign regexp: ")
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
-
-;; https://stackoverflow.com/a/25792294
-(defun my/new-empty-frame ()
-  "Open a new frame with a buffer named untitled<N>. The buffer
-is not associated with a file."
-  (interactive)
-  (switch-to-buffer-other-frame (generate-new-buffer "untitled")))
-(global-set-key (kbd "C-C n") 'my/new-empty-frame)
 
 ;; Inserts stata do chunk
 (defun my/insert-stata-dyndoc-chucnk ()
