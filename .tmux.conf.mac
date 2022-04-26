@@ -22,7 +22,7 @@ bind E resize-pane -D 10
 bind v new-window -c "#{pane_current_path}"
 
 # reload config file (change file location to your the tmux.conf you want to use)
-bind r source-file ~/.tmux.conf \; display "Reloaded!"
+bind r source-file ~/.tmux.conf \
 
 # Enable mouse mode (tmux 2.1 and above)
 # https://stackoverflow.com/a/40902312/905101
@@ -52,18 +52,55 @@ set -g clock-mode-style 12
 # Re-number panes after closing.
 set-option -g renumber-windows on
 
-# THEME
-set -g status-position top
-set -g status-bg black
-set -g status-fg white
-#set -g window-status-current-bg green
-#set -g window-status-current-fg black
-#set -g window-status-current-attr bold
-set -g window-status-current-style bg=green,fg=black,bold
-set -g status-left-length 30
-set -g status-left "#[fg=yellow][#S] #[default]"
-set -g status-right '#(~/.tmux-scripts/battery.sh) #[fg=white] %b %d %l:%M %p#[default]'
 
-# Pane title is directory:command
-set -g automatic-rename-format '#{b:pane_current_command}:#{b:pane_current_path}'
+
+## COLORSCHEME: gruvbox dark (medium)
+set-option -g status "on"
+set -g status-position top
+
+# default statusbar color
+set-option -g status-style bg=colour239,fg=colour223 # bg=bg1, fg=fg1
+
+# default window title colors
+set-window-option -g window-status-style bg=colour214,fg=colour237 # bg=yellow, fg=bg1
+
+# default window with an activity alert
+set-window-option -g window-status-activity-style bg=colour237,fg=colour248 # bg=bg1, fg=fg3
+
+# active window title colors
+set-window-option -g window-status-current-style bg=red,fg=colour237 # fg=bg1
+
+# pane border
+set-option -g pane-active-border-style fg=colour250 #fg2
+set-option -g pane-border-style fg=colour237 #bg1
+
+# message infos
+set-option -g message-style bg=colour239,fg=colour223 # bg=bg2, fg=fg1
+
+# writing commands inactive
+set-option -g message-command-style bg=colour239,fg=colour223 # bg=fg3, fg=bg1
+
+# pane number display
+set-option -g display-panes-active-colour colour250 #fg2
+set-option -g display-panes-colour colour237 #bg1
+
+# clock
+set-window-option -g clock-mode-colour colour109 #blue
+
+# bell
+set-window-option -g window-status-bell-style bg=colour167,fg=colour235 # bg=red, fg=bg
+
+## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
+set-option -g status-justify "left"
+set-option -g status-left-style none
+set-option -g status-left-length "80"
+set-option -g status-right-style none
+set-option -g status-right-length "80"
+set-window-option -g window-status-separator ""
+
+set -g status-left "#[bg=colour239,fg=colour248,bold][#S] "
+set -g status-right '#[bg=colour239,fg=colour248,bold] #(~/.tmux-scripts/battery.sh) %b %d %l:%M %p#[default]'
 set -g status-interval 1
+
+set-window-option -g window-status-current-format "#[bg=colour214,fg=colour239,bold] #I:#W#F "
+set-window-option -g window-status-format "#[bg=colour239,fg=colour223,nobold] #I:#W#F "
