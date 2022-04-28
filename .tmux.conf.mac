@@ -99,7 +99,7 @@ set-option -g status-right-length "80"
 set-window-option -g window-status-separator ""
 
 set -g status-left "#[bg=colour239,fg=colour248,bold][#S] "
-set -g status-right '#[bg=colour239,fg=colour248,bold] #(~/.tmux-scripts/battery.sh) %b %d %l:%M %p#[default]'
+set -g status-right '#[bg=colour239,fg=colour248,bold] #(~/.tmux-scripts/battery.sh)#[bg=colour239,fg=colour248,bold] %b %d %l:%M %p#[default]'
 
 set-window-option -g window-status-current-format "#[bg=colour214,fg=colour239,bold] #I:#{b:pane_current_command}:#{b:pane_current_path}#F "
 set-window-option -g window-status-format "#[bg=colour239,fg=colour223,nobold] #I:#{b:pane_current_command}:#{b:pane_current_path}#F "
