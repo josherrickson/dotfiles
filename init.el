@@ -43,7 +43,7 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-(use-package gruvbox-theme 
+(use-package gruvbox-theme
   :ensure t
   :load-path "themes"
   :config
@@ -317,16 +317,19 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
 ;;;;; External Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Using :diminish in use-packge hides minor-modes from mode line
+;; Using :diminish in use-package hides minor-modes from mode line
 (use-package diminish
   :ensure t)
 
 ;; Jump to a specified location. Replaces ace-jump-mode
 (use-package avy
   :ensure t
-  :bind (("M-s" . avy-goto-word-1))
+  :bind (("M-s" . avy-goto-char-2)) ;; enter two characters, not necessarily at
+                                    ;; start of work
   :config
-  (setq avy-background t)) ;; gray text other then matches
+  (setq avy-background t) ;; gray text other then matches
+  ;; numbers only in hints
+  (setq avy-keys (nconc (number-sequence ?1 ?9) '(?0))))
 
 
 ;; Selecting and editing repeated words
@@ -463,6 +466,7 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
         beacon-blink-delay .5
         beacon-color 0))
 
+;; Browsing yaml files
 (use-package yaml-mode
   :ensure t
   :defer t)
