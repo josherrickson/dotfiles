@@ -223,6 +223,18 @@
 (when (equal system-type 'darwin)
   (setq interprogram-cut-function 'my/copy-to-clipboard))
 
+;; https://www.reddit.com/r/emacs/comments/u2lf9t/weekly_tips_tricks_c_thread/i4n9aoa/?context=1
+;; Greys out any files in .gitignore
+(defun dired-dim-git-ignores ()
+  "Dim out .gitignore contents"
+  (when-let ((_ (require 'vc)) (ignores
+                                (vc-default-ignore-completion-table
+                                 'git ".gitignore"))
+             (exts (make-local-variable
+                    'completion-ignored-extensions)))
+    (dolist (item ignores) (add-to-list exts item))))
+(add-hook 'dired-mode-hook #'dired-dim-git-ignores)
+
 ;;;;; Interactive functions
 
 ;; Select the current word.
