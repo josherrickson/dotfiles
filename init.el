@@ -128,6 +128,11 @@
   (line-number-mode                 t ) ;; cursor position line ...
   (column-number-mode               t ) ;; ... and column
 
+  ;; Add a vertical line at fill-column
+  (global-display-fill-column-indicator-mode t)
+  ;; Control how visible it is
+  (set-face-attribute 'fill-column-indicator nil :foreground "grey50")
+
   ;; 'y or n' instead of 'yes or no'
   (fset 'yes-or-no-p 'y-or-n-p)
 )
