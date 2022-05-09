@@ -488,6 +488,13 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :ensure t
   :defer t)
 
+(use-package helpful
+  :ensure t
+  :defer t
+  :bind (("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
