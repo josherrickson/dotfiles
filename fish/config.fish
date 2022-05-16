@@ -28,3 +28,7 @@ export LESSOPEN="| highlight %s --out-format xterm256 --force"
 
 # Syncs dircolors with LS_COLOR for treex
 eval (gdircolors -c)
+
+# I prefer alt-p for previous command
+bind \ep up-or-search
+bind \eP __fish_paginate
