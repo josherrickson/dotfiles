@@ -11,6 +11,13 @@
 
 if (interactive()) {
   suppressMessages(require(devtools))
+  yesno <- function(...) {
+    cat(paste0(..., collapse = ""))
+    # For whatever reason, devtools:::yesno returns `TRUE` if you select a No
+    # option, and `FALSE` if you select a Yes option
+    utils::menu(c("Yes", "No")) != 1
+  }
+  utils::assignInNamespace("yesno", yesno, "devtools")
 }
 suppressMessages(require(rlogitfunction))
 
