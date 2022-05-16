@@ -488,6 +488,7 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :ensure t
   :defer t)
 
+;; Better help files
 (use-package helpful
   :ensure t
   :defer t
