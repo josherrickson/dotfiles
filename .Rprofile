@@ -18,6 +18,7 @@ if (interactive()) {
     utils::menu(c("Yes", "No")) != 1
   }
   utils::assignInNamespace("yesno", yesno, "devtools")
+  rm(yesno)
 }
 suppressMessages(require(rlogitfunction))
 
