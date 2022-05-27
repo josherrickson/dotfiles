@@ -496,6 +496,11 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)))
 
+;; when 3+ windows, faster movement between them
+(use-package ace-window
+  :ensure t
+  :defer t
+  :bind (("C-x o" . ace-window)))
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
