@@ -363,6 +363,16 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
 (use-package ess
   :ensure t
   :defer t
+  :init
+  ;; Fixes a bug where tidyverse output (often errors) (I think coming from
+  ;; package https://github.com/r-lib/cli), causes the R window prints only grey
+  ;; text. This fix is from https://github.com/emacs-ess/ESS/issues/1193,
+  ;; specifically commit
+  ;; https://github.com/Fuco1/.emacs.d/commit/ff6bec53c5c61262c32f43c238171c599f747e55.
+  ;; This should be removed once this functionality is folded into ESS.
+  (defun my-inferior-ess-init ()
+    (setq-local ansi-color-for-comint-mode 'filter))
+  (add-hook 'inferior-ess-mode-hook 'my-inferior-ess-init)
   :config
   (setq ess-ask-for-ess-directory nil        ;; just run R wherever
                                              ;; the file lives
@@ -501,6 +511,7 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :ensure t
   :defer t
   :bind (("C-x o" . ace-window)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
