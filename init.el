@@ -48,6 +48,7 @@
   :load-path "themes"
   :config
   (load-theme 'gruvbox-dark-soft t))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -139,10 +140,6 @@
 
 ;; Tweak how paragraphs are defined so fill-paragraph (M-q) beahves more as
 ;; desired.
-(use-package paragraphs
-  :defer t
-  :config
-  (setq paragraph-separate (concat paragraph-separate "\|^===")))
 
 ;; Provides access to recently opened files
 (use-package recentf
