@@ -188,3 +188,7 @@ export HOMEBREW_NO_INSTALL_CLEANUP=0
 
 source ~/.aliases
 #source ~/.aliases-private
+
+# zsh-syntax-hightlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting/
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
