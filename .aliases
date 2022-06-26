@@ -34,6 +34,8 @@ alias install_R_deps='bash ~/.bash-scripts/install_R_deps.sh'
 
 alias tree="tree -C"
 
+alias ytdl="yt-dlp -f bestvideo+bestaudio --write-sub --write-auto-sub --sub-format srt/best --sub-lang en --embed-subs"
+
 ###############################
 ##### OS Specific aliases #####
 ###############################
