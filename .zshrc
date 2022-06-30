@@ -197,10 +197,22 @@ export HOMEBREW_NO_INSTALL_CLEANUP=0
 source ~/.aliases
 #source ~/.aliases-private
 
+# Homewbrew stores things in different locations on Intel/Arm
+
 # zsh-syntax-hightlighting
 # https://github.com/zsh-users/zsh-syntax-highlighting/
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Install via homebrew
+if [[ $(uname -m) == 'arm64' ]]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ $(uname -m) == 'x86_64' ]]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # zsh-autosuggestions
 # https://github.com/zsh-users/zsh-autosuggestions
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Install via homebrew
+if [[ $(uname -m) == 'arm64' ]]; then
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ $(uname -m) == 'x86_64' ]]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
