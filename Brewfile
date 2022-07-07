@@ -50,3 +50,7 @@ mas "1Password 7", id: 1333542190
 mas "NextDNS", id: 1464122853
 mas "SmileAllDay", id: 1180442868
 mas "Hush for Safari", id: 1544743900
+mas "Vinegar", id: 1591303229
+mas "LimeChat", id: 414030210
+mas "StopTheMadness", id: 1376402589
+mas "Dark Reader for Safari", id: 1438243180
