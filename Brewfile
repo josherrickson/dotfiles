@@ -31,6 +31,7 @@ brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
+cash "plex-media-server"
 cask "calibre"
 cask "disk-inventory-x"
 cask "firefox-beta"
@@ -47,12 +48,13 @@ cask "rstudio"
 cask "scroll-reverser"
 cask "skim"
 cask "yacreader"
+cask "zoom"
 
 mas "1Blocker", id: 1107421413
+mas "Dark Reader for Safari", id: 1438243180
+mas "Hush for Safari", id: 1544743900
+mas "LimeChat", id: 414030210
 mas "NextDNS", id: 1464122853
 mas "SmileAllDay", id: 1180442868
-mas "Hush for Safari", id: 1544743900
-mas "Vinegar", id: 1591303229
-mas "LimeChat", id: 414030210
 mas "StopTheMadness", id: 1376402589
-mas "Dark Reader for Safari", id: 1438243180
+mas "Vinegar", id: 1591303229
