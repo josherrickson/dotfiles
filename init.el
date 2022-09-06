@@ -173,7 +173,7 @@
   ;; `coreutils` via homebrew first.
   (when (string= system-type "darwin")
     (setq dired-use-ls-dired t
-          insert-directory-program "/usr/local/bin/gls"))
+          insert-directory-program "/opt/homebrew/bin/gls"))
   ;; dired creates a new buffer for each directory. This encourages
   ;; dired to reuse the same buffer.
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
