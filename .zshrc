@@ -162,8 +162,7 @@ function font_test () {
 ##### Misc #####
 ################
 
-export EDITOR="emacs -nw"      # for short edits, the terminal is
-                               # faster
+export EDITOR="emacs"
 setopt EXTENDED_GLOB           # more options for matching
 setopt nobeep                  # no beeping!
 setopt longlistjobs            # gives more information when
