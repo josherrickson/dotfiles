@@ -4,6 +4,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 
 brew "aspell"
+brew "cmake"
 brew "coreutils"
 brew "diffr"
 brew "dos2unix"
