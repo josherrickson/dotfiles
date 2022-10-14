@@ -117,7 +117,7 @@
   (when (equal system-type 'darwin)
     (defvar ispell-program-name)
     (defvar ispell-extra-args)
-    (setq ispell-program-name "/usr/local/bin/aspell")
+    (setq ispell-program-name "/opt/homebrew/bin/aspell")
     ;; ultra is faster but less accurate
     (setq ispell-extra-args '("--sug-mode=ultra")))
 
