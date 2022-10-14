@@ -21,6 +21,7 @@ if (interactive()) {
   rm(yesno)
 }
 suppressMessages(require(rlogitfunction))
+suppressMessages(drat::addRepo("rrelaxiv", "https://errickson.net/rrelaxiv"))
 
 
 # Stick these in their own environment so that rm(list=ls()) doesn't
