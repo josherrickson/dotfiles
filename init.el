@@ -16,6 +16,10 @@
                               (time-subtract after-init-time
                                              before-init-time))) )))
 
+;; Don't bother trying to dynamically resize
+;; https://tony-zorman.com/posts/2022-10-22-emacs-potpourri.html
+(setq frame-inhibit-implied-resize t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Package Management ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
