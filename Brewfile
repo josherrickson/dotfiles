@@ -34,7 +34,6 @@ brew "zsh-syntax-highlighting"
 cask "calibre"
 cask "disk-inventory-x"
 cask "firefox-beta"
-cask "gpower"
 cask "iterm2"
 cask "keepingyouawake"
 cask "mailtrackerblocker"
@@ -59,3 +58,4 @@ mas "NextDNS", id: 1464122853
 mas "SmileAllDay", id: 1180442868
 mas "StopTheMadness", id: 1376402589
 mas "Vinegar", id: 1591303229
+mas "Wipr", id: 1320666476
