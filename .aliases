@@ -36,6 +36,8 @@ alias tree="tree -C"
 
 alias ytdl="yt-dlp -f bestvideo+bestaudio --write-sub --write-auto-sub --sub-format srt/best --sub-lang en --embed-subs"
 
+alias nu="nu --config '.config/nushell/config.nu' --env-config '.config/nushell/env.nu'"
+
 ###############################
 ##### OS Specific aliases #####
 ###############################
