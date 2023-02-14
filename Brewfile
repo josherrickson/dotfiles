@@ -57,6 +57,7 @@ mas "Dark Reader for Safari", id: 1438243180
 mas "Hush for Safari", id: 1544743900
 mas "LimeChat", id: 414030210
 mas "NextDNS", id: 1464122853
+mas "Simple Comic", id: 1497435571
 mas "SmileAllDay", id: 1180442868
 mas "StopTheMadness", id: 1376402589
 mas "Vinegar", id: 1591303229
