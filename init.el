@@ -173,6 +173,7 @@
 ;; File listings
 (use-package dired
   :config
+  (setq dired-recursive-deletes 'always) ;; Prompt only once for dired delete
   ;; On OSX, ls isn't gnu-ls so causes some issues. Install
   ;; `coreutils` via homebrew first.
   (when (string= system-type "darwin")
