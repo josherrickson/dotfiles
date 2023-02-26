@@ -179,6 +179,12 @@
   (when (string= system-type "darwin")
     (setq dired-use-ls-dired t
           insert-directory-program "/opt/homebrew/bin/gls"))
+  ;; .cbz files are just renamed .zip files
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (require 'dired-aux) ;; defines dired-compress-files-alist
+              (add-to-list 'dired-compress-files-alist
+                           '("\\.cbz\\'" . "zip %o -r --filesync %i"))))
   ;; dired creates a new buffer for each directory. This encourages
   ;; dired to reuse the same buffer.
   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
