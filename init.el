@@ -283,8 +283,19 @@ to the true beginning of the line (before space.)"
   (align-regexp start end
                 (concat "\\(\\s-*\\)" regexp) 1 1 t))
 
+;; Inserts R chunk
+(defun my/insert-R-chunk ()
+  "Inserts the tags for a R dyndoc chunk."
+  (interactive)
+  (insert "```{r}\n")
+  (save-excursion
+    (insert "\n```")))
+(add-hook 'markdown-mode-hook
+          (lambda () (local-set-key (kbd "C-c C-s r")
+                                    'my/insert-R-chunk)))
+
 ;; Inserts stata do chunk
-(defun my/insert-stata-dyndoc-chucnk ()
+(defun my/insert-stata-dyndoc-chunk ()
   "Inserts the tags for a Stata dyndoc chunk."
   (interactive)
   (insert "~~~~\n<<dd_do>>\n")
@@ -292,7 +303,7 @@ to the true beginning of the line (before space.)"
     (insert "\n<</dd_do>>\n~~~~")))
 (add-hook 'markdown-mode-hook
           (lambda () (local-set-key (kbd "C-c C-s d")
-                                    'my/insert-stata-dyndoc-chucnk)))
+                                    'my/insert-stata-dyndoc-chunk)))
 
 ;; The inverse of fill-paragraph,
 ;; http://pages.sachachua.com/.emacs.d/Sacha.html#org3dd06d8
