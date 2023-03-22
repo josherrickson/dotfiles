@@ -215,3 +215,6 @@ if [[ $(uname -m) == 'arm64' ]]; then
 elif [[ $(uname -m) == 'x86_64' ]]; then
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+
+# Enable fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
