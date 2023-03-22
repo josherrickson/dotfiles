@@ -431,6 +431,12 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   ;; Highlight latex math snippets
   (setq markdown-enable-math t))
 
+(use-package quarto-mode
+  :ensure t
+  :defer t
+  :init
+  :mode ("\\.qmd$" . poly-quarto-mode))
+
 ;; Latex mode and compilation
 (use-package auctex
   :ensure t
