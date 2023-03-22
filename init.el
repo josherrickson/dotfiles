@@ -305,6 +305,16 @@ to the true beginning of the line (before space.)"
           (lambda () (local-set-key (kbd "C-c C-s d")
                                     'my/insert-stata-dyndoc-chunk)))
 
+;; When given a list of numbers like 1, 2, 3, ..., 10, 11, 12, ..., 100, 101,
+;; this will pad the single digits with 00 and the double digits with 0
+(defun my/pad_numeric_zeroes ()
+  "Pads a region with up to 2 \"0\"s to ensure a total length of 3"
+  (interactive)
+  (setq-local len (- (region-end) (region-beginning)))
+  (goto-char (region-beginning))
+  (cond ((eq len 2) (insert "0"))
+        ((eq len 1) (insert "00"))))
+
 ;; The inverse of fill-paragraph,
 ;; http://pages.sachachua.com/.emacs.d/Sacha.html#org3dd06d8
 (defun my/unfill-paragraph (&optional region)
