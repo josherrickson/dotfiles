@@ -10,18 +10,22 @@
 }
 
 if (interactive()) {
-  suppressMessages(require(devtools))
-  yesno <- function(...) {
-    cat(paste0(..., collapse = ""))
-    # For whatever reason, devtools:::yesno returns `TRUE` if you select a No
-    # option, and `FALSE` if you select a Yes option
-    utils::menu(c("Yes", "No")) != 1
+  if (require(devtools, quietly = TRUE)) {
+    yesno <- function(...) {
+      cat(paste0(..., collapse = ""))
+      # For whatever reason, devtools:::yesno returns `TRUE` if you select a No
+      # option, and `FALSE` if you select a Yes option
+      utils::menu(c("Yes", "No")) != 1
+    }
+    utils::assignInNamespace("yesno", yesno, "devtools")
+    rm(yesno)
   }
-  utils::assignInNamespace("yesno", yesno, "devtools")
-  rm(yesno)
 }
-suppressMessages(require(rlogitfunction))
-suppressMessages(drat::addRepo("rrelaxiv", "https://errickson.net/rrelaxiv"))
+
+# Add rrelaxiv to Drat's repos, if drat is installed
+if(require(drat, quietly = TRUE)) {
+  suppressMessages(drat::addRepo("rrelaxiv", "https://errickson.net/rrelaxiv"))
+}
 
 
 # Stick these in their own environment so that rm(list=ls()) doesn't
@@ -45,6 +49,12 @@ attach(list(
 
       x[,isnum] <- round(x[,isnum], digits=digits, ...)
       return(x)
+    },
+    logit = function (x) {
+      log(x/(1 - x))
+    },
+    invlogit = function (x) {
+      1/(1 + exp(-x))
     }),
     name = 'MyFunctions'
     )
