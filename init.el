@@ -47,11 +47,7 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-(use-package gruvbox-theme
-  :ensure t
-  :load-path "themes"
-  :config
-  (load-theme 'gruvbox-dark-soft t))
+(load-theme 'dracula t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
