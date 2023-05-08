@@ -537,7 +537,6 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
