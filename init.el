@@ -47,7 +47,11 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-(load-theme 'dracula t)
+;; dracula-theme
+(use-package dracula-theme
+  :ensure t
+  :init
+  (load-theme 'dracula t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
@@ -104,9 +108,9 @@
     read-buffer-completion-ignore-case t ;; don't worry about case in
                                          ;; minibuffer
     read-file-name-completion-ignore-case t
-    electric-pair-mode nil)              ;; Don't auto-add closing
+    electric-pair-mode nil               ;; Don't auto-add closing
                                          ;; parens
-
+    compilation-scroll-output t)         ;; compilation buffer scrolls
   ;; Remove trailing whtiespace and lines upon saving
   (add-hook 'before-save-hook (lambda ()
                                 (delete-trailing-whitespace)))
@@ -501,11 +505,6 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   (setq swiper-action-recenter t) ;; after returning, center at line
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
-
-;; Mode for fishshell scripts
-(use-package fish-mode
-  :ensure t
-  :defer t)
 
 ;; GUI Emacs doesn't inherit from terminal environment variables (e.g.
 ;; PATH). This fixes it.
