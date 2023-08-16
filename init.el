@@ -122,7 +122,7 @@
   (transient-mark-mode              t ) ;; visual highlighting
   (delete-selection-mode            t ) ;; overwrite selected text
   (size-indication-mode             t ) ;; file size on mode line
-  (line-number-mode                 t ) ;; cursor position line ...
+  (global-display-line-numbers-mode 1 ) ;; cursor position line ...
   (column-number-mode               t ) ;; ... and column
 
   ;; Add a vertical line at fill-column
