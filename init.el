@@ -191,6 +191,9 @@
   (define-key dired-mode-map (kbd "^") (lambda ()
                                          (interactive)
                                          (find-alternate-file "..")))
+  ;; Switch from dired-do-find-regexp-and-replace to
+  ;; dired-do-query-replace-regexp
+  (define-key dired-mode-map (kbd "Q") 'dired-do-query-replace-regexp)
   (put 'dired-find-alternate-file 'disabled nil)
   ;; Open files in dired mode using 'open'
   (eval-after-load "dired"
