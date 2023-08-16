@@ -117,15 +117,6 @@
                                 (delete-trailing-whitespace)))
   (setq delete-trailing-lines t)
 
-  ;; Needed when installing aspell by homebrew (may work without it if
-  ;; you install to /usr/bin/aspell)
-  (when (equal system-type 'darwin)
-    (defvar ispell-program-name)
-    (defvar ispell-extra-args)
-    (setq ispell-program-name "/opt/homebrew/bin/aspell")
-    ;; ultra is faster but less accurate
-    (setq ispell-extra-args '("--sug-mode=ultra")))
-
   ;; Modes
   (global-auto-revert-mode          t ) ;; revert buffers when changed
   (transient-mark-mode              t ) ;; visual highlighting
@@ -220,6 +211,59 @@
   (show-paren-mode t)
   :config
   (setq show-paren-delay 0)) ;; don't delay showing parens
+
+(use-package ispell
+  :config
+  ;; Needed when installing aspell by homebrew (may work without it if
+  ;; you install to /usr/bin/aspell)
+  (when (equal system-type 'darwin)
+    (defvar ispell-program-name)
+    (defvar ispell-extra-args)
+    (setq ispell-program-name "/opt/homebrew/bin/aspell")
+    ;; ultra is faster but less accurate
+    (setq ispell-extra-args '("--sug-mode=ultra")))
+  ;; This redefines the function to place the corrections below instead of above.
+  ;; Doing this on emacs 29.1, if emacs updates, this may need to change. Do by
+  ;; running `C-h f ispell-display-buffer` and copying the code.
+  (defun ispell-display-buffer (buffer)
+    "Show BUFFER in new window belowselected one.
+     Also position fit window to BUFFER and select it."
+    (let* ((unsplittable
+	          (cdr (assq 'unsplittable (frame-parameters (selected-frame)))))
+	         (window
+	          (or (get-buffer-window buffer)
+	              (and unsplittable
+		                 ;; If frame is unsplittable, temporarily disable that...
+		                 (let ((frame (selected-frame)))
+		                   (modify-frame-parameters frame '((unsplittable . nil)))
+		                   (prog1
+			                     (condition-case nil
+			                         (split-window
+                                ;; Chose the last of a window group, since
+                                ;; otherwise, the lowering of another window's
+                                ;; TL corner would cause the logical order of
+                                ;; the windows to be changed.
+			                          (car (last (selected-window-group)))
+                                (- ispell-choices-win-default-height) 'below)
+			                       (error nil))
+		                     (modify-frame-parameters frame '((unsplittable . t))))))
+	              (and (not unsplittable)
+		                 (condition-case nil
+		                     (split-window
+                          ;; See comment above.
+			                    (car (last (selected-window-group)))
+                          (- ispell-choices-win-default-height) 'below)
+		                   (error nil)))
+	              (display-buffer buffer))))
+      (if (not window)
+	        (error "Couldn't make window for *Choices*")
+        (select-window window)
+        (set-window-buffer window buffer)
+        (set-window-point window (point-min))
+        (fit-window-to-buffer window nil nil nil nil t))))
+  )
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Functions ;;;;;
