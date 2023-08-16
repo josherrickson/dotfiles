@@ -67,7 +67,7 @@
   ;; Move from zap-to-char to zap-up-to-char (don't delete char itself)
   :bind ("M-z"      . zap-up-to-char)
   ;; Rotates between just-one-space, no-space, original spacing.
-  :bind ("M-SPC"    . cycle-spacing)
+  :bind ("M-SPC"    . cycle-spacing) ;; default in 29.1
   ;; Switch capitalization to dwim (Do What I mean). If a region is
   ;; selected, call e.g. upcase-region, otherwise call upcase-word.
   :bind (("M-u"     . upcase-dwim)
