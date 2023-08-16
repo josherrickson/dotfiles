@@ -475,6 +475,7 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :init
   :mode ("\\.md$" . poly-markdown-mode)
   :mode ("\\.Rmd$" . poly-markdown-mode)
+  :mode ("\\.dyndoc$" . poly-markdown-mode)
   :config
   ;; Highlight latex math snippets
   (setq markdown-enable-math t))
