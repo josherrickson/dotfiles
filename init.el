@@ -135,9 +135,6 @@
   (fset 'yes-or-no-p 'y-or-n-p)
 )
 
-;; Tweak how paragraphs are defined so fill-paragraph (M-q) beahves more as
-;; desired.
-
 ;; Provides access to recently opened files
 (use-package recentf
   :init
@@ -407,6 +404,18 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   (interactive)
   (my/open-file-alternate-extension "pdf"))
 (bind-key "C-c o p" 'my/open-markdown-output-pdf)
+
+;; Tweak how paragraphs are defined so fill-paragraph (M-q) beahves more as
+;; desired.
+;; https://emacs.stackexchange.com/a/78562
+(defun my-in-dd-display ()
+  "Don't break lines in Inline Stata Dynamic Tags."
+  (save-excursion
+    (save-match-data
+      (and (re-search-backward ">>\\|\\(<<dd_display:\\)"
+                               (line-beginning-position) t)
+       (match-beginning 1)))))
+(add-hook 'fill-nobreak-predicate #'my-in-dd-display)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; External Packages ;;;;;
