@@ -121,8 +121,7 @@
   (transient-mark-mode              t ) ;; visual highlighting
   (delete-selection-mode            t ) ;; overwrite selected text
   (size-indication-mode             t ) ;; file size on mode line
-  (global-display-line-numbers-mode 1 ) ;; cursor position line ...
-  (column-number-mode               t ) ;; ... and column
+  (column-number-mode               t ) ;; cusor column position
 
   ;; Add a vertical line at fill-column
   (global-display-fill-column-indicator-mode t)
@@ -199,8 +198,10 @@
   :init
   (global-display-line-numbers-mode t)
   :config
-   ;; don't shrink line-number space when looking at fewer digits
-  (setq display-line-numbers-grow-only t))
+  ;; don't shrink line-number space when looking at fewer digits
+  (setq display-line-numbers-grow-only t)
+  ;; Start with width-3 by default, only grow for 4 or more digits
+  (setq-default display-line-numbers-width 3))
 
 ;; Show matching parantheses
 (use-package paren
