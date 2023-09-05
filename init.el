@@ -30,8 +30,6 @@
                                  "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" .
                                  "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("org"   .
-                                 "https://orgmode.org/elpa/"))
 
 ;; Better organization of packages, and enables auto-installation
 ;; https://github.com/jwiegley/use-package
@@ -154,6 +152,7 @@
   (setq password-cache-expiry 3600))
 
 (use-package org
+  :pin gnu
   :defer t
   :mode (("\\.org$" . org-mode))
   :config
