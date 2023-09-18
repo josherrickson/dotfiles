@@ -23,9 +23,13 @@ if (interactive()) {
 }
 
 # Add rrelaxiv to Drat's repos, if drat is installed
-if(require(drat, quietly = TRUE)) {
+if (require(drat, quietly = TRUE)) {
   suppressMessages(drat::addRepo("rrelaxiv", "https://errickson.net/rrelaxiv"))
 }
+
+# Load grinch library for means
+# https://github.com/josherrickson/grinch
+require(grinch, quietly = TRUE)
 
 
 # Stick these in their own environment so that rm(list=ls()) doesn't
