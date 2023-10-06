@@ -45,11 +45,7 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-;; dracula-theme
-(use-package dracula-theme
-  :ensure t
-  :init
-  (load-theme 'dracula t))
+(load-theme 'leuven t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
