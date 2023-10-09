@@ -28,6 +28,4 @@ metaSendsEscape: true
 live_config_reload: true
 
 import:
-#  - ~/.config/alacritty/themes/themes/atom_one_light.yaml
-#  - ~/.config/alacritty/themes/themes/noctis-lux.yaml
   - ~/.config/alacritty/themes/themes/papercolor_light.yaml
