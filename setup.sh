@@ -49,6 +49,8 @@ lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
 [[ ! (-d ~/.emacs.d) ]] && mkdir ~/.emacs.d
 lns "$DIR"/init.el ~/.emacs.d/init.el
 lns "$DIR"/alacritty.yml ~/.config/alacritty/alacritty.yml
+mkdir -p ~/Library/Application\ Support/com.nuebling.mac-mouse-fix
+lns "$DIR"/mac-mouse-fix.plist ~/Library/Application\ Support/com.nuebling.mac-mouse-fix/config.plist
 lns "$DIR"/Brewfile ~/Brewfile
 echo "Run \`brew bundle install\` next."
 
