@@ -43,11 +43,13 @@ lns "$DIR"/.zshrc ~/.zshrc
 lns "$DIR"/.nanorc ~/.nanorc
 lns "$DIR"/.tmux-scripts ~/.tmux-scripts
 lns "$DIR"/.bash-scripts ~/.bash-scripts
+mkdir -p ~/.config
 lns "$DIR"/fish ~/.config/fish
 lns "$DIR"/.vimrc ~/.vimrc
 lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
-[[ ! (-d ~/.emacs.d) ]] && mkdir ~/.emacs.d
+mkdir -p ~/.emacs.d
 lns "$DIR"/init.el ~/.emacs.d/init.el
+mkdir -p ~/.config/alacritty/
 lns "$DIR"/alacritty.yml ~/.config/alacritty/alacritty.yml
 mkdir -p ~/Library/Application\ Support/com.nuebling.mac-mouse-fix
 lns "$DIR"/mac-mouse-fix.plist ~/Library/Application\ Support/com.nuebling.mac-mouse-fix/config.plist
