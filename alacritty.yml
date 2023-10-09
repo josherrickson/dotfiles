@@ -12,6 +12,9 @@ font:
 
   size: 15
 
+key_bindings:
+  - { key: Return, mods: Command, action: ToggleFullscreen }
+
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
