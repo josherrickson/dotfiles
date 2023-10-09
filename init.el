@@ -102,7 +102,7 @@
     scroll-conservatively 100            ;; one line scrolling
     read-buffer-completion-ignore-case t ;; don't worry about case in
                                          ;; minibuffer
-    package-install-upgrade-built-in t   ;; upgrade built-in packages
+    ;package-install-upgrade-built-in t   ;; upgrade built-in packages
     read-file-name-completion-ignore-case t
     electric-pair-mode nil               ;; Don't auto-add closing
                                          ;; parens
