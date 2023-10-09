@@ -45,7 +45,7 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-(load-theme 'leuven t)
+(load-theme 'flatui t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
