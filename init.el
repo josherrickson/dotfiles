@@ -45,7 +45,12 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-(load-theme 'flatui t)
+;; flatui theme
+
+(use-package flatui-theme
+  :ensure t
+  :init
+  (load-theme 'flatui t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
