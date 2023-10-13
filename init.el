@@ -588,6 +588,21 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :ensure t
   :defer t)
 
+;; These packages are all dependencies for helpful below, but need to be
+;; manually installed
+(use-package f
+  :ensure t
+  :defer t)
+(use-package s
+  :ensure t
+  :defer t)
+(use-package dash
+  :ensure t
+  :defer t)
+(use-package elisp-refs
+  :ensure t
+  :defer t)
+
 ;; Better help files
 (use-package helpful
   :ensure t
