@@ -429,7 +429,7 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
 ;; Jump to a specified location. Replaces ace-jump-mode
 (use-package avy
   :ensure t
-  :bind (("M-s" . avy-goto-char-2)) ;; enter two characters, not necessarily at
+  :bind (("M-s" . avy-goto-word-1)) ;; enter two characters, not necessarily at
                                     ;; start of work
   :config
   (setq avy-background t) ;; gray text other then matches
