@@ -9,27 +9,35 @@
   )
 }
 
-if (interactive()) {
-  if (require(devtools, quietly = TRUE)) {
+pkg <- utils::installed.packages()[, "Package"]
+
+# Better yesno function from devtools
+if (isTRUE("devtools" %in% pkg)) {
+  setHook(packageEvent("devtools", "onLoad"), {
     yesno <- function(...) {
       cat(paste0(..., collapse = ""))
-      # For whatever reason, devtools:::yesno returns `TRUE` if you select a No
-      # option, and `FALSE` if you select a Yes option
       utils::menu(c("Yes", "No")) != 1
     }
     utils::assignInNamespace("yesno", yesno, "devtools")
     rm(yesno)
-  }
+  })
 }
 
-# Add rrelaxiv to Drat's repos, if drat is installed
-if (require(drat, quietly = TRUE)) {
-  suppressMessages(drat::addRepo("rrelaxiv", "https://errickson.net/rrelaxiv"))
+# Add rrelaxiv to drat repos
+if (isTRUE("drat" %in% pkg)) {
+  setHook(packageEvent("drat", "onLoad"), {
+    drat::addRepo("rrelaxiv", "https://errickson.net/rrelaxiv")
+  })
 }
 
 # Load grinch library for means
 # https://github.com/josherrickson/grinch
-require(grinch, quietly = TRUE)
+if (isTRUE("grinch" %in% pkg)) {
+  require(grinch, quietly = TRUE)
+}
+
+rm(pkg)
+
 
 
 # Stick these in their own environment so that rm(list=ls()) doesn't
