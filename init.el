@@ -47,10 +47,17 @@
 
 ;; flatui theme
 
-(use-package flatui-theme
-  :ensure t
-  :init
-  (load-theme 'flatui t))
+(use-package solarized-theme
+   :ensure t
+   :init
+   (load-theme 'solarized-light t))
+
+;; (use-package catppuccin-theme
+;;   :ensure t
+;;   :init
+;;   (load-theme 'catppuccin t)
+;;   (setq catppuccin-flavor 'latte)
+;;   (catppuccin-reload))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;

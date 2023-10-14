@@ -28,4 +28,6 @@ metaSendsEscape: true
 live_config_reload: true
 
 import:
-  - ~/.config/alacritty/themes/themes/papercolor_light.yaml
+#  - ~/.config/alacritty/themes/themes/papercolor_light.yaml
+  - ~/.config/alacritty/themes/themes/solarized_light.yaml
+#  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml

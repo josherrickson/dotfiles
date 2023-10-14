@@ -3,6 +3,11 @@ set -g default-command "reattach-to-user-namespace -l $SHELL"
 # This respects the default shell. Use `chsh -s <path-to-shell>` to change.
 # Shell must be listed in /etc/shells
 
+# https://github.com/alacritty/alacritty/issues/109#issuecomment-440353106
+# This fixes coloring issues, specifically with emacs themes.
+set -g default-terminal 'screen-256color'
+set -ga terminal-overrides ',*256col*:Tc'
+
 # DO NOT CHANGE
 set-option -g default-shell /bin/bash
 # If this is not set to bash, then `pane_current_path` is always ~.
