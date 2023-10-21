@@ -48,7 +48,6 @@ cask "netnewswire"
 cask "paintbrush"
 cask "plex-media-server"
 cask "rectangle"
-#cask "ripcord"
 cask "rstudio"
 cask "screens-connect"
 cask "skim"
@@ -56,12 +55,10 @@ cask "yacreader"
 cask "zoom"
 
 mas "1Blocker", id: 1107421413
-mas "Dark Reader for Safari", id: 1438243180
 mas "Hush for Safari", id: 1544743900
 mas "LimeChat", id: 414030210
 mas "NextDNS", id: 1464122853
 mas "Simple Comic", id: 1497435571
-mas "SmileAllDay", id: 1180442868
 mas "StopTheMadness", id: 1376402589
 mas "Vinegar", id: 1591303229
 mas "Wipr", id: 1320666476
