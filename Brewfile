@@ -21,7 +21,7 @@ brew "mas"
 brew "mawk"
 brew "mpv"
 brew "pandoc"
-brew "r"
+#brew "r" # install manually, alongside https://github.com/r-lib/rig
 brew "reattach-to-user-namespace"
 brew "tectonic"
 brew "terminal-notifier"
