@@ -7,9 +7,10 @@
     dplyr.print_max = 1000#,
 #    browserNLdisabled = TRUE
   )
-  cat(paste0("Version: ", version$major, ".", version$minor, " ",
-             version$status, "\n"))
 }
+
+message(paste0("Version: ", version$major, ".",
+               version$minor, " ", version$status))
 
 pkg <- utils::installed.packages()[, "Package"]
 
