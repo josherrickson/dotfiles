@@ -194,7 +194,7 @@ export HOMEBREW_NO_INSTALL_CLEANUP=0
 #######################
 
 source ~/.aliases
-#source ~/.aliases-private
+source ~/.aliases-private
 
 # Homewbrew stores things in different locations on Intel/Arm
 

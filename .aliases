@@ -38,6 +38,8 @@ alias ytdl="yt-dlp -f bestvideo+bestaudio --write-auto-sub --sub-format srt/best
 
 alias nu="nu --config '.config/nushell/config.nu' --env-config '.config/nushell/env.nu'"
 
+alias coinflip="shuf -r -n 1 -e heads tails"
+
 ###############################
 ##### OS Specific aliases #####
 ###############################
