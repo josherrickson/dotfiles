@@ -193,8 +193,9 @@ export HOMEBREW_NO_INSTALL_CLEANUP=0
 ##### Other Files #####
 #######################
 
-source ~/.aliases
-source ~/.aliases-private
+[ -f ~/.aliases ] && source ~/.aliases
+[ -f ~/.aliases-private ] && source ~/.aliases-private
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Homewbrew stores things in different locations on Intel/Arm
 
@@ -202,19 +203,21 @@ source ~/.aliases-private
 # https://github.com/zsh-users/zsh-syntax-highlighting/
 # Install via homebrew
 if [[ $(uname -m) == 'arm64' ]]; then
-  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  zshsyntax=/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ $(uname -m) == 'x86_64' ]]; then
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  zshsyntax=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+[ -f $zshsyntax ] && source $zshsyntax
 
 # zsh-autosuggestions
 # https://github.com/zsh-users/zsh-autosuggestions
 # Install via homebrew
 if [[ $(uname -m) == 'arm64' ]]; then
-  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    zshautosuggest=/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ $(uname -m) == 'x86_64' ]]; then
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    zshautosuggest=/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
+[ -f $zshautosuggest ] && source $zshautosuggest
 
 # Enable fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

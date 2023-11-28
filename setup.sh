@@ -70,7 +70,7 @@ if [[ $ostype == 'Linux' ]]; then
     lns "$DIR"/i3config ~/.config/i3/config
     lns "$DIR"/i3status.conf ~/.config/i3/i3status.conf
 
-    lns "$DIR"/.tmux.conf.linux ~/.tmux.conf
+    lns "$DIR"/.tmux.conf.mac ~/.tmux.conf
 elif [[ $ostype == 'Darwin' ]]; then
     lns "$DIR"/.tmux.conf.mac ~/.tmux.conf
 fi
