@@ -195,7 +195,6 @@ export HOMEBREW_NO_INSTALL_CLEANUP=0
 
 [ -f ~/.aliases ] && source ~/.aliases
 [ -f ~/.aliases-private ] && source ~/.aliases-private
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Homewbrew stores things in different locations on Intel/Arm
 
