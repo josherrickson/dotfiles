@@ -218,6 +218,10 @@
   :config
   (setq show-paren-delay 0)) ;; don't delay showing parens
 
+(use-package js
+  :config
+  (setq js-indent-level 2))
+
 (use-package ispell
   :config
   ;; Needed when installing aspell by homebrew (may work without it if
@@ -617,6 +621,11 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
   :bind (("C-h f" . helpful-callable)
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)))
+
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
