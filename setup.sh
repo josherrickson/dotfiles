@@ -55,6 +55,7 @@ mkdir -p ~/Library/Application\ Support/com.nuebling.mac-mouse-fix
 lns "$DIR"/mac-mouse-fix.plist ~/Library/Application\ Support/com.nuebling.mac-mouse-fix/config.plist
 lns "$DIR"/Brewfile ~/Brewfile
 echo "Run \`brew bundle install\` next."
+lns "$DIR"/.eslintrc.js ~/.eslintrc.js
 
 
 if [[ $ostype == 'Linux' ]]; then
