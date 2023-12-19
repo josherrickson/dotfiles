@@ -274,7 +274,6 @@
   )
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Functions ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -428,6 +427,31 @@ Useful on md/Rmd files to open their compiled pdf or html versions."
                                (line-beginning-position) t)
        (match-beginning 1)))))
 (add-hook 'fill-nobreak-predicate #'my-in-dd-display)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;; <span> functions ;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my/wrap-text-with-span (val)
+  "Wrap the selected text with <span class=\"val\">...</span>.
+Place the cursor on the '>' in '</span>'."
+  (interactive)
+  (if (region-active-p)
+    (let ((beg (region-beginning))
+          (end (region-end)))
+      (goto-char end)
+      (insert "</span>")
+      (save-excursion
+        (goto-char beg)
+        (insert (format "<span class=\"%s\">" val))))))
+
+(add-hook 'mhtml-mode-hook
+       (lambda ()
+         (local-set-key (kbd "C-c C-g n") (lambda () (interactive) (my/wrap-text-with-span "numeric")))
+         (local-set-key (kbd "C-c C-g k") (lambda () (interactive) (my/wrap-text-with-span "keyword")))
+         (local-set-key (kbd "C-c C-g o") (lambda () (interactive) (my/wrap-text-with-span "operator")))
+         (local-set-key (kbd "C-c C-g c") (lambda () (interactive) (my/wrap-text-with-span "comment")))
+         (local-set-key (kbd "C-c C-g s") (lambda () (interactive) (my/wrap-text-with-span "string")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; External Packages ;;;;;
