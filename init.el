@@ -653,8 +653,8 @@ Place the cursor on the '>' in '</span>'."
 ;; html, js, and CSS files
 (use-package web-mode
   :mode (("\\.html?\\'" . web-mode)
-         ("\\.js?\\'" . web-mode)
-         ("\\.css?\\'" . web-mode))
+         ("\\.js?\\'" . web-mode))
+         ;("\\.css?\\'" . web-mode)) ;; I kinda like css-mode for css better
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 4)
