@@ -650,6 +650,7 @@ Place the cursor on the '>' in '</span>'."
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)))
 
+;; html, js, and CSS files
 (use-package web-mode
   :mode (("\\.html?\\'" . web-mode)
          ("\\.js?\\'" . web-mode)
@@ -660,6 +661,10 @@ Place the cursor on the '>' in '</span>'."
   (web-mode-code-indent-offset 2)
   :bind (("C-c ]" . web-mode-element-close)
          ("C-c /" . web-mode-element-close)))
+
+; Highlight colors (e.g. #d10000)
+(use-package rainbow-mode
+  :hook (emacs-lisp-mode text-mode web-mode))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;
