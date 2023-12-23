@@ -218,10 +218,6 @@
   :config
   (setq show-paren-delay 0)) ;; don't delay showing parens
 
-(use-package js
-  :config
-  (setq js-indent-level 2))
-
 (use-package ispell
   :config
   ;; Needed when installing aspell by homebrew (may work without it if
@@ -453,6 +449,14 @@ Place the cursor on the '>' in '</span>'."
          (local-set-key (kbd "C-c C-g c") (lambda () (interactive) (my/wrap-text-with-span "comment")))
          (local-set-key (kbd "C-c C-g s") (lambda () (interactive) (my/wrap-text-with-span "string")))))
 
+(add-hook 'web-mode-hook
+       (lambda ()
+         (local-set-key (kbd "C-c C-g n") (lambda () (interactive) (my/wrap-text-with-span "numeric")))
+         (local-set-key (kbd "C-c C-g k") (lambda () (interactive) (my/wrap-text-with-span "keyword")))
+         (local-set-key (kbd "C-c C-g o") (lambda () (interactive) (my/wrap-text-with-span "operator")))
+         (local-set-key (kbd "C-c C-g c") (lambda () (interactive) (my/wrap-text-with-span "comment")))
+         (local-set-key (kbd "C-c C-g s") (lambda () (interactive) (my/wrap-text-with-span "string")))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; External Packages ;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -646,10 +650,17 @@ Place the cursor on the '>' in '</span>'."
          ("C-h v" . helpful-variable)
          ("C-h k" . helpful-key)))
 
-(use-package editorconfig
-  :ensure t
-  :config
-  (editorconfig-mode 1))
+(use-package web-mode
+  :mode (("\\.html?\\'" . web-mode)
+         ("\\.js?\\'" . web-mode)
+         ("\\.css?\\'" . web-mode))
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 4)
+  (web-mode-code-indent-offset 2)
+  :bind (("C-c ]" . web-mode-element-close)
+         ("C-c /" . web-mode-element-close)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Custom file ;;;;;
