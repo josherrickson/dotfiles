@@ -1,0 +1,29 @@
+import = ["/Users/josh/.config/alacritty/themes/themes/solarized_light.toml"]
+live_config_reload = true
+
+[font]
+size = 15
+
+[font.bold]
+family = "Comic Mono"
+style = "Bold"
+
+[font.italic]
+family = "Comic Mono"
+style = "Italic"
+
+[font.normal]
+family = "Comic Mono"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "Return"
+mods = "Command"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+# When set to `true`, selected text will be copied to the primary clipboard.
+save_to_clipboard = true
+
+[window]
+option_as_alt = "Both"
