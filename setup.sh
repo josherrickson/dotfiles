@@ -50,7 +50,7 @@ lns "$DIR"/.gtkrc-2.0 ~/.gtkrc-2.0
 mkdir -p ~/.emacs.d
 lns "$DIR"/init.el ~/.emacs.d/init.el
 mkdir -p ~/.config/alacritty/
-lns "$DIR"/alacritty.yml ~/.config/alacritty/alacritty.yml
+lns "$DIR"/alacritty.toml ~/.config/alacritty/alacritty.toml
 mkdir -p ~/Library/Application\ Support/com.nuebling.mac-mouse-fix
 lns "$DIR"/mac-mouse-fix.plist ~/Library/Application\ Support/com.nuebling.mac-mouse-fix/config.plist
 lns "$DIR"/Brewfile ~/Brewfile
