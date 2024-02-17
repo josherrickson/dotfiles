@@ -36,11 +36,14 @@ alias install_R_deps='bash ~/.bash-scripts/install_R_deps.sh'
 
 alias tree="tree -C"
 
-alias ytdl="yt-dlp -f bestvideo+bestaudio --write-auto-sub --sub-format srt/best --sub-lang en --embed-subs"
+alias ytdl="yt-dlp -f "bestvideo+bestaudio/best" --write-auto-sub --sub-format srt/best --sub-lang en --embed-subs"
+alias ytdl1080p='yt-dlp -f "bestvideo[height<=1080]+bestaudio/best" --write-auto-sub --sub-format srt/best --sub-lang en --embed-subs'
 
 alias nu="nu --config '.config/nushell/config.nu' --env-config '.config/nushell/env.nu'"
 
 alias coinflip="shuf -r -n 1 -e heads tails"
+
+alias vidres="ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0"
 
 ###############################
 ##### OS Specific aliases #####
