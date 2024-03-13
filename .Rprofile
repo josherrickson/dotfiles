@@ -26,6 +26,19 @@ if (isTRUE("devtools" %in% pkg)) {
   })
 }
 
+# Better ui_yeah function from usethis
+if (isTRUE("usethis" %in% pkg)) {
+  setHook(packageEvent("devtools", "onLoad"), {
+    ui_yeah <- function(x, ...) {
+      cat(x)
+      utils::menu(c("Yes", "No"))
+    }
+    utils::assignInNamespace("ui_yeah", ui_yeah, "usethis")
+    rm(ui_yeah)
+  })
+}
+
+
 # Add rrelaxiv to drat repos
 if (isTRUE("drat" %in% pkg)) {
   setHook(packageEvent("drat", "onLoad"), {
