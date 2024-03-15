@@ -87,6 +87,10 @@
          ("C-x C-m C-m" . compile))
   :bind ("C-c c" . comment-or-uncomment-region)
   :bind ("C-c n" . scratch-buffer) ;; switch to or create a scratch buffer
+  :bind ("C-x <up>" . windmove-up)
+  :bind ("C-x <down>" . windmove-down)
+  :bind ("C-x <left>" . windmove-left)
+  :bind ("C-x <right>" . windmove-right)
   :config
 ;; Variables which are `buffer-local` (check with C-h v <varname>) need
 ;; setq-default, otherwise setq is fine.
