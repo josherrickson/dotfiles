@@ -13,11 +13,27 @@ config.hide_tab_bar_if_only_one_tab = true
 -- Use native fullscreen
 config.native_macos_fullscreen_mode = true
 
+-- Remove padding
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
+
+-- config.keys = {
+--    -- Disable font size increase with Alt +
+--      {
+--     key = '-',
+--     mods = 'CTRLSHIFT',
+--     action = wezterm.action.DisableDefaultAssignment,
+--   },
+-- }
 -- For example, changing the color scheme:
 -- config.color_scheme = 'Solarized (light) (terminal.sexy)'
 
 config.font = wezterm.font('Comic Mono', { weight= 'Bold'})
-config.font_size = 16
+config.font_size = 15
 
 -- light mode/Dark mode
 function get_appearance()
