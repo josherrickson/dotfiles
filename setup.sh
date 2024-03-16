@@ -51,6 +51,7 @@ mkdir -p ~/.emacs.d
 lns "$DIR"/init.el ~/.emacs.d/init.el
 mkdir -p ~/.config/alacritty/
 lns "$DIR"/alacritty.toml ~/.config/alacritty/alacritty.toml
+lns "$DIR"/.wezterm.lua ~/.wezterm.lua
 mkdir -p ~/Library/Application\ Support/com.nuebling.mac-mouse-fix
 lns "$DIR"/mac-mouse-fix.plist ~/Library/Application\ Support/com.nuebling.mac-mouse-fix/config.plist
 lns "$DIR"/Brewfile ~/Brewfile
