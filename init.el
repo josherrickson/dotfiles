@@ -45,19 +45,25 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
-;; flatui theme
-
 (use-package solarized-theme
-   :ensure t
-   :init
-   (load-theme 'solarized-light t))
+  :ensure t
+  :init
+  ;; This only triggers on terminal; still can't get dark-mode auto toggling at
+  ;; terminal
+  (when (not window-system) (load-theme 'solarized-light t)))
 
-;; (use-package catppuccin-theme
-;;   :ensure t
-;;   :init
-;;   (load-theme 'catppuccin t)
-;;   (setq catppuccin-flavor 'latte)
-;;   (catppuccin-reload))
+(when (window-system)
+  ;; This applies ONLY for GUI emacs, setting the theme dark/light based upon
+  ;; dark mode toggled.
+  (defun my/apply-theme (appearance)
+    "Load theme, taking current system APPEARANCE into consideration."
+    (mapc #'disable-theme custom-enabled-themes)
+    (pcase appearance
+      ('light (load-theme 'solarized-light t))
+      ('dark  (load-theme 'solarized-dark  t))))
+
+  (add-hook 'ns-system-appearance-change-functions #'my/apply-theme))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
