@@ -45,25 +45,55 @@
                        ;; needed in pre 27)
   (use-package package)) ;; This may not be needed.
 
+;;;;;;;;;;;;;;;;;
+;;;;; Theme ;;;;;
+;;;;;;;;;;;;;;;;;
+
+;;;; This allows switching between light-mode and dark-mode. Load any themes
+;;;; libraries needed, and then update definitions of `my-light-theme` and
+;;;; `my-dark-theme`.
+;;;;
+;;;; On Mac, for GUI emacs, follow Dark mode status and change as appropriate.
+;;;; For terminal, at launch, choose theme based upon current Dark Mode status.
+;;;; You can rerun `M-x reapply-theme` to have it reevaluate (e.g. check for
+;;;; Dark Mode).
+
 (use-package solarized-theme
-  :ensure t
-  :init
-  ;; This only triggers on terminal; still can't get dark-mode auto toggling at
-  ;; terminal
-  (when (not window-system) (load-theme 'solarized-light t)))
+  :ensure t)
 
-(when (window-system)
-  ;; This applies ONLY for GUI emacs, setting the theme dark/light based upon
-  ;; dark mode toggled.
-  (defun my/apply-theme (appearance)
-    "Load theme, taking current system APPEARANCE into consideration."
-    (mapc #'disable-theme custom-enabled-themes)
-    (pcase appearance
-      ('light (load-theme 'solarized-light t))
-      ('dark  (load-theme 'solarized-dark  t))))
+(setq my-light-theme 'solarized-light)
+(setq my-dark-theme 'solarized-dark)
 
-  (add-hook 'ns-system-appearance-change-functions #'my/apply-theme))
+;;;; Do not change anything below here, just update the two variables above.
 
+
+;; If not on a mac, just load a theme
+(when (not (eq system-type 'darwin))
+    (load-theme my-dark-theme t))
+
+;; On a Mac
+(when (eq system-type 'darwin)
+  ;; Check if in terminal or GUI
+  (if window-system
+      ;; GUI Emacs
+      (progn
+        (defun my/apply-theme (appearance)
+          "Load theme, taking current system APPEARANCE into consideration."
+          (mapc #'disable-theme custom-enabled-themes)
+          (pcase appearance
+            ('light (load-theme my-light-theme t))
+            ('dark  (load-theme my-dark-theme  t))))
+        (add-hook 'ns-system-appearance-change-functions #'my/apply-theme))
+    ;; Terminal Emacs
+    (progn
+      (defun reapply-theme ()
+        (interactive)
+
+        (let ((cmd-output (shell-command-to-string "defaults read -g AppleInterfaceStyle")))
+          (if (string-match-p "Dark" cmd-output)
+              (load-theme my-dark-theme t)
+            (load-theme my-light-theme t))))
+      (reapply-theme))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Internal Packages ;;;;;
