@@ -21,16 +21,19 @@ config.window_padding = {
   bottom = 0,
 }
 
--- config.keys = {
---    -- Disable font size increase with Alt +
---      {
---     key = '-',
---     mods = 'CTRLSHIFT',
---     action = wezterm.action.DisableDefaultAssignment,
---   },
--- }
--- For example, changing the color scheme:
--- config.color_scheme = 'Solarized (light) (terminal.sexy)'
+config.keys = {
+   -- Disable font size changes
+   {
+      key = '_',
+      mods = 'CTRL | SHIFT',
+      action = wezterm.action.DisableDefaultAssignment,
+   },
+   {
+      key = '+',
+      mods = 'CTRL | SHIFT',
+      action = wezterm.action.DisableDefaultAssignment,
+   },
+}
 
 config.font = wezterm.font('Comic Mono', { weight= 'Bold'})
 config.font_size = 15
@@ -40,7 +43,7 @@ function get_appearance()
   if wezterm.gui then
     return wezterm.gui.get_appearance()
   end
-  return 'Light'
+  return 'Dark'
 end
 
 function scheme_for_appearance(appearance)
