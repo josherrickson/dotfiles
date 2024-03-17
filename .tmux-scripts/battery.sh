@@ -3,7 +3,7 @@
 islaptop=$(/usr/sbin/system_profiler SPHardwareDataType | grep "MacBook")
 
 if [ -n "$islaptop" ]; then
-    HEART='♥'
+    HEART='❤'
 
      if [[ `uname` == 'Linux' ]]; then
          current_charge=$(cat /proc/acpi/battery/BAT1/state | grep 'remaining capacity' | awk '{print $3}')
