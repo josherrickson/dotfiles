@@ -87,6 +87,7 @@
     ;; Terminal Emacs
     (progn
       (defun reapply-theme ()
+        "Check status of Dark Mode and apply appropriate pre-defined theme."
         (interactive)
 
         (let ((cmd-output (shell-command-to-string "defaults read -g AppleInterfaceStyle")))
