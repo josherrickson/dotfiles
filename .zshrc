@@ -73,13 +73,14 @@ autoload -U colors && colors
 setopt prompt_subst
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' enable git cvs svn
+zstyle ':vcs_info:*' enable git
 # During special actions like rebasing
 zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-# During normal use
-zstyle ':vcs_info:*' formats '%F{4}[%b]%f '
-# For branching on SVN
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{3}:%r%F{4}'
+# During normal use:
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '!'
+zstyle ':vcs_info:*' stagedstr '!'
+zstyle ':vcs_info:*' formats '%F{4}[%b%F{red}%u%f%F{yellow}%c%f]%f '
 
 # or use pre_cmd, see man zshcontrib
 vcs_info_wrapper() {
