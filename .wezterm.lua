@@ -13,6 +13,9 @@ config.hide_tab_bar_if_only_one_tab = true
 -- Use native fullscreen
 config.native_macos_fullscreen_mode = true
 
+-- Don't prompt on quit
+config.window_close_confirmation = 'NeverPrompt'
+
 -- Remove padding
 config.window_padding = {
   left = 0,
