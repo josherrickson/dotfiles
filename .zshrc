@@ -80,7 +80,19 @@ zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '!'
 zstyle ':vcs_info:*' stagedstr '!'
-zstyle ':vcs_info:*' formats '%F{4}[%b%F{red}%u%f%F{yellow}%c%f]%f '
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
+# Untracked files, send to Misc (%m)
+# from https://stackoverflow.com/a/49744699
++vi-git-untracked() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+     git status --porcelain | grep -m 1 '^??' &>/dev/null
+  then
+    hook_com[misc]='?'
+  fi
+}
+
+zstyle ':vcs_info:*' formats '%F{4}[%b%F{red}%u%m%f%F{yellow}%c%f]%f '
 
 # or use pre_cmd, see man zshcontrib
 vcs_info_wrapper() {
