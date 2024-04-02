@@ -45,6 +45,12 @@ alias coinflip="shuf -r -n 1 -e heads tails"
 
 alias vidres="ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0"
 
+###################
+##### pico.sh #####
+###################
+
+alias pico-web='open -a Safari localhost:1337; ssh -L 1337:localhost:80 -N pico-ui@pgs.sh'
+
 ###############################
 ##### OS Specific aliases #####
 ###############################
