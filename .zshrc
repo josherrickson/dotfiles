@@ -107,12 +107,12 @@ function +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
      git status --porcelain | grep -m 1 '^??' &>/dev/null
   then
-    hook_com[misc]+='?'
+    hook_com[misc]+='%F{red}?%f'
   fi
 }
 
 
-zstyle ':vcs_info:*' formats '%F{4}[%b%F{red}%u%f%m%F{yellow}%c%f]%f '
+zstyle ':vcs_info:*' formats '%F{4}[%b%m%F{red}%u%f%F{yellow}%c%f]%f '
 
 
 # or use pre_cmd, see man zshcontrib
