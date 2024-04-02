@@ -79,20 +79,41 @@ zstyle ':vcs_info:*' actionformats '%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 # During normal use:
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '!'
-zstyle ':vcs_info:*' stagedstr '!'
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+zstyle ':vcs_info:*' stagedstr '$'
+zstyle ':vcs_info:git*+set-message:*' hooks git-st git-untracked
+
+# Behind/Ahead of current remote HEAD
+# https://github.com/zsh-users/zsh/blob/f9e9dce5443f323b340303596406f9d3ce11d23a/Misc/vcs_info-examples#L175
+function +vi-git-st() {
+    local ahead behind
+    local -a gitstatus
+
+    ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+    (( $ahead )) && gitstatus+=( "+${ahead}" )
+
+    behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | tr -d ' ')
+    (( $behind )) && gitstatus+=( "-${behind}" )
+
+    if [[ ${#gitstatus[@]} -gt 0 ]]; then
+        hook_com[misc]="%F{blue}(${(j:/:)gitstatus})%f"
+    else
+        hook_com[misc]=""
+    fi
+}
 
 # Untracked files, send to Misc (%m)
 # from https://stackoverflow.com/a/49744699
-+vi-git-untracked() {
+function +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
      git status --porcelain | grep -m 1 '^??' &>/dev/null
   then
-    hook_com[misc]='?'
+    hook_com[misc]+='?'
   fi
 }
 
-zstyle ':vcs_info:*' formats '%F{4}[%b%F{red}%u%m%f%F{yellow}%c%f]%f '
+
+zstyle ':vcs_info:*' formats '%F{4}[%b%F{red}%u%f%m%F{yellow}%c%f]%f '
+
 
 # or use pre_cmd, see man zshcontrib
 vcs_info_wrapper() {
